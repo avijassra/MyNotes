@@ -8,6 +8,6 @@
 
         public string Name { get; set; }
 
-        public bool IsSystem { get; set; }
+        public bool IsSysAccount { get; set; }
     }
 }

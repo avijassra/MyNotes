@@ -39,8 +39,17 @@
             using (ITransaction transaction = session.BeginTransaction())
             {
                 IRepository<Group> groupRepository = new Repository<Group>(session);
-                groupRepository.Add(new Group { Name = name });
-                transaction.Commit();
+                var existingGroup = groupRepository.FindOne(x => x.Name == name);
+
+                if (null == existingGroup)
+                {
+                    groupRepository.Add(new Group { Name = name });
+                    transaction.Commit();
+                }
+                else
+                {
+                    result.ErrorMessage("Group with same name already exists");
+                }
             }
             return result;
         }

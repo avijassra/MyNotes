@@ -11,13 +11,21 @@ handler.admin = function ($selector) {
         $.ajaxGet({ url: addUserUrl });
     });
 
-    $selector.bind('addGroup', function () {
-        $(mynotes.Constants.PopupView).modal('hide');
-        $.ajaxGet({ url: groupListUrl });
+    $selector.bind('addGroup', function (response) {
+        if (response.HasError) {
+            alert(response.Message);
+        } else {
+            $(mynotes.Constants.PopupView).modal('hide');
+            $.ajaxGet({ url: groupListUrl });
+        }
     });
 
-    $selector.bind('addUser', function () {
-        $(mynotes.Constants.PopupView).modal('hide');
-        $.ajaxGet({ url: userListUrl });
+    $selector.bind('addUser', function (response) {
+        if (response.HasError) {
+            alert(response.Message);
+        } else {
+            $(mynotes.Constants.PopupView).modal('hide');
+            $.ajaxGet({ url: userListUrl });
+        }
     });
 };

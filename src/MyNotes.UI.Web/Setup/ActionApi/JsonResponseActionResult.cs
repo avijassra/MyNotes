@@ -16,15 +16,18 @@
         public override void ExecuteResult(ControllerContext context)
         {
             var ajaxResponse = GetAjaxResponse(context, _refreshOptions.PopupViewName, _refreshOptions.PopupViewModel, _refreshOptions.ContentViewName, _refreshOptions.ContentViewModel, 
-                _refreshOptions.ResultViewName, _refreshOptions.ResultViewModel, _refreshOptions.RedirectUrl);
+                _refreshOptions.ResultViewName, _refreshOptions.ResultViewModel, _refreshOptions.RedirectUrl, _refreshOptions.HasError, _refreshOptions.Message);
 
             new JsonResult { Data = ajaxResponse, JsonRequestBehavior = JsonRequestBehavior.AllowGet }.ExecuteResult(context);
         }
 
         private static AjaxResponse GetAjaxResponse(ControllerContext context, string popupViewName, object popupViewModel, string contentViewName, object contentViewModel, 
-            string resultViewName, object resultViewModel, string redirectUrl)
+            string resultViewName, object resultViewModel, string redirectUrl, bool hasError, string message)
         {
             var response = new AjaxResponse();
+
+            response.HasError = hasError;
+            response.Message = message;
 
             if (!string.IsNullOrEmpty(popupViewName))
                 response.PopupView = context.RenderPartialViewToString(popupViewName, popupViewModel);
@@ -35,9 +38,7 @@
             if (!string.IsNullOrEmpty(resultViewName))
                 response.Result = context.RenderPartialViewToString(resultViewName, resultViewModel);
             else if(resultViewModel != null)
-            {
-                response.Result = JsonConvert.SerializeObject(resultViewModel); ;
-            }
+                response.Result = resultViewModel;
 
             if (!string.IsNullOrEmpty(redirectUrl))
                 response.RedirectUrl = redirectUrl;

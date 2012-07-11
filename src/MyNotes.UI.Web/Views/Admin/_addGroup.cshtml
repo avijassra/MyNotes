@@ -1,4 +1,4 @@
-﻿@model MyNotes.UI.Web.ViewModels.Admin.GroupViewModel
+﻿@model MyNotes.UI.Web.ViewModels.Admin.Group.NewGroupViewModel
 
 @using MvcBase.WebHelper.Mvc.Extensions;
 
@@ -9,6 +9,7 @@
             <a class="close" data-dismiss="modal">×</a>
             <h3>Add New Group</h3>
         </div>
+        <div id="popupMsg" class="row center" style="display:none;"></div>
         <div class="modal-body">
             <div class="row center">
                 @Html.TextBoxFor(m => m.Name, new { placeholder = "Group Name", @class = "input-xlarge" })

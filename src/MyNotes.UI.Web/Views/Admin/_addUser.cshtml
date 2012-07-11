@@ -1,4 +1,4 @@
-﻿@model MyNotes.UI.Web.ViewModels.User.UserViewModel
+﻿@model MyNotes.UI.Web.ViewModels.Admin.User.NewUserViewModel
 
 @using MyNotes.UI.Web.Setup.Extensions;
 @using MvcBase.WebHelper.Mvc.Extensions;
@@ -12,6 +12,7 @@
             <a class="close" data-dismiss="modal">×</a>
             <h3>Add New User</h3>
         </div>
+        <div id="popupMsg" class="row center" style="display:none;"></div>
         <div class="modal-body">
             @if (Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount)
             { 
@@ -32,7 +33,7 @@
                 @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "input-xlarge" })
             </div>
             <div class="row center">
-                @Html.PasswordFor(m => m.Password, new { placeholder = "Confirm Password", @class = "input-xlarge" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password", @class = "input-xlarge" })
             </div>
         </div>
         <div class="modal-footer">

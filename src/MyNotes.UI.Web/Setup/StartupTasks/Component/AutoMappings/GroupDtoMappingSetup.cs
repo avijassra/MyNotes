@@ -3,7 +3,7 @@
     using AutoMapper;
     using MvcBase.WebHelper.StartupTasks;
     using MyNotes.UI.Web.AdminServiceRef;
-    using MyNotes.UI.Web.ViewModels.Admin;
+    using MyNotes.UI.Web.ViewModels.Admin.Group;
 
     public class GroupDtoMappingSetup : IIncludeComponent
     {

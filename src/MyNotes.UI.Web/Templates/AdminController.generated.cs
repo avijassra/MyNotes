@@ -134,7 +134,7 @@ namespace MyNotes.UI.Web.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult SaveGroup(MyNotes.UI.Web.ViewModels.Admin.GroupViewModel groupViewModel) {
+        public override System.Web.Mvc.ActionResult SaveGroup(MyNotes.UI.Web.ViewModels.Admin.Group.NewGroupViewModel groupViewModel) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SaveGroup);
             callInfo.RouteValueDictionary.Add("groupViewModel", groupViewModel);
             return callInfo;
@@ -145,7 +145,7 @@ namespace MyNotes.UI.Web.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult SaveUser(MyNotes.UI.Web.ViewModels.User.UserViewModel userViewModel) {
+        public override System.Web.Mvc.ActionResult SaveUser(MyNotes.UI.Web.ViewModels.Admin.User.NewUserViewModel userViewModel) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.SaveUser);
             callInfo.RouteValueDictionary.Add("userViewModel", userViewModel);
             return callInfo;

@@ -247,9 +247,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Admin\GroupViewModel.cs" />
-    <Compile Include="ViewModels\User\UserViewModel.cs" />
-    <Compile Include="ViewModels\User\UserCredentialViewModel.cs" />
+    <Compile Include="ViewModels\Admin\Group\GroupViewModel.cs" />
+    <Compile Include="ViewModels\Admin\Group\NewGroupViewModel.cs" />
+    <Compile Include="ViewModels\Admin\Group\UpdateGroupViewModel.cs" />
+    <Compile Include="ViewModels\Admin\User\NewUserViewModel.cs" />
+    <Compile Include="ViewModels\Admin\User\UpdateUserViewModel.cs" />
+    <Compile Include="ViewModels\Admin\User\UserViewModel.cs" />
+    <Compile Include="ViewModels\Admin\User\UserCredentialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Include\Scripts\app\admin.handler.js" />

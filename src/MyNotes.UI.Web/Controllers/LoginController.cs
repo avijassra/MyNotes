@@ -1,7 +1,7 @@
 ﻿namespace MyNotes.UI.Web.Controllers
 {
     using System.Web.Mvc;
-    using MyNotes.UI.Web.ViewModels.User;
+    using MyNotes.UI.Web.ViewModels.Admin.User;
     using MyNotes.UI.Web.UserServiceRef;
     using MvcBase.WebHelper.Mvc.Attributes;
     using AutoMapper;

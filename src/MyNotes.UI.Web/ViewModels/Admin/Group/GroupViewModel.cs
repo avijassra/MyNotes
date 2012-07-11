@@ -1,6 +1,7 @@
-﻿namespace MyNotes.UI.Web.ViewModels.Admin
+﻿namespace MyNotes.UI.Web.ViewModels.Admin.Group
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     public class GroupViewModel
     {

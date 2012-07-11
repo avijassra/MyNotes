@@ -13,6 +13,6 @@
         public string Name { get; set; }
 
         [DataMember]
-        public virtual bool IsSystem { get; set; }
+        public virtual bool IsSysAccount { get; set; }
     }
 }

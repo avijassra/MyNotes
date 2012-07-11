@@ -26,7 +26,7 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         private System.Guid IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool IsSystemField;
+        private bool IsSysAccountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -55,14 +55,14 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool IsSystem {
+        public bool IsSysAccount {
             get {
-                return this.IsSystemField;
+                return this.IsSysAccountField;
             }
             set {
-                if ((this.IsSystemField.Equals(value) != true)) {
-                    this.IsSystemField = value;
-                    this.RaisePropertyChanged("IsSystem");
+                if ((this.IsSysAccountField.Equals(value) != true)) {
+                    this.IsSysAccountField = value;
+                    this.RaisePropertyChanged("IsSysAccount");
                 }
             }
         }

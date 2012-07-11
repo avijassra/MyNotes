@@ -23,6 +23,7 @@
 
                         if (response.PopupView) {
                             $(mynotes.Constants.PopupView).html(response.PopupView).modal();
+                            $.validator.unobtrusive.parse($(mynotes.Constants.PopupView));
                         }
 
                         if (response.ContentView)

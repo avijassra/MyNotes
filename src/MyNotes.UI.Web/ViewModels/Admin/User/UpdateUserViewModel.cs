@@ -1,8 +1,8 @@
-﻿namespace MyNotes.UI.Web.ViewModels.User
+﻿namespace MyNotes.UI.Web.ViewModels.Admin.User
 {
     using System;
 
-    public class UserViewModel
+    public class UpdateUserViewModel
     {
         public Guid Id { get; set; }
 

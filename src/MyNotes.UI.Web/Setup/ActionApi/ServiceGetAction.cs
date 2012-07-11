@@ -27,7 +27,7 @@
             if (serviceQuery != null)
                 _popupViewModel = Mapper.Map<TViewModel>(serviceQuery());
 
-            return (IServiceGetAction)this;
+            return this;
         }
 
         public IServiceGetAction WithContent<TViewModel>(string viewName, Func<TViewModel> serviceQuery = null)
@@ -37,7 +37,7 @@
             if (serviceQuery != null)
                 _contentViewModel = Mapper.Map<TViewModel>(serviceQuery());
 
-            return (IServiceGetAction)this;
+            return this;
         }
 
         public IServiceGetAction WithResult<TViewModel>(Func<TViewModel> serviceQuery)
@@ -52,7 +52,7 @@
             if (serviceQuery != null)
                 _resultViewModel = Mapper.Map<TViewModel>(serviceQuery());
 
-            return (IServiceGetAction)this;
+            return this;
         }
 
         public JsonResponseActionResult Execute()

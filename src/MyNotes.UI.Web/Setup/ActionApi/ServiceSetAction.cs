@@ -31,21 +31,21 @@
             where TEntity :new()
         {
             _serviceCommand = serviceCommand;
-            return (IServiceSetAction)this;
+            return this;
         }
 
         public IServiceSetAction OnSuccess(ActionResult actionResult, bool isFragmentAtion = true)
         {
             _onSuccess = actionResult;
             _onSuccessIsFragmentAction = isFragmentAtion;
-            return (IServiceSetAction)this;
+            return this;
         }
 
         public IServiceSetAction OnFailure(ActionResult actionResult, bool isFragmentAtion = true)
         {
             _onFailure = actionResult;
             _onFailureIsFragmentAction = isFragmentAtion;
-            return (IServiceSetAction)this;
+            return this;
         }
 
         public JsonResponseActionResult Execute()
@@ -71,6 +71,8 @@
             return new JsonResponseActionResult(
                     new RefreshOptions()
                     {
+                        HasError = commandSuccessfull.HasError,
+                        Message = commandSuccessfull.Message,
                         ResultViewName = _resultViewName,
                         ResultViewModel = _resultViewModel,
                         RedirectUrl = redirectLink,

@@ -11,7 +11,7 @@ handler.admin = function ($selector) {
         $.ajaxGet({ url: addUserUrl });
     });
 
-    $selector.bind('addGroup', function (response) {
+    $selector.bind('addGroup', function (e, response) {
         if (response.HasError) {
             alert(response.Message);
         } else {
@@ -20,7 +20,7 @@ handler.admin = function ($selector) {
         }
     });
 
-    $selector.bind('addUser', function (response) {
+    $selector.bind('addUser', function (e, response) {
         if (response.HasError) {
             alert(response.Message);
         } else {

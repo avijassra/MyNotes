@@ -7,7 +7,6 @@
             Message = null;
             PopupView = null;
             ContentView = null;
-            ContentIsWizard = false;
             RedirectUrl = null;
             Result = null;
         }
@@ -19,8 +18,6 @@
         public string PopupView { get; set; }
 
         public string ContentView { get; set; }
-
-        public bool ContentIsWizard { get; set; }
 
         public object Result { get; set; }
 

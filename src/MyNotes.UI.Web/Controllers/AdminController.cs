@@ -4,11 +4,11 @@
     using MyNotes.UI.Web.AdminServiceRef;
     using MyNotes.UI.Web.Setup.ActionApi;
     using MyNotes.UI.Web.Setup.Common;
-    using MyNotes.UI.Web.ViewModels.Admin;
     using System.Collections.Generic;
     using AutoMapper;
     using MyNotes.UI.Web.Setup.Extensions;
-    using MyNotes.UI.Web.ViewModels.User;
+    using MyNotes.UI.Web.ViewModels.Admin.Group;
+    using MyNotes.UI.Web.ViewModels.Admin.User;
     using MyNotes.UI.Web.UserServiceRef;
     using System.Linq;
 
@@ -61,16 +61,16 @@
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)
-                        .WithPopup<GroupViewModel>(MVC.Admin.Views._addGroup,
+                        .WithPopup<NewGroupViewModel>(MVC.Admin.Views._addGroup,
                                 () =>
                                 {
-                                    return new GroupViewModel();
+                                    return new NewGroupViewModel();
                                 })
                         .Execute();
         }
 
         [HttpPost]
-        public virtual ActionResult SaveGroup(GroupViewModel groupViewModel)
+        public virtual ActionResult SaveGroup(NewGroupViewModel groupViewModel)
         {
             return new ServiceAction(this)
                         .Put(SessionKey.Empty)
@@ -86,19 +86,19 @@
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)
-                        .WithPopup<UserViewModel>(MVC.Admin.Views._addUser,
+                        .WithPopup<NewUserViewModel>(MVC.Admin.Views._addUser,
                                 () =>
                                 {
                                     var groups = (from gp in _adminService.GetAllGroups()
                                                   select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
                                     ViewData["Groups"] = groups;
-                                    return new UserViewModel();
+                                    return new NewUserViewModel();
                                 })
                         .Execute();
         }
 
         [HttpPost]
-        public virtual ActionResult SaveUser(UserViewModel userViewModel)
+        public virtual ActionResult SaveUser(NewUserViewModel userViewModel)
         {
             return new ServiceAction(this)
                         .Put(SessionKey.Empty)

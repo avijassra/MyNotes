@@ -2,6 +2,10 @@
 {
     public class RefreshOptions
     {
+        public bool HasError { get; set; }
+
+        public string Message { get; set; }
+
         public string ContentViewName { get; set; }
 
         public object ContentViewModel { get; set; }

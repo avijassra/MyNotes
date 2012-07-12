@@ -33,22 +33,25 @@
 
         public MessageResultDto AddGroup(string name)
         {
+            Group group = null;
             var result = new MessageResultDto();
 
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
                 IRepository<Group> groupRepository = new Repository<Group>(session);
-                var existingGroup = groupRepository.FindOne(x => x.Name == name);
+                var existingGroup = groupRepository.FindOne(x => x.Name, name);
 
                 if (null == existingGroup)
                 {
-                    groupRepository.Add(new Group { Name = name });
+                    group = new Group { Name = name };
+                    groupRepository.Add(group);
                     transaction.Commit();
+                    result.SuccessMessage("Group added successfully", group.Id);
                 }
                 else
                 {
-                    result.ErrorMessage("Group with same name already exists");
+                    result.ErrorMessage("System failed to add new group");
                 }
             }
             return result;
@@ -57,6 +60,7 @@
         public MessageResultDto UpdateGroup(Guid id, string name)
         {
             var result = new MessageResultDto();
+            result.Message = "Group updated successfully";
 
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())

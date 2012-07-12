@@ -1,6 +1,7 @@
 var handler = function () { };
 $(function () {
     handler.functions = [
+        handler.common,
         handler.admin,
         handler.undefinedhandler
     ];

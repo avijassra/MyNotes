@@ -12,7 +12,6 @@
             <a class="close" data-dismiss="modal">×</a>
             <h3>Add New User</h3>
         </div>
-        <div id="popupMsg" class="row center" style="display:none;"></div>
         <div class="modal-body">
             @if (Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount)
             { 
@@ -42,3 +41,4 @@
         </div>
     }
 </div>
+<div id="popupAltMsg" class="row center" style="display:none;"></div>

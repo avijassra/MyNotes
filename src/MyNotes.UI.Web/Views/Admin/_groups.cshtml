@@ -1,15 +1,16 @@
 ﻿@model IEnumerable<MyNotes.UI.Web.ViewModels.Admin.Group.GroupViewModel>
 
-<div id="groupList" class="row span8">
-    <table id="groupTbl" class="table table-striped">  
+<div id="groupListDiv" class="row span8">
+    <table id="groupListTbl" class="table table-striped">  
         <thead>
             <tr>
                 <th>S#</th>
                 <th>Name</th>
                 <th>System A/c</th>
+                <th>&nbsp;</th>
             </tr>  
         </thead>  
-        <tbody>
+        <tbody id="groupListTbody">
             @{
                 var index = 1;
                 foreach (var group in Model)
@@ -18,6 +19,15 @@
                         <td>@index</td>
                         <td>@group.Name</td>
                         <td>@(group.IsSysAccount ? "Yes" : "No")</td>
+                        <td>
+                            @if (!group.IsSysAccount)
+                            { 
+                                <ul>
+                                    <li class="icon-edit jqGroup"></li>
+                                    <li class="icon-remove jqGroup"></li>
+                                </ul>
+                            }
+                        </td>
                     </tr>
                     index += 1;
                 }
@@ -29,11 +39,3 @@
         <button id="btnNewGroup" class="btn btn-primary">New Group</button>
     </div>
 </div>
-
-<script type="text/x-jsrender">
-    <tr data-id="{{:Id}}" >
-        <td>{{:#index+1}}</td>
-        <td>{{:Name}}</td>
-        <td>{{if IsSysAccount}}Yes{{else}}No{{/if}}</td>
-    </tr>
-</script>

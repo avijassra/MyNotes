@@ -10,16 +10,11 @@
     {
         private Controller _controller;
         private SessionKey _sessionKey;
-
         private Func<MessageResultDto> _serviceCommand;
-
         private ActionResult _onSuccess;
         private bool _onSuccessIsFragmentAction;
         private ActionResult _onFailure;
         private bool _onFailureIsFragmentAction;
-        
-        private string _resultViewName;
-        private object _resultViewModel;
 
         public ServiceSetAction(Controller controller, SessionKey sessionKey)
         {
@@ -27,8 +22,7 @@
             _sessionKey = sessionKey;
         }
 
-        public IServiceSetAction WithCommand<TEntity>(Func<MessageResultDto> serviceCommand)
-            where TEntity :new()
+        public IServiceSetAction WithCommand(Func<MessageResultDto> serviceCommand)
         {
             _serviceCommand = serviceCommand;
             return this;
@@ -50,18 +44,32 @@
 
         public JsonResponseActionResult Execute()
         {
+            var hasError = false;
+            string message = null;
+            object data = null;
             var commandSuccessfull = new MessageResultDto();
             string redirectLink = null;
 
-            commandSuccessfull = _serviceCommand();
+            if (!_controller.ModelState.IsValid)
+            {
+                hasError = true;
+                message = "Please fix the errors";
+            }
+            else
+            {
+                commandSuccessfull = _serviceCommand();
+                hasError = commandSuccessfull.HasError;
+                message = commandSuccessfull.Message;
+                data = commandSuccessfull.Id;
+            }
             
-            if (commandSuccessfull.HasError && _onSuccess != null)
+            if (hasError && _onSuccess != null)
             {
                 redirectLink = (_onSuccessIsFragmentAction ?
                     _controller.Url.UrlWithActionFragment(_onSuccess) :
                     _controller.Url.UrlWithAction(_onSuccess));
             }
-            else if(!commandSuccessfull.HasError && _onFailure!=null)
+            else if(!hasError && _onFailure!=null)
             {
                 redirectLink = (_onFailureIsFragmentAction ?
                     _controller.Url.UrlWithActionFragment(_onFailure) :
@@ -71,10 +79,9 @@
             return new JsonResponseActionResult(
                     new RefreshOptions()
                     {
-                        HasError = commandSuccessfull.HasError,
-                        Message = commandSuccessfull.Message,
-                        ResultViewName = _resultViewName,
-                        ResultViewModel = _resultViewModel,
+                        HasError = hasError,
+                        Message = message,
+                        ResultViewModel = data,
                         RedirectUrl = redirectLink,
                     }
                 );

@@ -104,9 +104,6 @@
     <Reference Include="Microsoft.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Optimization.0.1\lib\net40\Microsoft.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.7\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.103.1\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -256,11 +253,25 @@
     <Compile Include="ViewModels\Admin\User\UserCredentialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Include\Images\jQuery\jquery.alerts\help.gif" />
+    <Content Include="Include\Images\jQuery\jquery.alerts\important.gif" />
+    <Content Include="Include\Images\jQuery\jquery.alerts\info.gif" />
+    <Content Include="Include\Images\jQuery\jquery.alerts\title.gif" />
+    <Content Include="Include\Images\jQuery\jquery.contextMenu\cut.png" />
+    <Content Include="Include\Images\jQuery\jquery.contextMenu\door.png" />
+    <Content Include="Include\Images\jQuery\jquery.contextMenu\page_white_copy.png" />
+    <Content Include="Include\Images\jQuery\jquery.contextMenu\page_white_delete.png" />
+    <Content Include="Include\Images\jQuery\jquery.contextMenu\page_white_edit.png" />
+    <Content Include="Include\Images\jQuery\jquery.contextMenu\page_white_paste.png" />
     <Content Include="Include\Scripts\app\admin.handler.js" />
     <Content Include="Include\Scripts\app\login.js" />
-    <Content Include="Include\Scripts\base\app.common.js" />
+    <Content Include="Include\Scripts\app\common.handler.js" />
     <Content Include="Include\Scripts\base\core.handler.js" />
     <Content Include="Include\Scripts\jQuery\chosen.jquery.js" />
+    <Content Include="Include\Scripts\jQuery\jquery.alerts.js" />
+    <Content Include="Include\Scripts\jQuery\jquery.contextMenu.js" />
+    <Content Include="Include\Scripts\jQuery\jsrender.js" />
+    <Content Include="Include\Scripts\jQuery\jquery.tmpl.min.js" />
     <Content Include="Include\Scripts\jQuery\jquery.ba-bbq.min.js" />
     <Content Include="Include\Scripts\jQuery\jquery.blockUI.js" />
     <Content Include="Include\Scripts\jQuery\jquery.metadata.js" />
@@ -320,6 +331,8 @@
     <Content Include="Include\Scripts\misc\modernizr-2.0.6-development-only.js" />
     <Content Include="Include\Scripts\misc\_references.js" />
     <Content Include="Include\Styles\default\Site.css" />
+    <Content Include="Include\Styles\jQuery\jquery.alerts.css" />
+    <Content Include="Include\Styles\jQuery\jquery.contextMenu.css" />
     <Content Include="Include\Styles\jQuery\jquery.ui.accordion.css" />
     <Content Include="Include\Styles\jQuery\jquery.ui.all.css" />
     <Content Include="Include\Styles\jQuery\jquery.ui.autocomplete.css" />

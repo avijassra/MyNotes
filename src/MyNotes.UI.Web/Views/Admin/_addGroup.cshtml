@@ -3,16 +3,16 @@
 @using MvcBase.WebHelper.Mvc.Extensions;
 
 <div id="addGroup" >
-    @using (Ajax.BeginJqueryForm("frmAddGroup", MVC.Admin.Actions.SaveGroup(), "addGroup"))
+    @using (Ajax.BeginJqueryForm("frmAddGroup", MVC.Admin.Actions.SaveGroup(), "addGroupCallback"))
     { 
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>
             <h3>Add New Group</h3>
         </div>
-        <div id="popupMsg" class="row center" style="display:none;"></div>
         <div class="modal-body">
             <div class="row center">
                 @Html.TextBoxFor(m => m.Name, new { placeholder = "Group Name", @class = "input-xlarge" })
+                @Html.ValidationMessageFor(m => m.Name)
             </div>
         </div>
         <div class="modal-footer">
@@ -20,4 +20,7 @@
             <a href="#" class="btn" data-dismiss="modal">Cancel</a>
         </div>
     }
+</div>
+<div id="popupAltMsg" class="row center" style="display:none;">
+ @Html.ValidationSummary(true)
 </div>

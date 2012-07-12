@@ -64,6 +64,21 @@
         }
 
         /// <summary>
+        /// Find entity of type TEntity by expresion
+        /// </summary>
+        /// <param name="expression">Linq expression</param>
+        /// <returns></returns>
+        public TEntity FindOne(Expression<Func<TEntity, object>> expression, string value)
+        {
+            var query = _session.QueryOver<TEntity>()
+                                .WhereRestrictionOn(expression)
+                                .IsInsensitiveLike(value)
+                                .Take(1);
+
+            return query.SingleOrDefault<TEntity>();
+        }
+
+        /// <summary>
         /// Find all entities
         /// </summary>
         /// <returns>IQueryOver of entity of type TEntity</returns>
@@ -88,6 +103,20 @@
             query.Cacheable().CacheMode(CacheMode.Normal);
 
             return query.Where(expression);
+        }
+
+        /// <summary>
+        /// Find all entities with filter
+        /// </summary>
+        /// <param name="expression">Linq expression</param>
+        /// <returns>IQueryOver of entity of type TEntity</returns>
+        public IQueryOver<TEntity> FindAll(Expression<Func<TEntity, object>> expression, string value)
+        {
+            var query = _session.QueryOver<TEntity>();
+
+            query.Cacheable().CacheMode(CacheMode.Normal);
+
+            return query.WhereRestrictionOn(expression).IsInsensitiveLike(value);
         }
     }
 }

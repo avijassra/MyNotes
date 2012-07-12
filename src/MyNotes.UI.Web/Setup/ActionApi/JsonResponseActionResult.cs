@@ -2,7 +2,6 @@
 {
     using System.Web.Mvc;
     using MvcBase.WebHelper.Mvc.Extensions;
-    using Newtonsoft.Json;
 
     public class JsonResponseActionResult : ActionResult
     {

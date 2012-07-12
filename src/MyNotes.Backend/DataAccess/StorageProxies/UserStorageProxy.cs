@@ -61,7 +61,9 @@
 
         public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId)
         {
+            User user;
             var result = new MessageResultDto();
+            result.Message = "User added successfully";
 
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
@@ -70,11 +72,11 @@
                 var group = groupRepository.FindOne(x => x.Id == groupId);
 
                 IRepository<User> userRepository = new Repository<User>(session);
-                var existingUser = userRepository.FindOne(x => x.Username == username);
+                var existingUser = userRepository.FindOne(x => x.Username, username);
 
                 if (null == existingUser)
                 {
-                    userRepository.Add(new User
+                    user = new User
                     {
                         FirstName = firstname,
                         LastName = lastname,
@@ -82,7 +84,8 @@
                         Username = username,
                         Password = password,
                         Group = group
-                    });
+                    };
+                    userRepository.Add(user);
 
                     transaction.Commit();
                 }
@@ -97,6 +100,7 @@
         public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, string password, Guid groupId)
         {
             var result = new MessageResultDto();
+            result.Message = "User updated successfully";
 
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())

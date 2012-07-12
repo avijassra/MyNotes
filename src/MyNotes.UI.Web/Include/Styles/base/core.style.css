@@ -62,39 +62,13 @@ Class and Id styling
 	bottom: 0px;
 }
 
-#alertMessage
+#popupAltMsg,
+#altMsg
 {
-	position:fixed;
-	bottom: 100px;
-	min-height:100px;
-	min-width: 100%;
-	z-index:1050 !important;
-	background-color: #fff !important;
-	text-align: center;
-	color: #555;
-	text-shadow: white 1px 1px 0;
-	font-size: 14px;
-	font-weight: normal;
+	position: fixed;
+	right: 50px;
+	top: 50px;
+	min-width: 350px;
+	width: 200px;
+	z-index:1100;
 }
-
-/*div.mainText
-{
-	color: #555;
-	text-shadow: white 1px 1px 0;
-	font-size: 32px;
-	font-weight: bold;
-	position: relative;
-	top: 20px;
-	left: 0;
-}
-
-div.subText
-{
-	color: #555;
-	text-shadow: white 1px 1px 0;
-	font-size: 14px;
-	font-weight: normal;
-	position: relative;
-	top: 26px;
-	left: 2px;
-}*/

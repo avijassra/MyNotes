@@ -74,10 +74,11 @@
         {
             return new ServiceAction(this)
                         .Put(SessionKey.Empty)
-                        .WithCommand<MessageResultDto>(() =>
-                            {
-                                return _adminService.AddGroup(groupViewModel.Name);
-                            })
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _adminService.AddGroup(groupViewModel.Name);
+                                })
                         .Execute();
         }
 
@@ -102,10 +103,12 @@
         {
             return new ServiceAction(this)
                         .Put(SessionKey.Empty)
-                        .WithCommand<MessageResultDto>(() =>
-                        {
-                            return _adminService.AddUser(userViewModel.Firstname, userViewModel.Lastname, userViewModel.Nickname, userViewModel.Username, userViewModel.Password, userViewModel.GroupId);
-                        })
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _adminService.AddUser(userViewModel.Firstname, userViewModel.Lastname, userViewModel.Nickname,
+                                        userViewModel.Username, userViewModel.Password, userViewModel.GroupId);
+                                })
                         .Execute();
         }
     }

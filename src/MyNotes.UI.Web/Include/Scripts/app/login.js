@@ -7,9 +7,6 @@ $(function () {
         $('input.jqlc')
             .removeClass('control-group error');
 
-        $('#errMsg')
-            .html('&nbsp;');
-
         $.ajaxGet({
             url: validateUrl,
             data: { Username: $('#Username').val(), Password: $('#Password').val() },
@@ -19,7 +16,7 @@ $(function () {
                 } else {
                     $('#loginSection').addClass('control-group error');
                     $('input.jqlc').val('');
-                    $('#errMsg').html('<div class="row">&nbsp;</div><div class="alert alert-error">Please try again. Username or Password entered does not match.</div>');
+                    mynotes.displayErrorMessage('Please try again. Username or Password entered does not match');
                 }
             }
         });

@@ -8,42 +8,35 @@
 
     public static class JqueryExtension
     {
-        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, ActionResult actionResult, string eventName)
+        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, ActionResult actionResult)
         {
             var callInfo = actionResult.AsMVCResult();
 
-            return BeginJqueryForm(ajaxHelper, formId, callInfo.Action, callInfo.Controller, true, eventName, null, callInfo.RouteValueDictionary, "", null /* htmlAttributes */);
+            return BeginJqueryForm(ajaxHelper, formId, callInfo.Action, callInfo.Controller, null, callInfo.RouteValueDictionary, "", null /* htmlAttributes */);
         }
 
-        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, ActionResult actionResult, string eventName, string updateId)
+        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, ActionResult actionResult, string callback)
         {
             var callInfo = actionResult.AsMVCResult();
 
-            return BeginJqueryForm(ajaxHelper, formId, callInfo.Action, callInfo.Controller, true, eventName, updateId, callInfo.RouteValueDictionary, "", null /* htmlAttributes */);
+            return BeginJqueryForm(ajaxHelper, formId, callInfo.Action, callInfo.Controller, callback, callInfo.RouteValueDictionary, "", null /* htmlAttributes */);
         }
 
-        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, ActionResult actionResult, bool isAjax = true, string eventName = null, string updateId = null)
+        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, ActionResult actionResult, string callback, string cssClassNames)
         {
             var callInfo = actionResult.AsMVCResult();
 
-            return BeginJqueryForm(ajaxHelper, formId, callInfo.Action, callInfo.Controller, isAjax, eventName, updateId, callInfo.RouteValueDictionary, "", null /* htmlAttributes */);
+            return BeginJqueryForm(ajaxHelper, callInfo.Action, callInfo.Controller, formId, callback, callInfo.RouteValueDictionary, cssClassNames, null /* htmlAttributes */);
         }
 
-        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, ActionResult actionResult, bool isAjax, string eventName, string updateId, string cssClassNames)
-        {
-            var callInfo = actionResult.AsMVCResult();
-
-            return BeginJqueryForm(ajaxHelper, callInfo.Action, callInfo.Controller, formId, isAjax, eventName, updateId, callInfo.RouteValueDictionary, cssClassNames, null /* htmlAttributes */);
-        }
-
-        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, string actionName, string controllerName, bool isAjax, string eventName, string updateId, RouteValueDictionary routeValues, string cssClassNames, IDictionary<string, object> htmlAttributes)
+        public static MvcForm BeginJqueryForm(this AjaxHelper ajaxHelper, string formId, string actionName, string controllerName, string callback, RouteValueDictionary routeValues, string cssClassNames, IDictionary<string, object> htmlAttributes)
         {
             // get target URL
             string formAction = UrlHelper.GenerateUrl(null, actionName, controllerName, routeValues ?? new RouteValueDictionary(), ajaxHelper.RouteCollection, ajaxHelper.ViewContext.RequestContext, true /* includeImplicitMvcValues */);
-            return FormHelper(ajaxHelper, formId, formAction, isAjax, eventName, updateId, cssClassNames, htmlAttributes);
+            return FormHelper(ajaxHelper, formId, formAction, true, callback, cssClassNames, htmlAttributes);
         }
 
-        private static MvcForm FormHelper(this AjaxHelper ajaxHelper, string formId, string formAction, bool isAjax, string eventName, string updateId, string cssClassNames, 
+        private static MvcForm FormHelper(this AjaxHelper ajaxHelper, string formId, string formAction, bool isAjax, string callback, string cssClassNames, 
             IDictionary<string, object> htmlAttributes)
         {
             var tagBuilder = new TagBuilder("form");
@@ -53,13 +46,10 @@
             tagBuilder.MergeAttribute("method", @"post");
 
             var metadataBuilder = new System.Text.StringBuilder();
-            metadataBuilder.AppendFormat("IsAjax: {0}", isAjax.ToJavascriptString());
+            metadataBuilder.AppendFormat("isAjax: {0}", isAjax.ToJavascriptString());
             
-            if(!string.IsNullOrEmpty(eventName))
-                metadataBuilder.AppendFormat(", EventName: '{0}'", eventName);
-
-            if (!string.IsNullOrEmpty(updateId))
-                metadataBuilder.AppendFormat(", UpdateId: '{0}'", updateId);
+            if(!string.IsNullOrEmpty(callback))
+                metadataBuilder.AppendFormat(", callback: '{0}'", callback);
 
             var metadata = "{" + metadataBuilder.ToString() + "}";
 

@@ -6,8 +6,7 @@
 
     public interface IServiceSetAction
     {
-        IServiceSetAction WithCommand<TEntity>(Func<MessageResultDto> serviceCommand)
-            where TEntity : new();
+        IServiceSetAction WithCommand(Func<MessageResultDto> serviceCommand);
 
         IServiceSetAction OnSuccess(ActionResult actionResult, bool isFragmentAtion = true);
 

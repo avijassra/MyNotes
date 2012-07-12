@@ -260,6 +260,9 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         private bool HasErrorField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string MessageField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -281,6 +284,19 @@ namespace MyNotes.UI.Web.AdminServiceRef {
                 if ((this.HasErrorField.Equals(value) != true)) {
                     this.HasErrorField = value;
                     this.RaisePropertyChanged("HasError");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
                 }
             }
         }

@@ -39,6 +39,13 @@
         TEntity FindOne(Expression<Func<TEntity, bool>> expression);
 
         /// <summary>
+        /// Find entity of type TEntity by expresion
+        /// </summary>
+        /// <param name="expression">Linq expression</param>
+        /// <returns></returns>
+        TEntity FindOne(Expression<Func<TEntity, object>> expression, string value);
+
+        /// <summary>
         /// Find all entities
         /// </summary>
         /// <returns>IQueryOver of entity of type TEntity</returns>
@@ -50,5 +57,12 @@
         /// <param name="expression">Linq expression</param>
         /// <returns>IQueryOver of entity of type TEntity</returns>
         IQueryOver<TEntity> FindAll(Expression<Func<TEntity, bool>> expression);
+
+        /// <summary>
+        /// Find all entities with filter
+        /// </summary>
+        /// <param name="expression">Linq expression</param>
+        /// <returns>IQueryOver of entity of type TEntity</returns>
+        IQueryOver<TEntity> FindAll(Expression<Func<TEntity, object>> expression, string value);
     }
 }

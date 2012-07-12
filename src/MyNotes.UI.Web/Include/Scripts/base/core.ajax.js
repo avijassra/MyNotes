@@ -1,7 +1,15 @@
 (function ($) {
-    ajaxCall = function (url, actionType, actionData, actionDataType, blockOnCall, eventName, callback) {
+    _ajaxCall = function (settings, axnType) {
+        var options = {
+            type: axnType
+        };
 
-        if (blockOnCall) {
+        // $.extend() method takes two or more objects as arguments 
+        // and merges the contents of them into the first object.
+        $.extend(options, settings);
+
+        //console.log('in ajaxcall -> url: ' + url + ' | actionType: ' + actionType + ' | actionData: ' + actionData + ' | actionDataType: ' + actionDataType + ' | blockOnCall: ' + blockOnCall + ' | eventName: ' + eventName + ' | callback: ' + callback);
+        if (options.blockOnCall) {
             $('#main').block({
                 message: '<h1>Processing</h1>',
                 css: { border: '3px solid #a00', 'border-radius': '10px' }
@@ -9,38 +17,44 @@
         }
 
         $.ajax({
-            type: actionType,
-            url: url,
-            data: actionData,
-            dataType: actionDataType,
+            type: options.type,
+            url: options.url,
+            data: options.data,
+            dataType: options.dataType,
             success: function (response, status, xhr) {
-                console.log(response);
-                mynotes.ClearAlertMessage();
+                //console.log(response);
                 if (response) {
                     if (!response.HasError) {
                         if (response.RedirectUrl)
                             window.location = response.RedirectUrl;
 
                         if (response.PopupView) {
-                            $(mynotes.Constants.PopupView).html(response.PopupView).modal();
-                            $.validator.unobtrusive.parse($(mynotes.Constants.PopupView));
+                            $(mynotes.constants.PopupView).html(response.PopupView).modal();
+                            $.validationBinding($(mynotes.constants.PopupView));
                         }
 
-                        if (response.ContentView)
-                            $(mynotes.Constants.ContentView).html(response.ContentView);
+                        if (response.ContentView) {
+                            $(mynotes.constants.ContentView).html(response.ContentView);
+                            $.validationBinding($(mynotes.constants.PopupView));
+                        }
 
-                        if (callback) callback(response);
-
-                        if (eventName)
-                            $.event.trigger(eventName, response);
+                        if (options.callback) {
+                            if (options.callback && typeof (options.callback) === "function")
+                                options.callback(response);
+                            else
+                                window[options.callback](response);
+                        }
 
                         handler.bindFunctions($('body'));
 
-                        if (blockOnCall) {
+                        if (response.Message)
+                            mynotes.displaySuccessMessage(response.Message);
+
+                        if (options.blockOnCall) {
                             $('#main').unblock();
                         }
                     } else {
-                        mynotes.DisplayAlertMessage(response.Message);
+                        mynotes.displayErrorMessage(response.Message);
                     }
                 }
             },
@@ -48,23 +62,48 @@
                 if (blockOnCall) {
                     $('#main').unblock();
                 }
-                mynotes.DisplayAlertMessage('Error has occured. Please try again later');
+                mynotes.displayErrorMessage('Error has occured. Please try again later');
             }
         });
     }
 
-    $.ajaxPost = function (url, postData, eventName, callback) {
-        return ajaxCall(url, 'post', postData, 'json', true, eventName, callback);
+    $.ajaxPost = function (settings) {
+        mynotes.clearAlertMessage();
+
+        var options = {
+            url: null,
+            data: null,
+            dataType: 'json',
+            callback: null,
+            blockOnCall: false
+        };
+
+        // $.extend() method takes two or more objects as arguments 
+        // and merges the contents of them into the first object.
+        $.extend(options, settings);
+
+        return _ajaxCall(options, 'post');
     }
 
-    $.ajaxGet = function () {
-        var args = arguments[0] || {};
-        var url = args.url;
-        var data = args.data;
-        var blockOnCall = args.blockOnCall;
-        var eventName = args.eventName;
-        var callback = args.callback;
+    $.ajaxGet = function (settings) {
+        mynotes.clearAlertMessage();
 
-        return ajaxCall(url, 'get', data, 'json', false, eventName, callback);
+        var options = {
+            url: null,
+            data: null,
+            dataType: 'json',
+            callback: null,
+            blockOnCall: false
+        };
+
+        // $.extend() method takes two or more objects as arguments 
+        // and merges the contents of them into the first object.
+        $.extend(options, settings);
+
+        return _ajaxCall(options, 'get');
+    }
+
+    $.validationBinding = function (elm) {
+        $.validator.unobtrusive.parse(elm);
     }
 })(jQuery);

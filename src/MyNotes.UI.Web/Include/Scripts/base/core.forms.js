@@ -13,12 +13,11 @@ $(function () {
 });
 
 submitJqueryForm = function ($this) {
-    data = $this.metadata({ type: 'attr', name: 'data-options' });
-    if (data.IsAjax) {
-        console.log('is ajax call');
-        url = $this.attr('action');
+    frmData = $this.metadata({ type: 'attr', name: 'data-options' });
+    if (frmData.isAjax) {
+        postUrl = $this.attr('action');
         postData = $this.serialize();
-        $.ajaxPost(url, postData, data.EventName, data.UpdateId);
+        $.ajaxPost({url: postUrl, data: postData, callback: frmData.callback});
     } else {
         $this[0].submit();
     }

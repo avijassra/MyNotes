@@ -11,6 +11,7 @@
             var mainCssBundle = new Bundle("~/Include/Cache/main.cssbundle.style", typeof(YuiCssMinify));
             mainCssBundle.AddFile("~/Include/Styles/bootstrap/bootstrap.min.css");
             mainCssBundle.AddFile("~/Include/Styles/bootstrap/bootstrap-responsive.min.css");
+            mainCssBundle.AddFile("~/Include/Styles/jQuery/jquery.alerts.css");
             mainCssBundle.AddFile("~/Include/Styles/base/core.style.css");
             BundleTable.Bundles.Add(mainCssBundle);
         }

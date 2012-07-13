@@ -7,6 +7,7 @@
     using MyNotes.Backend.DataAccess.DomainObjects.Repositories;
     using MyNotes.Backend.Dtos;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
 
     internal class UserStorageProxy
     {
@@ -72,7 +73,7 @@
                 var group = groupRepository.FindOne(x => x.Id == groupId);
 
                 IRepository<User> userRepository = new Repository<User>(session);
-                var existingUser = userRepository.FindOne(x => x.Username, username);
+                var existingUser = userRepository.FindOne(new Tuple<Expression<Func<User, object>>, string>(x => x.Username, username));
 
                 if (null == existingUser)
                 {

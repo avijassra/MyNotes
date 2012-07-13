@@ -13,17 +13,23 @@
 
         [OperationContract]
         IList<UserDto> GetAllUsers(Guid groupId, bool isSysAccount);
-
+        
         [OperationContract]
         MessageResultDto AddGroup(string name);
-
-        [OperationContract]
-        MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId);
 
         [OperationContract]
         MessageResultDto UpdateGroup(Guid id, string name);
 
         [OperationContract]
+        MessageResultDto DeleteGroup(Guid id);
+        
+        [OperationContract]
+        MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId);
+
+        [OperationContract]
         MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, string password, Guid groupId);
+
+        [OperationContract]
+        MessageResultDto DeleteUser(Guid id);
     }
 }

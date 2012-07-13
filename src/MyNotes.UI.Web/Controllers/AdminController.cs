@@ -1,5 +1,6 @@
 ﻿namespace MyNotes.UI.Web.Controllers
 {
+    using System;
     using System.Web.Mvc;
     using MyNotes.UI.Web.AdminServiceRef;
     using MyNotes.UI.Web.Setup.ActionApi;
@@ -78,6 +79,19 @@
                                 () =>
                                 {
                                     return _adminService.AddGroup(groupViewModel.Name);
+                                })
+                        .Execute();
+        }
+
+        [HttpGet]
+        public virtual ActionResult DeleteGroup(Guid id)
+        {
+            return new ServiceAction(this)
+                        .Fetch(SessionKey.Empty)
+                        .WithResult<MessageResultDto>(
+                                () =>
+                                {
+                                    return _adminService.DeleteGroup(id);
                                 })
                         .Execute();
         }

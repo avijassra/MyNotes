@@ -7,6 +7,7 @@
     using MyNotes.Backend.DataAccess.DomainObjects.Repositories;
     using MyNotes.Backend.Dtos;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
 
     internal class GroupStorageProxy
     {
@@ -40,7 +41,7 @@
             using (ITransaction transaction = session.BeginTransaction())
             {
                 IRepository<Group> groupRepository = new Repository<Group>(session);
-                var existingGroup = groupRepository.FindOne(x => x.Name, name);
+                var existingGroup = groupRepository.FindOne(new Tuple<Expression<Func<Group, object>>, string>(x => x.Name, name));
 
                 if (null == existingGroup)
                 {
@@ -69,6 +70,21 @@
                 var group = groupRepository.FindOne(x => x.Id == id);
                 group.Name = name;
                 groupRepository.Update(group);
+                transaction.Commit();
+            }
+            return result;
+        }
+
+        public MessageResultDto DeleteGroup(Guid id)
+        {
+            var result = new MessageResultDto();
+            result.Message = "Group deleted successfully";
+
+            using (ISession session = _sessionFactory.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                IRepository<Group> groupRepository = new Repository<Group>(session);
+                groupRepository.Delete(id);
                 transaction.Commit();
             }
             return result;

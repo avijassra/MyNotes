@@ -59,7 +59,7 @@
                 }
             },
             error: function (xhr, status, error) {
-                if (blockOnCall) {
+                if (options.blockOnCall) {
                     $('#main').unblock();
                 }
                 mynotes.displayErrorMessage('Error has occured. Please try again later');

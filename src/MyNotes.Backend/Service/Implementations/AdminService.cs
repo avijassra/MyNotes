@@ -44,19 +44,29 @@
             return (new GroupStorageProxy(_sessionFactory)).AddGroup(name);
         }
 
-        public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId)
-        {
-            return (new UserStorageProxy(_sessionFactory)).AddUser(firstname, lastname, nickname, username, password, groupId);
-        }
-
         public MessageResultDto UpdateGroup(Guid id, string name)
         {
             return (new GroupStorageProxy(_sessionFactory)).UpdateGroup(id, name);
         }
 
+        public MessageResultDto DeleteGroup(Guid id)
+        {
+            return (new GroupStorageProxy(_sessionFactory)).DeleteGroup(id);
+        }
+
+        public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId)
+        {
+            return (new UserStorageProxy(_sessionFactory)).AddUser(firstname, lastname, nickname, username, password, groupId);
+        }
+        
         public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, string password, Guid groupId)
         {
             return (new UserStorageProxy(_sessionFactory)).UpdateUser(id, firstname, lastname, nickname, username, password, groupId);
+        }
+
+        public MessageResultDto DeleteUser(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

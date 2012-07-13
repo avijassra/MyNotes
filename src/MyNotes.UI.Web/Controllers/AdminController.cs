@@ -62,16 +62,42 @@
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)
-                        .WithPopup<NewGroupViewModel>(MVC.Admin.Views._addGroup,
+                        .WithPopup<SaveGroupViewModel>(MVC.Admin.Views._addGroup,
                                 () =>
                                 {
-                                    return new NewGroupViewModel();
+                                    return new SaveGroupViewModel();
                                 })
                         .Execute();
         }
 
         [HttpPost]
-        public virtual ActionResult SaveGroup(NewGroupViewModel groupViewModel)
+        public virtual ActionResult AddGroup([Bind(Exclude="Id")]SaveGroupViewModel groupViewModel)
+        {
+            return new ServiceAction(this)
+                        .Put(SessionKey.Empty)
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _adminService.AddGroup(groupViewModel.Name);
+                                })
+                        .Execute();
+        }
+
+        [HttpGet]
+        public virtual ActionResult UpdateGroup()
+        {
+            return new ServiceAction(this)
+                        .Fetch(SessionKey.Empty)
+                        .WithPopup<SaveGroupViewModel>(MVC.Admin.Views._addGroup,
+                                () =>
+                                {
+                                    return new SaveGroupViewModel();
+                                })
+                        .Execute();
+        }
+
+        [HttpPost]
+        public virtual ActionResult UpdateGroup(SaveGroupViewModel groupViewModel)
         {
             return new ServiceAction(this)
                         .Put(SessionKey.Empty)
@@ -101,19 +127,19 @@
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)
-                        .WithPopup<NewUserViewModel>(MVC.Admin.Views._addUser,
+                        .WithPopup<SaveUserViewModel>(MVC.Admin.Views._addUser,
                                 () =>
                                 {
                                     var groups = (from gp in _adminService.GetAllGroups()
                                                   select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
                                     ViewData["Groups"] = groups;
-                                    return new NewUserViewModel();
+                                    return new SaveUserViewModel();
                                 })
                         .Execute();
         }
 
         [HttpPost]
-        public virtual ActionResult SaveUser(NewUserViewModel userViewModel)
+        public virtual ActionResult AddUser([Bind(Exclude="Id")]SaveUserViewModel userViewModel)
         {
             return new ServiceAction(this)
                         .Put(SessionKey.Empty)
@@ -122,6 +148,46 @@
                                 {
                                     return _adminService.AddUser(userViewModel.Firstname, userViewModel.Lastname, userViewModel.Nickname,
                                         userViewModel.Username, userViewModel.Password, userViewModel.GroupId);
+                                })
+                        .Execute();
+        }
+
+        [HttpGet]
+        public virtual ActionResult UpdateUser()
+        {
+            return new ServiceAction(this)
+                        .Fetch(SessionKey.Empty)
+                        .WithPopup<SaveGroupViewModel>(MVC.Admin.Views._addGroup,
+                                () =>
+                                {
+                                    return new SaveGroupViewModel();
+                                })
+                        .Execute();
+        }
+
+        [HttpPost]
+        public virtual ActionResult UpdateUser(SaveUserViewModel userViewModel)
+        {
+            return new ServiceAction(this)
+                        .Put(SessionKey.Empty)
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _adminService.AddUser(userViewModel.Firstname, userViewModel.Lastname, userViewModel.Nickname,
+                                        userViewModel.Username, userViewModel.Password, userViewModel.GroupId);
+                                })
+                        .Execute();
+        }
+
+        [HttpDelete]
+        public virtual ActionResult DeleteUser(Guid id)
+        {
+            return new ServiceAction(this)
+                        .Fetch(SessionKey.Empty)
+                        .WithResult<MessageResultDto>(
+                                () =>
+                                {
+                                    return _adminService.DeleteGroup(id);
                                 })
                         .Execute();
         }

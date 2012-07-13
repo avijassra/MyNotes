@@ -24,6 +24,8 @@
 
         public string Password { get; set; }
 
+        public string ConfirmPassword { get; set; }
+
         public Guid GroupId { get; set; }
 
         public string GroupName { get; set; }

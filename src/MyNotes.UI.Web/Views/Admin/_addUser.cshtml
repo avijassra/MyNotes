@@ -1,4 +1,4 @@
-﻿@model MyNotes.UI.Web.ViewModels.Admin.User.NewUserViewModel
+﻿@model MyNotes.UI.Web.ViewModels.Admin.User.UserViewModel
 
 @using MyNotes.UI.Web.Setup.Extensions;
 @using MvcBase.WebHelper.Mvc.Extensions;
@@ -6,7 +6,7 @@
 @using MyNotes.UI.Web.Setup.Common;
 
 <div id="addUser" >
-    @using (Ajax.BeginJqueryForm("frmAddUser", MVC.Admin.Actions.SaveUser(), "addUser"))
+    @using (Ajax.BeginJqueryForm("frmAddUser", MVC.Admin.Actions.AddUser(), "addUserCallback"))
     { 
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>

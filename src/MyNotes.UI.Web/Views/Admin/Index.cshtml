@@ -23,19 +23,25 @@
         <td>{{:sno}}</td>
         <td>{{:name}}</td>
         <td>{{:IsSysAccount}}</td>
-        <td>
+        <td style="width: 100px;">
             <ul><li class="icon-edit jqGroup"></li><li class="icon-remove jqGroup"></li></ul>
         </td>
     </tr>
+    <tr class="jqUpdateFrm" style="display:none;"><td colspan="4"></td></tr>
 </script>
 
 @section scripts{
     <script type="text/javascript" src="@Url.Content("~/Include/Scripts/app/admin.handler.js")" ></script>
     <script type="text/javascript" >
+        // group screen urls
         var groupListUrl = '@Url.Action(MVC.Admin.Actions.Groups())';
-        var userListUrl = '@Url.Action(MVC.Admin.Actions.Users())';
         var addGroupUrl = '@Url.Action(MVC.Admin.Actions.AddGroup())';
-        var addUserUrl = '@Url.Action(MVC.Admin.Actions.AddUser())';
+        var updateGroupUrl = '@Url.Action(MVC.Admin.Actions.UpdateGroup())';
         var deleteGroupUrl = '@Url.Action(MVC.Admin.Actions.DeleteGroup())';
+        // user screen urls
+        var userListUrl = '@Url.Action(MVC.Admin.Actions.Users())';
+        var addUserUrl = '@Url.Action(MVC.Admin.Actions.AddUser())';
+        var updateUserUrl = '@Url.Action(MVC.Admin.Actions.UpdateUser())';
+        var deleteUserUrl = '@Url.Action(MVC.Admin.Actions.DeleteUser())';
     </script>
 }

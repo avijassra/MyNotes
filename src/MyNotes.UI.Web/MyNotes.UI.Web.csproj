@@ -245,10 +245,8 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Admin\Group\GroupViewModel.cs" />
-    <Compile Include="ViewModels\Admin\Group\NewGroupViewModel.cs" />
-    <Compile Include="ViewModels\Admin\Group\UpdateGroupViewModel.cs" />
-    <Compile Include="ViewModels\Admin\User\NewUserViewModel.cs" />
-    <Compile Include="ViewModels\Admin\User\UpdateUserViewModel.cs" />
+    <Compile Include="ViewModels\Admin\Group\SaveGroupViewModel.cs" />
+    <Compile Include="ViewModels\Admin\User\SaveUserViewModel.cs" />
     <Compile Include="ViewModels\Admin\User\UserViewModel.cs" />
     <Compile Include="ViewModels\Admin\User\UserCredentialViewModel.cs" />
   </ItemGroup>
@@ -423,6 +421,7 @@
     <Content Include="Views\Admin\_users.cshtml" />
     <Content Include="Views\Admin\_addUser.cshtml" />
     <Content Include="Views\Admin\_addGroup.cshtml" />
+    <Content Include="Views\Admin\_upgradeGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

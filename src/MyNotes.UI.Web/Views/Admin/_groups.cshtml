@@ -19,9 +19,8 @@
                         <td>@index</td>
                         <td>@group.Name</td>
                         <td>@(group.IsSysAccount ? "Yes" : "No")</td>
-                        <td>
-                            @if (!group.IsSysAccount)
-                            { 
+                        <td style="width: 100px;">
+                            @if (!group.IsSysAccount) { 
                                 <ul>
                                     <li class="icon-edit jqGroup"></li>
                                     <li class="icon-remove jqGroup"></li>
@@ -29,6 +28,10 @@
                             }
                         </td>
                     </tr>
+                    if (!group.IsSysAccount) { 
+                        <tr class="jqUpdateFrm" style="display:none;"><td colspan="4"></td></tr>
+                    }
+                    
                     index += 1;
                 }
             }

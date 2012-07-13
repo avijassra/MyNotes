@@ -103,6 +103,24 @@
         return _ajaxCall(options, 'get');
     }
 
+    $.ajaxDelete = function (settings) {
+        mynotes.clearAlertMessage();
+
+        var options = {
+            url: null,
+            data: null,
+            dataType: 'json',
+            callback: null,
+            blockOnCall: false
+        };
+
+        // $.extend() method takes two or more objects as arguments 
+        // and merges the contents of them into the first object.
+        $.extend(options, settings);
+
+        return _ajaxCall(options, 'delete');
+    }
+
     $.validationBinding = function (elm) {
         $.validator.unobtrusive.parse(elm);
     }

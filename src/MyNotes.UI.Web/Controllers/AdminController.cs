@@ -83,7 +83,7 @@
                         .Execute();
         }
 
-        [HttpGet]
+        [HttpDelete]
         public virtual ActionResult DeleteGroup(Guid id)
         {
             return new ServiceAction(this)

@@ -19,7 +19,7 @@ handler.admin = function ($selector) {
         $tr = $(this).closest('tr');
         jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
             if (r) {
-                $.ajaxGet({
+                $.ajaxDelete({
                     url: deleteGroupUrl,
                     data: { id: $tr.data('id') },
                     callback: function () { $tr.hide(); }

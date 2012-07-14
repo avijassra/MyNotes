@@ -12,7 +12,18 @@ handler.admin = function ($selector) {
     });
 
     $selector.find('li.icon-edit.jqGroup').bind('click', function () {
-        jAlert('This is a custom alert box', 'Alert Dialog');
+        $tr = $(this).closest('tr');
+        $.ajaxGet({
+            url: updateGroupUrl,
+            callback: function (response) {
+                $updateTr = $tr.next('tr');
+                $updateTd = $('td', $updateTr);
+                $updateTd.html(response.Result);
+                $('#Id').val($tr.data('id'));
+                $('#Name').val($tr.find('td:nth-child(2)').html());
+                $updateTr.fadeIn('slow');
+            }
+        });
     });
 
     $selector.find('li.icon-remove.jqGroup').bind('click', function () {
@@ -47,5 +58,6 @@ addGroupCallback = function (response) {
         obj = { sno: newsno, id: response.Result, name: $('#Name').val(), IsSysAccount: 'No' };
         $(mynotes.constants.PopupView).modal('hide');
         $groupListTbody.append($('#groupListTmpl').render(obj));
+        $(mynotes.constants.PopupView).html('');
     }
 }

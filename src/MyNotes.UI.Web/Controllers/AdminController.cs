@@ -88,7 +88,7 @@
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)
-                        .WithPopup<SaveGroupViewModel>(MVC.Admin.Views._addGroup,
+                        .WithResult<SaveGroupViewModel>(MVC.Admin.Views._upgradeGroup,
                                 () =>
                                 {
                                     return new SaveGroupViewModel();

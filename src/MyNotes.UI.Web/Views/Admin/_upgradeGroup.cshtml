@@ -1,26 +1,18 @@
-﻿@model MyNotes.UI.Web.ViewModels.Admin.Group.GroupViewModel
+﻿@model  MyNotes.UI.Web.ViewModels.Admin.Group.SaveGroupViewModel
 
 @using MvcBase.WebHelper.Mvc.Extensions;
 
-<div id="addGroup" >
-    @using (Ajax.BeginJqueryForm("frmAddGroup", MVC.Admin.Actions.SaveGroup(), "addGroupCallback"))
+<div id="updateGroup" >
+    @using (Ajax.BeginJqueryForm("frmUpdateGroup", MVC.Admin.Actions.UpdateGroup(), "updateGroupCallback"))
     { 
-        <div class="modal-header">
-            <a class="close" data-dismiss="modal">×</a>
-            <h3>Add New Group</h3>
+        <div class="row center">
+            @Html.TextBoxFor(m => m.Id, new { style = "display:none;" })
+            @Html.TextBoxFor(m => m.Name, new { placeholder = "Group Name", @class = "input-xlarge" })
+            @Html.ValidationMessageFor(m => m.Name)
         </div>
-        <div class="modal-body">
-            <div class="row center">
-                @Html.TextBoxFor(m => m.Name, new { placeholder = "Group Name", @class = "input-xlarge" })
-                @Html.ValidationMessageFor(m => m.Name)
-            </div>
-        </div>
-        <div class="modal-footer">
-            <input type="submit" id="btnAddGroup" class="btn btn-success" value="Add" />
+        <div class="row pull-right">
+            <input type="submit" id="btnUpdateGroup" class="btn btn-success" value="Update" />
             <a href="#" class="btn" data-dismiss="modal">Cancel</a>
         </div>
     }
-</div>
-<div id="popupAltMsg" class="row center" style="display:none;">
- @Html.ValidationSummary(true)
 </div>

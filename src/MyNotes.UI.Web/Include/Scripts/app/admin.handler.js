@@ -4,7 +4,7 @@ $(function () {
 
 handler.admin = function ($selector) {
     $selector.find('#btnNewGroup').bind('click', function () {
-        $('tr.updateFrm').fadeOut('slow');
+        $('tr.updateFrm').slideUp('slow');
         $('tr.updateFrm td').html('');
         $.ajaxGet({ url: addGroupUrl });
     });
@@ -16,7 +16,7 @@ handler.admin = function ($selector) {
     $selector.find('li.icon-edit.jqGroup').bind('click', function () {
         $currentItem = $(this).closest('tr');
         id = $currentItem.attr('id');
-        $('tr.updateFrm').fadeOut('slow');
+        $('tr.updateFrm').slideUp('slow');
         $('tr.updateFrm td').html('');
         $.ajaxGet({
             url: updateGroupUrl,
@@ -25,7 +25,7 @@ handler.admin = function ($selector) {
                 $('#' + id + '_upd_td').html(response.Result);
                 $('#Id').val($currentItem.attr('id'));
                 $('#Name').val($currentItem.find('td:nth-child(2)').html());
-                $updTr.fadeIn('slow');
+                $updTr.slideDown('slow');
             }
         });
     });
@@ -35,7 +35,7 @@ handler.admin = function ($selector) {
         jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
             if (r) {
                 itemId = $tr.attr('id');
-                $('tr.updateFrm').fadeOut('slow');
+                $('tr.updateFrm').slideUp('slow');
                 $('tr.updateFrm td').html('');
                 $.ajaxDelete({
                     url: deleteGroupUrl,
@@ -51,7 +51,7 @@ handler.admin = function ($selector) {
 
     $selector.find('#cancelUpdateGroup').bind('click', function (e) {
         $this = $(this);
-        $this.closest('tr').fadeOut('slow');
+        $this.closest('tr').slideUp('slow');
         $this.closest('td').html('');
         e.stopPropagation();
     });

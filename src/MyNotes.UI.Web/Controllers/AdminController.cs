@@ -104,7 +104,7 @@
                         .WithCommand(
                                 () =>
                                 {
-                                    return _adminService.AddGroup(groupViewModel.Name);
+                                    return _adminService.UpdateGroup(groupViewModel.Id, groupViewModel.Name);
                                 })
                         .Execute();
         }

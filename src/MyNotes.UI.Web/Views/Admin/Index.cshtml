@@ -19,15 +19,15 @@
 </div>
 <!--group list template-->
 <script id="groupListTmpl" type="text/x-jQuery-tmpl">
-    <tr data-id="{{:id}}" >
+    <tr id="{{:id}}" >
         <td>{{:sno}}</td>
-        <td>{{:name}}</td>
+        <td id="{{:id}}_name">{{:name}}</td>
         <td>{{:IsSysAccount}}</td>
         <td style="width: 100px;">
             <ul><li class="icon-edit jqGroup"></li><li class="icon-remove jqGroup"></li></ul>
         </td>
     </tr>
-    <tr class="jqUpdateFrm" style="display:none;"><td colspan="4"></td></tr>
+    <tr id="{{:id}}_upd_tr" class="jqUpdateFrm" style="display:none;"><td colspan="4" id="{{:id}}_upd_td" ></td></tr>
 </script>
 
 @section scripts{

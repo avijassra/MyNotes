@@ -15,9 +15,9 @@
                 var index = 1;
                 foreach (var group in Model)
                 { 
-                    <tr data-id="@group.Id">
+                    <tr id="@group.Id">
                         <td>@index</td>
-                        <td>@group.Name</td>
+                        <td id="@(group.Id)_name">@group.Name</td>
                         <td>@(group.IsSysAccount ? "Yes" : "No")</td>
                         <td style="width: 100px;">
                             @if (!group.IsSysAccount) { 
@@ -29,7 +29,7 @@
                         </td>
                     </tr>
                     if (!group.IsSysAccount) { 
-                        <tr class="jqUpdateFrm" style="display:none;"><td colspan="4"></td></tr>
+                        <tr id="@(group.Id)_upd_tr" class="jqUpdateFrm update" style="display:none;"><td id="@(group.Id)_upd_td" colspan="4"></td></tr>
                     }
                     
                     index += 1;

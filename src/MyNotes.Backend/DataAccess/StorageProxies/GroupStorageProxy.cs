@@ -52,7 +52,7 @@
                 }
                 else
                 {
-                    result.ErrorMessage("System failed to add new group");
+                    result.ErrorMessage("Group with same name already exisits");
                 }
             }
             return result;
@@ -61,16 +61,26 @@
         public MessageResultDto UpdateGroup(Guid id, string name)
         {
             var result = new MessageResultDto();
-            result.Message = "Group updated successfully";
 
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
                 IRepository<Group> groupRepository = new Repository<Group>(session);
-                var group = groupRepository.FindOne(x => x.Id == id);
-                group.Name = name;
-                groupRepository.Update(group);
-                transaction.Commit();
+                var existingGroup = groupRepository.FindOne(x => x.Id != id, new Tuple<Expression<Func<Group, object>>, string>(x => x.Name, name));
+
+
+                if (null == existingGroup)
+                {
+                    var group = groupRepository.FindOne(x => x.Id == id);
+                    group.Name = name;
+                    groupRepository.Update(group);
+                    transaction.Commit();
+                    result.SuccessMessage("Group updated successfully", group.Id);
+                }
+                else
+                {
+                    result.ErrorMessage("Group with same name already exisits");
+                }
             }
             return result;
         }

@@ -9,6 +9,7 @@
         public void Setup()
         {
             var mainJsBundle = new Bundle("~/Include/Cache/main.jsbundle.script", typeof(YuiJsMinify));
+            mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery-ui-1.8.11.min.js");
             mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.metadata.js");
             mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.blockUI.js");
             //mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.ba-bbq.min.js");

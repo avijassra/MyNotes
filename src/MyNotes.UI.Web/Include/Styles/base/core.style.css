@@ -20,6 +20,11 @@ select
 	padding-right: 5px;
 }
 
+tbody > tr
+{
+	background-color: #F9F9F9 !important;
+}
+
 /********************************************************
 Validation Styling
 ********************************************************/
@@ -71,4 +76,9 @@ Class and Id styling
 	min-width: 350px;
 	width: 200px;
 	z-index:1100;
+}
+
+.update > td
+{
+	background-color: White !important;
 }

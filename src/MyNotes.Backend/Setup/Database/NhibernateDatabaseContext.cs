@@ -62,17 +62,32 @@
         private ISessionFactory CreateSessionFactory()
         {
             return Fluently.Configure()
-              .Database(
-                SQLiteConfiguration.Standard
-                  .UsingFile(_dbFilePath)
-              )
-              .Mappings(m =>
-                m.FluentMappings.AddFromAssemblyOf<Group>())
-              .ExposeConfiguration(config => 
-                  {
-                      config.SetInterceptor(new AppInterceptor());
-                      // delete the existing db on each run
-                      if (!File.Exists(_dbFilePath))
+                .Database(
+                    SQLiteConfiguration.Standard
+                    .UsingFile(_dbFilePath))
+                .Mappings(m =>
+                    m.FluentMappings.AddFromAssemblyOf<Group>())
+                .ExposeConfiguration(config => 
+                    {
+                        config.SetInterceptor(new AppInterceptor());
+                        var createFile = false;
+
+                        if (!File.Exists(_dbFilePath))
+                            createFile = true;
+                        else
+                        {
+                            var file = new FileInfo(_dbFilePath);
+                            var date = DateTime.Now;
+
+                            if (date.Day > file.CreationTime.Day)
+                            {
+                                file.CopyTo(_dbFilePath + "." + file.CreationTime.ToShortDateString() + ".bak");
+                                file.Delete();
+                                createFile = true;
+                            }
+                        }
+                      
+                      if (createFile)
                       {
                           // this NHibernate tool takes a configuration (with mapping info in)
                           // and exports a database schema from it

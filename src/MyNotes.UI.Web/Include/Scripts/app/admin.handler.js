@@ -4,8 +4,8 @@ $(function () {
 
 handler.admin = function ($selector) {
     $selector.find('#btnNewGroup').bind('click', function () {
-        $('tr.jqUpdateFrm').fadeOut('slow');
-        $('tr.jqUpdateFrm td').html('');
+        $('tr.updateFrm').fadeOut('slow');
+        $('tr.updateFrm td').html('');
         $.ajaxGet({ url: addGroupUrl });
     });
 
@@ -16,8 +16,8 @@ handler.admin = function ($selector) {
     $selector.find('li.icon-edit.jqGroup').bind('click', function () {
         $currentItem = $(this).closest('tr');
         id = $currentItem.attr('id');
-        $('tr.jqUpdateFrm').fadeOut('slow');
-        $('tr.jqUpdateFrm td').html('');
+        $('tr.updateFrm').fadeOut('slow');
+        $('tr.updateFrm td').html('');
         $.ajaxGet({
             url: updateGroupUrl,
             callback: function (response) {
@@ -35,8 +35,8 @@ handler.admin = function ($selector) {
         jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
             if (r) {
                 itemId = $tr.attr('id');
-                $('tr.jqUpdateFrm').fadeOut('slow');
-                $('tr.jqUpdateFrm td').html('');
+                $('tr.updateFrm').fadeOut('slow');
+                $('tr.updateFrm td').html('');
                 $.ajaxDelete({
                     url: deleteGroupUrl,
                     data: { id: itemId },

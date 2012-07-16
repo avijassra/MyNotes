@@ -79,14 +79,8 @@
                             var file = new FileInfo(_dbFilePath);
                             var date = DateTime.Now;
 
-                            if (date.Day > file.CreationTime.Day)
-                            {
-                                file.CopyTo(_dbFilePath + "." + file.CreationTime.ToShortDateString().Replace('/', '_') + ".bak");
-                                file.Delete();
-                                var newFile = new FileInfo(_dbFilePath + "." + file.CreationTime.ToShortDateString().Replace('/', '_') + ".bak");
-                                newFile.CopyTo(_dbFilePath);
-                                createFile = true;
-                            }
+                            if (date.Day > file.LastAccessTime.Day)
+                                file.CopyTo(_dbFilePath + "." + file.LastAccessTime.ToShortDateString().Replace('/', '_') + ".bak");
                         }
                       
                       if (createFile)

@@ -81,8 +81,10 @@
 
                             if (date.Day > file.CreationTime.Day)
                             {
-                                file.CopyTo(_dbFilePath + "." + file.CreationTime.ToShortDateString() + ".bak");
+                                file.CopyTo(_dbFilePath + "." + file.CreationTime.ToShortDateString().Replace('/', '_') + ".bak");
                                 file.Delete();
+                                var newFile = new FileInfo(_dbFilePath + "." + file.CreationTime.ToShortDateString().Replace('/', '_') + ".bak");
+                                newFile.CopyTo(_dbFilePath);
                                 createFile = true;
                             }
                         }

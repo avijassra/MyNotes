@@ -9,6 +9,7 @@
                 <th>Name</th>
                 <th>Nickname</th>
                 <th>Group name</th>
+                <th>&nbsp;</th>
             </tr>  
         </thead>  
         <tbody>
@@ -16,13 +17,20 @@
                 var index = 1;
                 foreach (var user in Model)
                 { 
-                    <tr data-id="@user.Id">
-                        <td>@index</td>
-                        <td>@user.Username</td>
-                        <td>@user.Name</td>
-                        <td>@user.Nickname</td>
-                        <td>@user.GroupName</td>
+                    <tr id="@user.Id">
+                        <td class="jqSN">@index</td>
+                        <td id="@(user.Id)_uname">@user.Username</td>
+                        <td id="@(user.Id)_name">@user.Name</td>
+                        <td id="@(user.Id)_nickname">@user.Nickname</td>
+                        <td id="@(user.Id)_gname">@user.GroupName</td>
+                        <td style="width: 100px;">
+                            <ul>
+                                <li class="icon-edit jqUser"></li>
+                                <li class="icon-remove jqUser"></li>
+                            </ul>
+                        </td>
                     </tr>
+                    <tr id="@(user.Id)_upd_tr" class="updateFrm" style="display:none;"><td id="@(user.Id)_upd_td" colspan="4"></td></tr>
                     index += 1;
                 }
             }

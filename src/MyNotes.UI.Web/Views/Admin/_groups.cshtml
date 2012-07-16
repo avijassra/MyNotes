@@ -1,42 +1,44 @@
 ﻿@model IEnumerable<MyNotes.UI.Web.ViewModels.Admin.Group.GroupViewModel>
 
-<div id="groupListDiv" class="row span8">
-    <table id="groupListTbl" class="table table-striped">  
-        <thead>
-            <tr>
-                <th>S#</th>
-                <th>Name</th>
-                <th>System A/c</th>
-                <th>&nbsp;</th>
-            </tr>  
-        </thead>  
-        <tbody id="groupListTbody">
-            @{
-                var index = 1;
-                foreach (var group in Model)
-                { 
-                    <tr id="@group.Id">
-                        <td>@index</td>
-                        <td id="@(group.Id)_name">@group.Name</td>
-                        <td>@(group.IsSysAccount ? "Yes" : "No")</td>
-                        <td style="width: 100px;">
-                            @if (!group.IsSysAccount) { 
-                                <ul>
-                                    <li class="icon-edit jqGroup"></li>
-                                    <li class="icon-remove jqGroup"></li>
-                                </ul>
-                            }
-                        </td>
-                    </tr>
-                    if (!group.IsSysAccount) { 
-                        <tr id="@(group.Id)_upd_tr" class="updateFrm" style="display:none;"><td id="@(group.Id)_upd_td" colspan="4"></td></tr>
-                    }
+<div id="groupListDiv" class="row span8" >
+    <div class="list">
+        <table id="groupListTbl" class="table table-striped">  
+            <thead>
+                <tr>
+                    <th>S#</th>
+                    <th>Name</th>
+                    <th>System A/c</th>
+                    <th>&nbsp;</th>
+                </tr>  
+            </thead>  
+            <tbody id="groupListTbody">
+                @{
+                    var index = 1;
+                    foreach (var group in Model)
+                    { 
+                        <tr id="@group.Id">
+                            <td class="jqSN">@index</td>
+                            <td id="@(group.Id)_name">@group.Name</td>
+                            <td>@(group.IsSysAccount ? "Yes" : "No")</td>
+                            <td style="width: 100px;">
+                                @if (!group.IsSysAccount) { 
+                                    <ul>
+                                        <li class="icon-edit jqGroup"></li>
+                                        <li class="icon-remove jqGroup"></li>
+                                    </ul>
+                                }
+                            </td>
+                        </tr>
+                        if (!group.IsSysAccount) { 
+                            <tr id="@(group.Id)_upd_tr" class="updateFrm" style="display:none;"><td id="@(group.Id)_upd_td" colspan="4"></td></tr>
+                        }
                     
-                    index += 1;
+                        index += 1;
+                    }
                 }
-            }
-        </tbody>  
-    </table>
+            </tbody>  
+        </table>
+    </div>
     <div class="row" >&nbsp;</div>
     <div class="row pull-right">
         <button id="btnNewGroup" class="btn btn-primary">New Group</button>

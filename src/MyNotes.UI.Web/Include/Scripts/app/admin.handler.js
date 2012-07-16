@@ -4,27 +4,21 @@ $(function () {
 
 handler.admin = function ($selector) {
     $selector.find('#btnNewGroup').bind('click', function () {
-        $('tr.updateFrm').slideUp('slow');
-        $('tr.updateFrm td').html('');
+        hideUpdatePanels();
         $.ajaxGet({ url: addGroupUrl });
-    });
-
-    $selector.find('#btnNewUser').bind('click', function () {
-        $.ajaxGet({ url: addUserUrl });
     });
 
     $selector.find('li.icon-edit.jqGroup').bind('click', function () {
         $currentItem = $(this).closest('tr');
         id = $currentItem.attr('id');
-        $('tr.updateFrm').slideUp('slow');
-        $('tr.updateFrm td').html('');
+        hideUpdatePanels();
         $.ajaxGet({
             url: updateGroupUrl,
             callback: function (response) {
                 $updTr = $('#' + id + '_upd_tr');
                 $('#' + id + '_upd_td').html(response.Result);
                 $('#Id').val($currentItem.attr('id'));
-                $('#Name').val($currentItem.find('td:nth-child(2)').html());
+                $('#Name').val($('#' + id + '_name').html());
                 $updTr.slideDown('slow');
             }
         });
@@ -32,11 +26,10 @@ handler.admin = function ($selector) {
 
     $selector.find('li.icon-remove.jqGroup').bind('click', function () {
         $tr = $(this).closest('tr');
+        hideUpdatePanels();
         jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
             if (r) {
                 itemId = $tr.attr('id');
-                $('tr.updateFrm').slideUp('slow');
-                $('tr.updateFrm td').html('');
                 $.ajaxDelete({
                     url: deleteGroupUrl,
                     data: { id: itemId },
@@ -50,10 +43,46 @@ handler.admin = function ($selector) {
     });
 
     $selector.find('#cancelUpdateGroup').bind('click', function (e) {
-        $this = $(this);
-        $this.closest('tr').slideUp('slow');
-        $this.closest('td').html('');
+        hideUpdatePanels();
         e.stopPropagation();
+    });
+
+    $selector.find('#btnNewUser').bind('click', function () {
+        $.ajaxGet({ url: addUserUrl });
+    });
+
+    $selector.find('li.icon-edit.jqUser').bind('click', function () {
+        $currentItem = $(this).closest('tr');
+        id = $currentItem.attr('id');
+        hideUpdatePanels();
+        $.ajaxGet({
+            url: updateUserUrl,
+            callback: function (response) {
+                $updTr = $('#' + id + '_upd_tr');
+                $('#' + id + '_upd_td').html(response.Result);
+                $('#Id').val($currentItem.attr('id'));
+                $('#Name').val($currentItem.find('td:nth-child(2)').html());
+                $updTr.slideDown('slow');
+            }
+        });
+    });
+
+    $selector.find('li.icon-remove.jqUser').bind('click', function () {
+        $tr = $(this).closest('tr');
+        hideUpdatePanels();
+        jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
+            if (r) {
+                itemId = $tr.attr('id');
+                $.ajaxDelete({
+                    url: deleteGroupUrl,
+                    data: { id: itemId },
+                    callback: function () {
+                        $tr.remove();
+                        $('#' + itemId + '_upd_tr').remove();
+                    }
+                });
+            }
+        });
     });
 
     $selector.bind('addUser', function (e, response) {
@@ -66,12 +95,17 @@ handler.admin = function ($selector) {
     });
 };
 
+hideUpdatePanels = function () {
+    $('tr.updateFrm').css('padding', '0px').slideUp('slow');
+    $('tr.updateFrm td').html('');
+}
+
 addGroupCallback = function (response) {
     if (response.HasError) {
         mynotes.displayErrorMessage(response.Message);
     } else {
         $groupListTbody = $('#groupListTbody');
-        newsno = parseInt($('tr:last', $groupListTbody).prev('tr').children('td:first').html()) + 1;
+        newsno = $('td.jqSN').length + 1;
         obj = { sno: newsno, id: response.Result, name: $('#Name').val(), IsSysAccount: 'No' };
         $(mynotes.constants.PopupView).modal('hide');
         $groupListTbody.append($('#groupListTmpl').render(obj));
@@ -79,7 +113,7 @@ addGroupCallback = function (response) {
     }
 }
 
-updateGroupCallback = function (response) {
+updateUserCallback = function (response) {
     if (response.HasError) {
         mynotes.displayErrorMessage(response.Message);
     } else {

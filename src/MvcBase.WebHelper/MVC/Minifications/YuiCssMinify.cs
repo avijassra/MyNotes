@@ -13,8 +13,10 @@
                 throw new ArgumentNullException("bundle");
             }
 
+#if !DEBUG
             bundle.Content = CssCompressor.Compress(bundle.Content);
             bundle.ContentType = "text/css";
+#endif
         }
     }
 }

@@ -9,17 +9,19 @@ handler.admin = function ($selector) {
     });
 
     $selector.find('li.icon-edit.jqGroup').bind('click', function () {
+        $this = $(this);
         $currentItem = $(this).closest('tr');
         id = $currentItem.attr('id');
         hideUpdatePanels();
         $.ajaxGet({
             url: updateGroupUrl,
             callback: function (response) {
+                $this.addClass('disabled');
                 $updTr = $('#' + id + '_upd_tr');
-                $('#' + id + '_upd_td').html(response.Result);
-                $('#Id').val($currentItem.attr('id'));
+                $('#' + id + '_upd_td').html(response.Result).css({ 'height': '0px', 'display': 'none' });
+                $('#Id').val(id);
                 $('#Name').val($('#' + id + '_name').html());
-                $updTr.slideDown('slow');
+                showUpdatePanels($updTr);
             }
         });
     });
@@ -52,17 +54,19 @@ handler.admin = function ($selector) {
     });
 
     $selector.find('li.icon-edit.jqUser').bind('click', function () {
+        $this = $(this);
         $currentItem = $(this).closest('tr');
         id = $currentItem.attr('id');
         hideUpdatePanels();
         $.ajaxGet({
             url: updateUserUrl,
             callback: function (response) {
+                $this.addClass('disabled');
                 $updTr = $('#' + id + '_upd_tr');
-                $('#' + id + '_upd_td').html(response.Result);
+                $('#' + id + '_upd_td').html(response.Result).css('height', '0px');
                 $('#Id').val($currentItem.attr('id'));
                 $('#Name').val($currentItem.find('td:nth-child(2)').html());
-                $updTr.slideDown('slow');
+                showUpdatePanels($updTr)
             }
         });
     });
@@ -96,8 +100,14 @@ handler.admin = function ($selector) {
 };
 
 hideUpdatePanels = function () {
-    $('tr.updateFrm').css('padding', '0px').slideUp('slow');
-    $('tr.updateFrm td').html('');
+    $('li.icon-edit').removeClass('disabled');
+    $('div.jqUpdatePnl').slideUp('slow');
+    $('tr.updateFrm td').slideUp().html('');
+}
+
+showUpdatePanels = function ($tr) {
+    $tr.show();
+    $tr.children('td').slideDown('slow');
 }
 
 addGroupCallback = function (response) {

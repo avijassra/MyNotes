@@ -70,27 +70,31 @@
                 .ExposeConfiguration(config => 
                     {
                         config.SetInterceptor(new AppInterceptor());
+                        var file = new FileInfo(_dbFilePath);
                         var createFile = false;
 
-                        if (!File.Exists(_dbFilePath))
+                        if (!file.Exists)
                             createFile = true;
                         else
                         {
-                            var file = new FileInfo(_dbFilePath);
                             var date = DateTime.Now;
+                            var dbBckFilePath = _dbFilePath + "." + date.ToShortDateString().Replace('/', '_') + ".bak";
+                            var bakFile = new FileInfo(dbBckFilePath);
 
-                            if (date.Day > file.LastAccessTime.Day)
-                                file.CopyTo(_dbFilePath + "." + file.LastAccessTime.ToShortDateString().Replace('/', '_') + ".bak");
-                        }
+                            if (bakFile.Exists)
+                                bakFile.Delete();
+
+                            file.CopyTo(dbBckFilePath);
+                        }    
                       
-                      if (createFile)
-                      {
-                          // this NHibernate tool takes a configuration (with mapping info in)
-                          // and exports a database schema from it
-                          new SchemaExport(config)
+                        if (createFile)
+                        {
+                            // this NHibernate tool takes a configuration (with mapping info in)
+                            // and exports a database schema from it
+                            new SchemaExport(config)
                             .Create(false, true);
-                      }  
-                  })
+                        }  
+                    })
               .BuildSessionFactory();
         }
     }

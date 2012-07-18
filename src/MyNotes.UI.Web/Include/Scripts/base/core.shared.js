@@ -64,6 +64,6 @@ var mynotes = function () {
                 }
             }
             return str;
-        },
+        }
     };
 } ();

@@ -1,3 +1,4 @@
+*.bak
 *.db
 #ignore thumbnails created by windows
 Thumbs.db

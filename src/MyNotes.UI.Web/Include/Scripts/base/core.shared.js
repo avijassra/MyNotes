@@ -10,12 +10,10 @@ var mynotes = function () {
             $altMsgDiv = $(mynotes.constants.AlertMessage);
 
         $altMsgDiv.html(div).fadeIn('slow', function () {
-            console.log('i came');
             if (!isError) {
                 setTimeout(function () {
-                    $(this).fadeOut('slow')
-                    console.log('i went');
-                }, 10000);
+                    $altMsgDiv.fadeOut('slow')
+                }, 5000);
             }
         });
     };

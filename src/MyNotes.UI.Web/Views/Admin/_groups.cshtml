@@ -22,10 +22,10 @@
                             <td>@(group.IsSysAccount ? "Yes" : "No")</td>
                             <td style="width: 100px;">
                                 @if (!group.IsSysAccount) { 
-                                    <ul class="pull-right">
-                                        <li class="icon-edit jqGroup"></li>
-                                        <li class="icon-remove jqGroup"></li>
-                                    </ul>
+                                    <div class="pull-right">
+                                        <span class="icon-edit jqGroup"></span>
+                                        <span class="icon-remove jqGroup"></span>
+                                    </div>
                                 }
                             </td>
                         </tr>

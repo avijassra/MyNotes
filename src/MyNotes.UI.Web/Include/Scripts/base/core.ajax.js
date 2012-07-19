@@ -45,7 +45,7 @@
                                 window[options.callback](response);
                         }
 
-                        handler.bindFunctions($('body'));
+                        handler.bindFunctions();
 
                         if (response.Message)
                             mynotes.displaySuccessMessage(response.Message);

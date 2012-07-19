@@ -2,22 +2,15 @@ $(function () {
     $.ajaxGet({ url: groupListUrl });
 });
 
-handler.admin = function ($selector) {
-    $selector.find('#btnNewGroup').unbind('click');
-    $selector.find('li.icon-edit').unbind('click');
-    $selector.find('li.icon-remove').unbind('click');
-    $selector.find('#cancelUpdateGroup').unbind('click');
-    $selector.find('#btnNewUser').unbind('click');
-
-    $selector.find('#btnNewGroup').bind('click', function () {
+handler.admin = function () {
+    $('#btnNewGroup').unbind('click').bind('click', function () {
         hideUpdatePanels();
         $.ajaxGet({ url: addGroupUrl });
     });
 
-    $selector.find('li.icon-edit.jqGroup').bind('click', function () {
+    $('li.icon-edit.jqGroup').unbind('click').bind('click', function () {
         $this = $(this);
-        $tr = $(this).closest('tr');
-        id = $tr.attr('id');
+        id = $(this).closest('tr').attr('id');
         $.ajaxGet({
             url: updateGroupUrl,
             callback: function (response) {
@@ -31,7 +24,7 @@ handler.admin = function ($selector) {
         });
     });
 
-    $selector.find('li.icon-remove.jqGroup').bind('click', function () {
+    $('li.icon-remove.jqGroup').unbind('click').bind('click', function () {
         $tr = $(this).closest('tr');
         hideUpdatePanels();
         jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
@@ -49,16 +42,16 @@ handler.admin = function ($selector) {
         });
     });
 
-    $selector.find('#cancelUpdateGroup').bind('click', function (e) {
+    $('#cancelUpdateGroup').unbind('click').bind('click', function (e) {
         hideUpdatePanels();
         e.stopPropagation();
     });
 
-    $selector.find('#btnNewUser').bind('click', function () {
+    $('#btnNewUser').unbind('click').bind('click', function () {
         $.ajaxGet({ url: addUserUrl });
     });
 
-    $selector.find('li.icon-edit.jqUser').bind('click', function () {
+    $('li.icon-edit.jqUser').unbind('click').bind('click', function () {
         $this = $(this);
         $tr = $(this).closest('tr');
         id = $tr.attr('id');
@@ -76,7 +69,7 @@ handler.admin = function ($selector) {
         });
     });
 
-    $selector.find('li.icon-remove.jqUser').bind('click', function () {
+    $('li.icon-remove.jqUser').unbind('click').bind('click', function () {
         $tr = $(this).closest('tr');
         hideUpdatePanels();
         jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
@@ -94,14 +87,14 @@ handler.admin = function ($selector) {
         });
     });
 
-    $selector.bind('addUser', function (e, response) {
-        if (response.HasError) {
-            mynotes.displayErrorMessage(response.Message);
-        } else {
-            $(mynotes.constants.PopupView).modal('hide');
-            $.ajaxGet({ url: userListUrl });
-        }
-    });
+//    $.bind('addUser', function (e, response) {
+//        if (response.HasError) {
+//            mynotes.displayErrorMessage(response.Message);
+//        } else {
+//            $(mynotes.constants.PopupView).modal('hide');
+//            $.ajaxGet({ url: userListUrl });
+//        }
+//    });
 };
 
 hideUpdatePanels = function (id) {
@@ -126,6 +119,14 @@ showUpdatePanel = function ($this, $tr, id) {
         .slideDown(function () {
             $this.hide();
         });
+}
+
+groupMapping = function () {
+        
+}
+
+userMapping = function () {
+
 }
 
 addGroupCallback = function (response) {

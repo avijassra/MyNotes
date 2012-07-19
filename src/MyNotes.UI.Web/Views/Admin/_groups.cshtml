@@ -17,12 +17,12 @@
                     foreach (var group in Model)
                     { 
                         <tr id="@group.Id">
-                            <td class="jqSN">@index</td>
+                            <td class="jqSN" >@index</td>
                             <td id="@(group.Id)_name">@group.Name</td>
                             <td>@(group.IsSysAccount ? "Yes" : "No")</td>
                             <td style="width: 100px;">
                                 @if (!group.IsSysAccount) { 
-                                    <ul>
+                                    <ul class="pull-right">
                                         <li class="icon-edit jqGroup"></li>
                                         <li class="icon-remove jqGroup"></li>
                                     </ul>
@@ -30,9 +30,8 @@
                             </td>
                         </tr>
                         if (!group.IsSysAccount) { 
-                            <tr id="@(group.Id)_upd_tr" class="updateFrm" style="display:none;"><td id="@(group.Id)_upd_td" colspan="4"></td></tr>
+                            <tr id="@(group.Id)_upd_tr" class="updRow" ><td id="@(group.Id)_upd_td" colspan="4"></td></tr>
                         }
-                    
                         index += 1;
                     }
                 }

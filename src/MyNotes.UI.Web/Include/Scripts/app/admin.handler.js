@@ -3,6 +3,12 @@ $(function () {
 });
 
 handler.admin = function ($selector) {
+    $selector.find('#btnNewGroup').unbind('click');
+    $selector.find('li.icon-edit').unbind('click');
+    $selector.find('li.icon-remove').unbind('click');
+    $selector.find('#cancelUpdateGroup').unbind('click');
+    $selector.find('#btnNewUser').unbind('click');
+
     $selector.find('#btnNewGroup').bind('click', function () {
         hideUpdatePanels();
         $.ajaxGet({ url: addGroupUrl });
@@ -10,18 +16,17 @@ handler.admin = function ($selector) {
 
     $selector.find('li.icon-edit.jqGroup').bind('click', function () {
         $this = $(this);
-        $currentItem = $(this).closest('tr');
-        id = $currentItem.attr('id');
-        hideUpdatePanels();
+        $tr = $(this).closest('tr');
+        id = $tr.attr('id');
         $.ajaxGet({
             url: updateGroupUrl,
             callback: function (response) {
-                $this.addClass('disabled');
                 $updTr = $('#' + id + '_upd_tr');
-                $('#' + id + '_upd_td').html(response.Result).css({ 'height': '0px', 'display': 'none' });
-                $('#Id').val(id);
-                $('#Name').val($('#' + id + '_name').html());
-                showUpdatePanels($updTr);
+                $('#' + id + '_upd_td').html(response.Result);
+                $('div.updPnl', $updTr).attr('data-id', id);
+                $('#Id', $updTr).val(id);
+                $('#Name', $updTr).val($('#' + id + '_name').html());
+                showUpdatePanel($this, $updTr, id);
             }
         });
     });
@@ -55,8 +60,8 @@ handler.admin = function ($selector) {
 
     $selector.find('li.icon-edit.jqUser').bind('click', function () {
         $this = $(this);
-        $currentItem = $(this).closest('tr');
-        id = $currentItem.attr('id');
+        $tr = $(this).closest('tr');
+        id = $tr.attr('id');
         hideUpdatePanels();
         $.ajaxGet({
             url: updateUserUrl,
@@ -66,7 +71,7 @@ handler.admin = function ($selector) {
                 $('#' + id + '_upd_td').html(response.Result).css('height', '0px');
                 $('#Id').val($currentItem.attr('id'));
                 $('#Name').val($currentItem.find('td:nth-child(2)').html());
-                showUpdatePanels($updTr)
+                showUpdatePanel($this, $updTr)
             }
         });
     });
@@ -99,37 +104,42 @@ handler.admin = function ($selector) {
     });
 };
 
-hideUpdatePanels = function () {
-    $('li.icon-edit').removeClass('disabled');
-    $('div.jqUpdatePnl').slideUp('slow');
-    $('tr.updateFrm td').slideUp().html('');
+hideUpdatePanels = function (id) {
+    $('li.icon-edit').show();
+    if(id)
+        $updPnl = $('div.updPnl[data-id!="' + id + '"]');
+    else
+        $updPnl = $('div.updPnl');
+
+    $updPnl
+        .slideUp('slow', function () {
+            $this = $(this);
+            $this.closest('tr').hide();
+            $this.remove();
+        });
 }
 
-showUpdatePanels = function ($tr) {
+showUpdatePanel = function ($this, $tr, id) {
+    hideUpdatePanels(id);
     $tr.show();
-    $tr.children('td').slideDown('slow');
+    $('div.updPnl[data-id="'+id+'"]')
+        .slideDown('slow', function () {
+            $this.hide();
+        });
 }
 
 addGroupCallback = function (response) {
-    if (response.HasError) {
-        mynotes.displayErrorMessage(response.Message);
-    } else {
-        $groupListTbody = $('#groupListTbody');
-        newsno = $('td.jqSN').length + 1;
-        obj = { sno: newsno, id: response.Result, name: $('#Name').val(), IsSysAccount: 'No' };
-        $(mynotes.constants.PopupView).modal('hide');
-        $groupListTbody.append($('#groupListTmpl').render(obj));
-        $(mynotes.constants.PopupView).html('');
-    }
+    $groupListTbody = $('#groupListTbody');
+    newsno = $('td.jqSN').length + 1;
+    obj = { sno: newsno, id: response.Result, name: $('#Name').val(), IsSysAccount: 'No' };
+    $(mynotes.constants.PopupView).modal('hide');
+    $groupListTbody.append($('#groupListTmpl').render(obj));
+    $(mynotes.constants.PopupView).html('');
 }
 
 updateUserCallback = function (response) {
-    if (response.HasError) {
-        mynotes.displayErrorMessage(response.Message);
-    } else {
-        $currentItem = $('#' + response.Result);
-        $updTd = $('#' + response.Result + '_upd_td');
-        $('#' + response.Result + '_name').html($('#Name').val());
-        $('#' + response.Result + '_upd_tr').slideUp('slow');
-    }
+    $currentItem = $('#' + response.Result);
+    $updTd = $('#' + response.Result + '_upd_td');
+    $('#' + response.Result + '_name').html($('#Name').val());
+    $('#' + response.Result + '_upd_tr').slideUp('slow');
 }

@@ -112,7 +112,7 @@ hideUpdatePanels = function (id) {
         $updPnl = $('div.updPnl');
 
     $updPnl
-        .slideUp('slow', function () {
+        .slideUp(function () {
             $this = $(this);
             $this.closest('tr').hide();
             $this.remove();
@@ -123,7 +123,7 @@ showUpdatePanel = function ($this, $tr, id) {
     hideUpdatePanels(id);
     $tr.show();
     $('div.updPnl[data-id="'+id+'"]')
-        .slideDown('slow', function () {
+        .slideDown(function () {
             $this.hide();
         });
 }

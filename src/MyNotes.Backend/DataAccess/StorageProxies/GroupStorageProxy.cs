@@ -88,14 +88,22 @@
         public MessageResultDto DeleteGroup(Guid id)
         {
             var result = new MessageResultDto();
-            result.Message = "Group deleted successfully";
 
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
                 IRepository<Group> groupRepository = new Repository<Group>(session);
-                groupRepository.Delete(id);
-                transaction.Commit();
+                var group = groupRepository.FindOne(id);
+                if (group.Users.Count > 0)
+                {
+                    result.ErrorMessage("Group has got users registered. Please remove the user from the group first.");
+                }
+                else
+                {
+                    groupRepository.Delete(id);
+                    transaction.Commit();
+                    result.Message = "Group deleted successfully";
+                }
             }
             return result;
         }

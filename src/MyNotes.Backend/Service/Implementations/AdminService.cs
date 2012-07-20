@@ -66,7 +66,7 @@
 
         public MessageResultDto DeleteUser(Guid id)
         {
-            throw new NotImplementedException();
+            return (new UserStorageProxy(_sessionFactory)).DeleteUser(id);
         }
     }
 }

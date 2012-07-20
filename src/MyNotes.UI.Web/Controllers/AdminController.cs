@@ -131,7 +131,10 @@
                                 () =>
                                 {
                                     var groups = (from gp in _adminService.GetAllGroups()
-                                                  select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
+                                                    where !gp.IsSysAccount
+                                                    select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
+                                    groups.Insert(0, new SelectListItem { Value = null, Text = "Please Select ..." });
+
                                     ViewData["Groups"] = groups;
                                     return new SaveUserViewModel();
                                 })
@@ -187,7 +190,7 @@
                         .WithResult<MessageResultDto>(
                                 () =>
                                 {
-                                    return _adminService.DeleteGroup(id);
+                                    return _adminService.DeleteUser(id);
                                 })
                         .Execute();
         }

@@ -75,7 +75,7 @@ handler.admin = function () {
             if (r) {
                 itemId = $tr.attr('id');
                 $.ajaxDelete({
-                    url: deleteGroupUrl,
+                    url: deleteUserUrl,
                     data: { id: itemId },
                     callback: function () {
                         $tr.remove();

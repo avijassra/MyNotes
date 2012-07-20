@@ -8,6 +8,7 @@
     using MyNotes.Backend.Dtos;
     using System.Collections.Generic;
     using System.Linq.Expressions;
+    using System.Linq;
 
     internal class UserStorageProxy
     {
@@ -124,6 +125,29 @@
                 userRepository.Add(user);
 
                 transaction.Commit();
+            }
+            return result;
+        }
+
+        public MessageResultDto DeleteUser(Guid id)
+        {
+            var result = new MessageResultDto();
+
+            using (ISession session = _sessionFactory.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                IRepository<User> userRepository = new Repository<User>(session);
+                var user = userRepository.FindOne(id);
+                if (user.Accounts.Count > 0)
+                {
+                    result.ErrorMessage("User has got accounts entered. Please remove all accounts first");
+                }
+                else
+                {
+                    userRepository.Delete(id);
+                    transaction.Commit();
+                    result.Message = "User deleted successfully";
+                }
             }
             return result;
         }

@@ -138,7 +138,7 @@ addUserCallback = function (response) {
         id: response.Result,
         uname: $('#Username').val(),
         name: mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]),
-        nname: $('#Nickname').val(),
+        nname: ($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val()),
         gname: $('#GroupId option:selected').text()
     };
     $(mynotes.constants.PopupView).modal('hide');

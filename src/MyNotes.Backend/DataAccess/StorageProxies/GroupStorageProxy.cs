@@ -96,7 +96,7 @@
                 var group = groupRepository.FindOne(id);
                 if (group.Users.Count > 0)
                 {
-                    result.ErrorMessage("Group has got users registered. Please remove the user from the group first.");
+                    result.ErrorMessage("Group has got users registered. Please remove the user(s) from the group first.");
                 }
                 else
                 {

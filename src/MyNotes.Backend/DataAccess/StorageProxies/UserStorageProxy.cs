@@ -140,7 +140,7 @@
                 var user = userRepository.FindOne(id);
                 if (user.Accounts.Count > 0)
                 {
-                    result.ErrorMessage("User has got accounts entered. Please remove all accounts first");
+                    result.ErrorMessage("User has got accounts registered. Please remove all accounts first");
                 }
                 else
                 {

@@ -24,18 +24,32 @@ handler.admin = function () {
         });
     });
 
-    $('span.icon-remove.jqGroup').unbind('click').bind('click', function () {
-        $tr = $(this).closest('tr');
+    $('span.icon-remove').unbind('click').bind('click', function () {
+        $this = $(this);
+        $tr = $this.closest('tr');
         hideUpdatePanels();
-        jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
+
+        if ($this.hasClass('jqGroup')) {
+            confirmMsg = "Are you sure you want to delete this group?";
+            deleteUrl = deleteGroupUrl;
+        } else if ($this.hasClass('jqUser')) {
+            confirmMsg = "Are you sure you want to delete this user?";
+            deleteUrl = deleteUserUrl;
+        }
+
+        jConfirm(confirmMsg, 'Confirmation Dialog', function (r) {
             if (r) {
                 itemId = $tr.attr('id');
                 $.ajaxDelete({
-                    url: deleteGroupUrl,
+                    url: deleteUrl,
                     data: { id: itemId },
-                    callback: function () {
-                        $tr.remove();
-                        $('#' + itemId + '_upd_tr').remove();
+                    callback: function (response) {
+                        if (response.Result.HasError) {
+                            jAlert(response.Result.Message);
+                        } else {
+                            $tr.remove();
+                            $('#' + itemId + '_upd_tr').remove();
+                        }
                     }
                 });
             }
@@ -68,32 +82,14 @@ handler.admin = function () {
         });
     });
 
-    $('span.icon-remove.jqUser').unbind('click').bind('click', function () {
-        $tr = $(this).closest('tr');
-        hideUpdatePanels();
-        jConfirm('Are you sure you want to delete this group?', 'Confirmation Dialog', function (r) {
-            if (r) {
-                itemId = $tr.attr('id');
-                $.ajaxDelete({
-                    url: deleteUserUrl,
-                    data: { id: itemId },
-                    callback: function () {
-                        $tr.remove();
-                        $('#' + itemId + '_upd_tr').remove();
-                    }
-                });
-            }
-        });
-    });
-
-//    $.bind('addUser', function (e, response) {
-//        if (response.HasError) {
-//            mynotes.displayErrorMessage(response.Message);
-//        } else {
-//            $(mynotes.constants.PopupView).modal('hide');
-//            $.ajaxGet({ url: userListUrl });
-//        }
-//    });
+    //    $.bind('addUser', function (e, response) {
+    //        if (response.HasError) {
+    //            mynotes.displayErrorMessage(response.Message);
+    //        } else {
+    //            $(mynotes.constants.PopupView).modal('hide');
+    //            $.ajaxGet({ url: userListUrl });
+    //        }
+    //    });
 };
 
 hideUpdatePanels = function (id) {

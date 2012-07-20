@@ -15,7 +15,8 @@
 
             Mapper.CreateMap<User, UserDto>()
                 .ForMember(d => d.GroupId, o => o.MapFrom(s => s.Group.Id))
-                .ForMember(d => d.GroupName, o => o.MapFrom(s => s.Group.Name));
+                .ForMember(d => d.GroupName, o => o.MapFrom(s => s.Group.Name))
+                .ForMember(d => d.IsSysAccount, o => o.MapFrom(s => s.Group.IsSysAccount));
         }
     }
 }

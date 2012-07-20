@@ -64,7 +64,6 @@
         {
             User user;
             var result = new MessageResultDto();
-            result.Message = "User added successfully";
 
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
@@ -87,8 +86,8 @@
                         Group = group
                     };
                     userRepository.Add(user);
-
                     transaction.Commit();
+                    result.SuccessMessage("User added successfully", user.Id);
                 }
                 else
                 {

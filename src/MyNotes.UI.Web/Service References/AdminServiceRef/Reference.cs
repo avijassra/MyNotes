@@ -112,6 +112,9 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         private System.Guid IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsSysAccountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string LastNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -181,6 +184,19 @@ namespace MyNotes.UI.Web.AdminServiceRef {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsSysAccount {
+            get {
+                return this.IsSysAccountField;
+            }
+            set {
+                if ((this.IsSysAccountField.Equals(value) != true)) {
+                    this.IsSysAccountField = value;
+                    this.RaisePropertyChanged("IsSysAccount");
                 }
             }
         }

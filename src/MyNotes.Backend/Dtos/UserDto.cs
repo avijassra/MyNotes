@@ -29,5 +29,8 @@
 
         [DataMember]
         public string GroupName { get; set; }
+
+        [DataMember]
+        public bool IsSysAccount { get; set; }
     }
 }

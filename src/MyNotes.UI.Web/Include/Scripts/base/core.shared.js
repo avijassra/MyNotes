@@ -54,11 +54,27 @@ var mynotes = function () {
             return newdate.getTime();
         },
         /*
+        check if obj is of array type
+        */
+        isArray: function (obj) {
+            // obj is not null and not undefined
+            if (!obj || obj == null || obj == 'undefined')
+                return false;
+
+            //returns true is it is an array
+            if (obj.constructor.toString().indexOf('Array') == -1) {
+                return false;
+            } else {
+                // if is array then length is greater then 0
+                return (obj.length > 0 ? true : false);
+            }
+        },
+        /*
             string formating like c-sharp
             e.g. stringFormat("{0}, hello world", ['avi']);
         */
         stringFormat: function (str, arr) {
-            if (ca4common.isArray(arr)) {
+            if (mynotes.isArray(arr)) {
                 for (i in arr) {
                     str = str.replace('{' + i + '}', arr[i]);
                 }

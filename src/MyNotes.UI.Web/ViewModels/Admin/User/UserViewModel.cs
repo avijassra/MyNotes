@@ -29,5 +29,7 @@
         public Guid GroupId { get; set; }
 
         public string GroupName { get; set; }
+
+        public bool IsSysAccount { get; set; }
     }
 }

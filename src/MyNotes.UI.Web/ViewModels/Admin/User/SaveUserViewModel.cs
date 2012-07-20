@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public class SaveUserViewModel
     {
@@ -30,7 +31,7 @@
         [Required]
         public string Password { get; set; }
 
-        [Required]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]

@@ -18,6 +18,20 @@
             _sessionFactory = sessionFactory;
         }
 
+        public GroupDto GetSingle(Guid id)
+        {
+            GroupDto groupDto = null;
+
+            using (ISession session = _sessionFactory.OpenSession())
+            {
+                IRepository<Group> groupRepository = new Repository<Group>(session);
+                var group = groupRepository.FindOne(id);
+                groupDto = Mapper.Map<GroupDto>(group);
+            }
+
+            return groupDto;
+        }
+
         public IList<GroupDto> GetAll()
         {
             IList<GroupDto> groupDtos = null;

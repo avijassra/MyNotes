@@ -26,17 +26,14 @@
             _sessionFactory = sessionFactory;
         }
 
+        public GroupDto GetSingleGroup(Guid id)
+        {
+            return (new GroupStorageProxy(_sessionFactory)).GetSingle(id);
+        }
+        
         public IList<GroupDto> GetAllGroups()
         {
             return (new GroupStorageProxy(_sessionFactory)).GetAll();
-        }
-
-        public IList<UserDto> GetAllUsers(Guid groupId, bool isSysAccount)
-        {
-            if(isSysAccount)
-                return (new UserStorageProxy(_sessionFactory)).GetAll();
-            else
-                return (new UserStorageProxy(_sessionFactory)).GetAllInGroup(groupId);
         }
 
         public MessageResultDto AddGroup(string name)
@@ -54,6 +51,19 @@
             return (new GroupStorageProxy(_sessionFactory)).DeleteGroup(id);
         }
 
+        public UserDto GetSingleUser(Guid id)
+        {
+            return (new UserStorageProxy(_sessionFactory)).GetSingle(id);
+        }
+        
+        public IList<UserDto> GetAllUsers(Guid groupId, bool isSysAccount)
+        {
+            if (isSysAccount)
+                return (new UserStorageProxy(_sessionFactory)).GetAll();
+            else
+                return (new UserStorageProxy(_sessionFactory)).GetAllInGroup(groupId);
+        }
+        
         public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId)
         {
             return (new UserStorageProxy(_sessionFactory)).AddUser(firstname, lastname, nickname, username, password, groupId);

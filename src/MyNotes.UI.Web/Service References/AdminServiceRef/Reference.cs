@@ -92,6 +92,83 @@ namespace MyNotes.UI.Web.AdminServiceRef {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MessageResultDto", Namespace="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos")]
+    [System.SerializableAttribute()]
+    public partial class MessageResultDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HasErrorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasError {
+            get {
+                return this.HasErrorField;
+            }
+            set {
+                if ((this.HasErrorField.Equals(value) != true)) {
+                    this.HasErrorField = value;
+                    this.RaisePropertyChanged("HasError");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="UserDto", Namespace="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos")]
     [System.SerializableAttribute()]
     public partial class UserDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -263,98 +340,27 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MessageResultDto", Namespace="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos")]
-    [System.SerializableAttribute()]
-    public partial class MessageResultDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool HasErrorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MessageField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool HasError {
-            get {
-                return this.HasErrorField;
-            }
-            set {
-                if ((this.HasErrorField.Equals(value) != true)) {
-                    this.HasErrorField = value;
-                    this.RaisePropertyChanged("HasError");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Message {
-            get {
-                return this.MessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AdminServiceRef.IAdminService")]
     public interface IAdminService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetSingleGroup", ReplyAction="http://tempuri.org/IAdminService/GetSingleGroupResponse")]
+        MyNotes.UI.Web.AdminServiceRef.GroupDto GetSingleGroup(System.Guid id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllGroups", ReplyAction="http://tempuri.org/IAdminService/GetAllGroupsResponse")]
         MyNotes.UI.Web.AdminServiceRef.GroupDto[] GetAllGroups();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllUsers", ReplyAction="http://tempuri.org/IAdminService/GetAllUsersResponse")]
-        MyNotes.UI.Web.AdminServiceRef.UserDto[] GetAllUsers(System.Guid groupId, bool isSysAccount);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddGroup", ReplyAction="http://tempuri.org/IAdminService/AddGroupResponse")]
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto AddGroup(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UpdateGroup", ReplyAction="http://tempuri.org/IAdminService/UpdateGroupResponse")]
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto UpdateGroup(System.Guid id, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetSingleUser", ReplyAction="http://tempuri.org/IAdminService/GetSingleUserResponse")]
+        MyNotes.UI.Web.AdminServiceRef.UserDto GetSingleUser(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/GetAllUsers", ReplyAction="http://tempuri.org/IAdminService/GetAllUsersResponse")]
+        MyNotes.UI.Web.AdminServiceRef.UserDto[] GetAllUsers(System.Guid groupId, bool isSysAccount);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteGroup", ReplyAction="http://tempuri.org/IAdminService/DeleteGroupResponse")]
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto DeleteGroup(System.Guid id);
@@ -396,12 +402,12 @@ namespace MyNotes.UI.Web.AdminServiceRef {
                 base(binding, remoteAddress) {
         }
         
-        public MyNotes.UI.Web.AdminServiceRef.GroupDto[] GetAllGroups() {
-            return base.Channel.GetAllGroups();
+        public MyNotes.UI.Web.AdminServiceRef.GroupDto GetSingleGroup(System.Guid id) {
+            return base.Channel.GetSingleGroup(id);
         }
         
-        public MyNotes.UI.Web.AdminServiceRef.UserDto[] GetAllUsers(System.Guid groupId, bool isSysAccount) {
-            return base.Channel.GetAllUsers(groupId, isSysAccount);
+        public MyNotes.UI.Web.AdminServiceRef.GroupDto[] GetAllGroups() {
+            return base.Channel.GetAllGroups();
         }
         
         public MyNotes.UI.Web.AdminServiceRef.MessageResultDto AddGroup(string name) {
@@ -410,6 +416,14 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         
         public MyNotes.UI.Web.AdminServiceRef.MessageResultDto UpdateGroup(System.Guid id, string name) {
             return base.Channel.UpdateGroup(id, name);
+        }
+        
+        public MyNotes.UI.Web.AdminServiceRef.UserDto GetSingleUser(System.Guid id) {
+            return base.Channel.GetSingleUser(id);
+        }
+        
+        public MyNotes.UI.Web.AdminServiceRef.UserDto[] GetAllUsers(System.Guid groupId, bool isSysAccount) {
+            return base.Channel.GetAllUsers(groupId, isSysAccount);
         }
         
         public MyNotes.UI.Web.AdminServiceRef.MessageResultDto DeleteGroup(System.Guid id) {

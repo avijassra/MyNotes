@@ -10,16 +10,15 @@ handler.admin = function () {
 
     $('span.icon-edit.jqGroup').unbind('click').bind('click', function () {
         $this = $(this);
-        id = $(this).closest('tr').attr('id');
+        itemId = $(this).closest('tr').attr('id');
         $.ajaxGet({
             url: updateGroupUrl,
+            data : {id : itemId},
             callback: function (response) {
-                $updTr = $('#' + id + '_upd_tr');
-                $('#' + id + '_upd_td').html(response.Result);
-                $('div.updPnl', $updTr).attr('data-id', id);
-                $('#Id', $updTr).val(id);
-                $('#Name', $updTr).val($('#' + id + '_name').html());
-                showUpdatePanel($this, $updTr, id);
+                $updTr = $('#' + itemId + '_upd_tr');
+                $('#' + itemId + '_upd_td').html(response.Result);
+                $('div.updPnl', $updTr).attr('data-id', itemId);
+                showUpdatePanel($this, $updTr, itemId);
             }
         });
     });

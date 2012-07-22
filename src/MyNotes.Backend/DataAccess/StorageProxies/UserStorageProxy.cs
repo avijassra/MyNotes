@@ -33,6 +33,20 @@
             return userDto;
         }
 
+        public UserDto GetSingle(Guid id)
+        {
+            UserDto userDto = null;
+
+            using (ISession session = _sessionFactory.OpenSession())
+            {
+                IRepository<User> userRepository = new Repository<User>(session);
+                var user = userRepository.FindOne(id);
+                userDto = Mapper.Map<UserDto>(user);
+            }
+
+            return userDto;
+        }
+
         public IList<UserDto> GetAll()
         {
             IList<UserDto> userDtos = null;

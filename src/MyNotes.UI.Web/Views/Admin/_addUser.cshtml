@@ -15,28 +15,63 @@
         <div class="modal-body">
             @if (Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount)
             { 
-                <div class="row center">
-                    @Html.DropDownList("GroupId", (IEnumerable<SelectListItem>)ViewBag.Groups, new { @class = "input-xlarge" })
+                <div class="row">
+                    <div class="span2">
+                        Group
+                    </div>
+                    <div class="span3">
+                        @Html.DropDownList("GroupId", (IEnumerable<SelectListItem>)ViewBag.Groups, new { @class = "input-xlarge" })
+                    </div>
                 </div>
             }
-            <div class="row center">
-                @Html.TextBoxFor(m => m.Firstname, new { placeholder = "First Name", @class = "input-xlarge" })
+            <div class="row">
+                <div class="span2">
+                    @Html.LabelFor(m => m.Firstname)
+                </div>
+                <div class="span3">
+                    @Html.TextBoxFor(m => m.Firstname, new { placeholder = "John", @class = "input-xlarge" })
+                </div>
             </div>
-            <div class="row center">
-                @Html.TextBoxFor(m => m.Lastname, new { placeholder = "Last Name", @class = "input-xlarge" })
+            <div class="row">
+                <div class="span2">
+                    @Html.LabelFor(m => m.Lastname)
+                </div>
+                <div class="span3">
+                    @Html.TextBoxFor(m => m.Lastname, new { placeholder = "Doe", @class = "input-xlarge" })
+                </div>
             </div>
-            <div class="row center">
-                @Html.TextBoxFor(m => m.Nickname, new { placeholder = "Nick Name", @class = "input-xlarge" })
+            <div class="row">
+                <div class="span2">
+                    @Html.LabelFor(m => m.Nickname)
+                </div>
+                <div class="span3">
+                    @Html.TextBoxFor(m => m.Nickname, new { placeholder = "Joe", @class = "input-xlarge" })
+                </div>
             </div>
-            <div class="row center">
-                @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "input-xlarge" })
+            <div class="row">
+                <div class="span2">
+                    @Html.LabelFor(m => m.Username)
+                </div>
+                <div class="span3">
+                    @Html.TextBoxFor(m => m.Username, new { placeholder = "jdoe", @class = "input-xlarge" })
+                </div>
             </div>
-            <div class="row center">
-                @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "input-xlarge" })
+            <div class="row">
+                <div class="span2">
+                    @Html.LabelFor(m => m.Password)
+                </div>
+                <div class="span3">
+                    @Html.TextBoxFor(m => m.Password, new { placeholder = "Password", @class = "input-xlarge" })
+                </div>
             </div>
-            <div class="row center">
-                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password", @class = "input-xlarge" })
-            </div>
+            <div class="row">
+                <div class="span2">
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                </div>
+                <div class="span3">
+                    @Html.TextBoxFor(m => m.ConfirmPassword, new { placeholder = "Password", @class = "input-xlarge" })
+                </div>
+            </div> 
         </div>
         <div class="modal-footer">
             <input type="submit" id="btnAddGroup" class="btn btn-success" value="Add" />

@@ -84,14 +84,15 @@
         }
 
         [HttpGet]
-        public virtual ActionResult UpdateGroup()
+        public virtual ActionResult UpdateGroup(Guid id)
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)
                         .WithResult<SaveGroupViewModel>(MVC.Admin.Views._upgradeGroup,
                                 () =>
                                 {
-                                    return new SaveGroupViewModel();
+                                    var group = _adminService.GetSingleGroup(id);
+                                    return Mapper.Map<SaveGroupViewModel>(group);
                                 })
                         .Execute();
         }
@@ -156,7 +157,7 @@
         }
 
         [HttpGet]
-        public virtual ActionResult UpdateUser()
+        public virtual ActionResult UpdateUser(Guid id)
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)

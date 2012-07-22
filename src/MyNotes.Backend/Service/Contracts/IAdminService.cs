@@ -9,16 +9,22 @@
     public interface IAdminService
     {
         [OperationContract]
-        IList<GroupDto> GetAllGroups();
+        GroupDto GetSingleGroup(Guid id);
 
         [OperationContract]
-        IList<UserDto> GetAllUsers(Guid groupId, bool isSysAccount);
+        IList<GroupDto> GetAllGroups();
         
         [OperationContract]
         MessageResultDto AddGroup(string name);
 
         [OperationContract]
         MessageResultDto UpdateGroup(Guid id, string name);
+
+        [OperationContract]
+        UserDto GetSingleUser(Guid id);
+
+        [OperationContract]
+        IList<UserDto> GetAllUsers(Guid groupId, bool isSysAccount);
 
         [OperationContract]
         MessageResultDto DeleteGroup(Guid id);

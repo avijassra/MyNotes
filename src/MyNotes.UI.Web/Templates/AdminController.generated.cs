@@ -39,8 +39,18 @@ namespace MyNotes.UI.Web.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult UpdateGroup() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.UpdateGroup);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public System.Web.Mvc.ActionResult DeleteGroup() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.DeleteGroup);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult UpdateUser() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.UpdateUser);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -87,11 +97,25 @@ namespace MyNotes.UI.Web.Controllers {
         }
 
 
+        static readonly ActionParamsClass_UpdateGroup s_params_UpdateGroup = new ActionParamsClass_UpdateGroup();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateGroup UpdateGroupParams { get { return s_params_UpdateGroup; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateGroup {
+            public readonly string id = "id";
+        }
         static readonly ActionParamsClass_DeleteGroup s_params_DeleteGroup = new ActionParamsClass_DeleteGroup();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_DeleteGroup DeleteGroupParams { get { return s_params_DeleteGroup; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_DeleteGroup {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_UpdateUser s_params_UpdateUser = new ActionParamsClass_UpdateUser();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UpdateUser UpdateUserParams { get { return s_params_UpdateUser; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UpdateUser {
             public readonly string id = "id";
         }
         static readonly ActionParamsClass_DeleteUser s_params_DeleteUser = new ActionParamsClass_DeleteUser();
@@ -110,6 +134,7 @@ namespace MyNotes.UI.Web.Controllers {
             public readonly string _addUser = "~/Views/Admin/_addUser.cshtml";
             public readonly string _groups = "~/Views/Admin/_groups.cshtml";
             public readonly string _upgradeGroup = "~/Views/Admin/_upgradeGroup.cshtml";
+            public readonly string _upgradeUser = "~/Views/Admin/_upgradeUser.cshtml";
             public readonly string _users = "~/Views/Admin/_users.cshtml";
             public readonly string Index = "~/Views/Admin/Index.cshtml";
         }
@@ -145,8 +170,9 @@ namespace MyNotes.UI.Web.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult UpdateGroup() {
+        public override System.Web.Mvc.ActionResult UpdateGroup(System.Guid id) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateGroup);
+            callInfo.RouteValueDictionary.Add("id", id);
             return callInfo;
         }
 
@@ -173,8 +199,9 @@ namespace MyNotes.UI.Web.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult UpdateUser() {
+        public override System.Web.Mvc.ActionResult UpdateUser(System.Guid id) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateUser);
+            callInfo.RouteValueDictionary.Add("id", id);
             return callInfo;
         }
 

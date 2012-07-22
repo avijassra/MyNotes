@@ -2,14 +2,18 @@
 
 @using MvcBase.WebHelper.Mvc.Extensions;
 
-<div id="updateGroup" class="updPnl" >
+<div id="updateGroup" class="updPnl center" >
     @using (Ajax.BeginJqueryForm("frmUpdateGroup", MVC.Admin.Actions.UpdateGroup(), "updateGroupCallback"))
     { 
-        <div class="row center">
-            @Html.TextBoxFor(m => m.Id, new { style = "display:none;" })
-            @Html.TextBoxFor(m => m.Name, new { placeholder = "Group Name", @class = "input-xlarge" })
-            @Html.ValidationMessageFor(m => m.Name)
+        <div class="row-fluid">
+            <div class="span3">
+                @Html.LabelFor(m => m.Name)
+            </div>
+            <div class="offset3 span6">
+                @Html.TextBoxFor(m => m.Name, new { placeholder = "Group Name", @class = "input-xlarge" })
+            </div>
         </div>
+        @Html.TextBoxFor(m => m.Id, new { style = "display:none;" })
         <div class="row pull-right">
             <input type="submit" id="btnUpdateGroup" class="btn btn-success" value="Update" />
             <a id="cancelUpdateGroup" class="btn" data-dismiss="modal">Cancel</a>

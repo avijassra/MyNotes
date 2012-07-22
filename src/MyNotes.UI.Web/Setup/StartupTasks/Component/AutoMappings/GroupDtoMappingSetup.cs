@@ -10,6 +10,8 @@
         public void Setup()
         {
             Mapper.CreateMap<GroupDto, GroupViewModel>();
+
+            Mapper.CreateMap<GroupDto, SaveGroupViewModel>();
         }
     }
 }

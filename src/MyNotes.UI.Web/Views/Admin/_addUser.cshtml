@@ -1,4 +1,4 @@
-﻿@model MyNotes.UI.Web.ViewModels.Admin.User.AddUserViewModel
+﻿@model MyNotes.UI.Web.ViewModels.Admin.User.SaveUserViewModel
 
 @using MyNotes.UI.Web.Setup.Extensions;
 @using MvcBase.WebHelper.Mvc.Extensions;
@@ -56,21 +56,8 @@
                     @Html.TextBoxFor(m => m.Username, new { placeholder = "jdoe", @class = "input-xlarge" })
                 </div>
             </div>
-            <div class="row-fluid">
-                <div class="span3">
-                    @Html.LabelFor(m => m.Password)
-                </div>
-                <div class="span6">
-                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "input-xlarge" })
-                </div>
-            </div>
-            <div class="row-fluid">
-                <div class="span3">
-                    @Html.LabelFor(m => m.ConfirmPassword)
-                </div>
-                <div class="span6">
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Password", @class = "input-xlarge" })
-                </div>
+            <div class="row-fluid note">
+                <strong>Note:</strong> User will be created with default password (i.e. <i>"p@55w0rd123"</i>) and user will be asked to change password on first time login
             </div> 
         </div>
         <div class="modal-footer">

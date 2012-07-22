@@ -107,7 +107,6 @@
         <xs:element minOccurs="0" name="lastname" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
         <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="groupId" type="q13:guid" />
       </xs:sequence>
     </xs:complexType>
@@ -149,6 +148,20 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos" minOccurs="0" name="DeleteUserResult" nillable="true" type="q19:MessageResultDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q20:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos" minOccurs="0" name="ResetPasswordResult" nillable="true" type="q21:MessageResultDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

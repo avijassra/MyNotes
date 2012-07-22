@@ -9,6 +9,7 @@
     using System.Collections.Generic;
     using System.Linq.Expressions;
     using System.Linq;
+    using MyNotes.Backend.Setup.Helper;
 
     internal class UserStorageProxy
     {
@@ -75,7 +76,7 @@
             return userDtos;
         }
 
-        public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId)
+        public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, Guid groupId)
         {
             User user;
             var result = new MessageResultDto();
@@ -97,7 +98,7 @@
                         LastName = lastname,
                         Nickname = nickname,
                         Username = username,
-                        Password = password,
+                        Password = Constants.DEFAULT_PASSWORD,
                         Group = group
                     };
                     userRepository.Add(user);
@@ -161,6 +162,22 @@
                     transaction.Commit();
                     result.Message = "User deleted successfully";
                 }
+            }
+            return result;
+        }
+
+        public MessageResultDto ResetPassword(Guid id)
+        {
+            var result = new MessageResultDto();
+
+            using (ISession session = _sessionFactory.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                IRepository<User> userRepository = new Repository<User>(session);
+                var user = userRepository.FindOne(id);
+                user.Password = Constants.DEFAULT_PASSWORD;
+                transaction.Commit();
+                result.Message = "Password has been reset successfully";
             }
             return result;
         }

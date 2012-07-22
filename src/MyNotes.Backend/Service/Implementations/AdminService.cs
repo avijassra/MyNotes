@@ -64,9 +64,9 @@
                 return (new UserStorageProxy(_sessionFactory)).GetAllInGroup(groupId);
         }
         
-        public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId)
+        public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, Guid groupId)
         {
-            return (new UserStorageProxy(_sessionFactory)).AddUser(firstname, lastname, nickname, username, password, groupId);
+            return (new UserStorageProxy(_sessionFactory)).AddUser(firstname, lastname, nickname, username, groupId);
         }
         
         public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, Guid groupId)
@@ -77,6 +77,11 @@
         public MessageResultDto DeleteUser(Guid id)
         {
             return (new UserStorageProxy(_sessionFactory)).DeleteUser(id);
+        }
+
+        public MessageResultDto ResetPassword(Guid id)
+        {
+            return (new UserStorageProxy(_sessionFactory)).ResetPassword(id);
         }
     }
 }

@@ -12,10 +12,7 @@
             Mapper.CreateMap<UserDto, UserViewModel>()
                 .ForMember(d => d.Name, o => o.Ignore());
 
-            Mapper.CreateMap<UserDto, AddUserViewModel>()
-                .ForMember(d => d.Name, o => o.Ignore());
-
-            Mapper.CreateMap<UserDto, UpdateUserViewModel>()
+            Mapper.CreateMap<UserDto, SaveUserViewModel>()
                 .ForMember(d => d.Name, o => o.Ignore());
         }
     }

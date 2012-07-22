@@ -134,6 +134,7 @@
     <Compile Include="Setup\Database\IDatabaseContext.cs" />
     <Compile Include="Setup\Database\NhibernateDatabaseContext.cs" />
     <Compile Include="Setup\Extensions\IQueryOverExtensions.cs" />
+    <Compile Include="Setup\Helper\Constants.cs" />
     <Compile Include="Setup\StartupTasks\Component\AutoMappings\GroupMappingSetup.cs" />
     <Compile Include="Setup\StartupTasks\IIncludeComponent.cs" />
     <Compile Include="Setup\StartupTasks\IRegisterDependency.cs" />

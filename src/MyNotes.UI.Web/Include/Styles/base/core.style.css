@@ -56,6 +56,12 @@ Validation Styling
 /********************************************************
 Class and Id styling
 ********************************************************/
+.required:after
+{
+    content: "*";
+    color: Red;
+}
+
 .center
 {
 	margin:auto 0px !important;
@@ -101,4 +107,9 @@ div.updPnl
 {
 	padding:20px;
 	display:none;
+}
+
+.note
+{
+    color: Red;
 }

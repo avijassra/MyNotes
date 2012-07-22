@@ -366,13 +366,16 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto DeleteGroup(System.Guid id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/AddUser", ReplyAction="http://tempuri.org/IAdminService/AddUserResponse")]
-        MyNotes.UI.Web.AdminServiceRef.MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, System.Guid groupId);
+        MyNotes.UI.Web.AdminServiceRef.MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, System.Guid groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UpdateUser", ReplyAction="http://tempuri.org/IAdminService/UpdateUserResponse")]
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto UpdateUser(System.Guid id, string firstname, string lastname, string nickname, string username, System.Guid groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteUser", ReplyAction="http://tempuri.org/IAdminService/DeleteUserResponse")]
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto DeleteUser(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/ResetPassword", ReplyAction="http://tempuri.org/IAdminService/ResetPasswordResponse")]
+        MyNotes.UI.Web.AdminServiceRef.MessageResultDto ResetPassword(System.Guid id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -430,8 +433,8 @@ namespace MyNotes.UI.Web.AdminServiceRef {
             return base.Channel.DeleteGroup(id);
         }
         
-        public MyNotes.UI.Web.AdminServiceRef.MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, System.Guid groupId) {
-            return base.Channel.AddUser(firstname, lastname, nickname, username, password, groupId);
+        public MyNotes.UI.Web.AdminServiceRef.MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, System.Guid groupId) {
+            return base.Channel.AddUser(firstname, lastname, nickname, username, groupId);
         }
         
         public MyNotes.UI.Web.AdminServiceRef.MessageResultDto UpdateUser(System.Guid id, string firstname, string lastname, string nickname, string username, System.Guid groupId) {
@@ -440,6 +443,10 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         
         public MyNotes.UI.Web.AdminServiceRef.MessageResultDto DeleteUser(System.Guid id) {
             return base.Channel.DeleteUser(id);
+        }
+        
+        public MyNotes.UI.Web.AdminServiceRef.MessageResultDto ResetPassword(System.Guid id) {
+            return base.Channel.ResetPassword(id);
         }
     }
 }

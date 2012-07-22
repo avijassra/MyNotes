@@ -21,27 +21,27 @@
 <script id="groupListTmpl" type="text/x-jQuery-tmpl">
     <tr id="{{:id}}" >
         <td class="jqSN">{{:sno}}</td>
-        <td id="{{:id}}_name">{{:name}}</td>
+        <td id="name_{{:id}}">{{:name}}</td>
         <td>{{:isSysAcc}}</td>
         <td style="width: 100px;">
             <div class="pull-right"><span class="icon-edit jqGroup"></span><span class="icon-remove jqGroup"></span></div>
         </td>
     </tr>
-    <tr id="{{:id}}_upd_tr" class="updRow" ><td id="{{:id}}_upd_td" colspan="4"></td></tr>
+    <tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="4"></td></tr>
 </script>
 <!--user list template-->
 <script id="userListTmpl" type="text/x-jQuery-tmpl">
     <tr id="{{:id}}" >
         <td class="jqSN">{{:sno}}</td>
-        <td id="{{:id}}_uname">{{:uname}}</td>
-        <td id="{{:id}}_name">{{:name}}</td>
-        <td id="{{:id}}_nname">{{:nname}}</td>
-        <td id="{{:id}}_gname">{{:gname}}</td>
+        <td id="uname_{{:id}}">{{:uname}}</td>
+        <td id="name_{{:id}}">{{:name}}</td>
+        <td id="nname_{{:id}}">{{:nname}}</td>
+        <td id="gname_{{:id}}">{{:gname}}</td>
         <td style="width: 100px;">
             <div class="pull-right"><span class="icon-edit jqUser"></span><span class="icon-remove jqUser"></span></div>
         </td>
     </tr>
-    <tr id="{{:id}}_upd_tr" class="updRow" ><td id="{{:id}}_upd_td" colspan="6"></td></tr>
+    <tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="6"></td></tr>
 </script>
 
 @section scripts{

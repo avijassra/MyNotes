@@ -36,7 +36,8 @@
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Compare("Confirm Password")]
+        [Compare("Password")]
+        [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]

@@ -20,10 +20,10 @@
                     { 
                         <tr id="@user.Id">
                             <td class="jqSN">@index</td>
-                            <td id="@(user.Id)_uname">@user.Username</td>
-                            <td id="@(user.Id)_name">@user.Name</td>
-                            <td id="@(user.Id)_nname">@user.Nickname</td>
-                            <td id="@(user.Id)_gname">@user.GroupName</td>
+                            <td id="uname_@(user.Id)">@user.Username</td>
+                            <td id="name_@(user.Id)">@user.Name</td>
+                            <td id="nname_@(user.Id)">@user.Nickname</td>
+                            <td id="gname_@(user.Id)">@user.GroupName</td>
                             <td style="width: 100px;">
                                 @if (!user.IsSysAccount)
                                 { 
@@ -36,7 +36,7 @@
                         </tr>
                         if (!user.IsSysAccount)
                         { 
-                            <tr id="@(user.Id)_upd_tr" class="updRow" ><td id="@(user.Id)_upd_td" colspan="6"></td></tr>
+                            <tr id="upd_tr_@(user.Id)" class="updRow" ><td id="upd_td_@(user.Id)" colspan="6"></td></tr>
                         }
                         
                         index += 1;

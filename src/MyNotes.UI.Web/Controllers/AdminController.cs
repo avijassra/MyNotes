@@ -128,7 +128,7 @@
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)
-                        .WithPopup<SaveUserViewModel>(MVC.Admin.Views._addUser,
+                        .WithPopup<AddUserViewModel>(MVC.Admin.Views._addUser,
                                 () =>
                                 {
                                     var groups = (from gp in _adminService.GetAllGroups()
@@ -137,13 +137,13 @@
                                     groups.Insert(0, new SelectListItem { Value = null, Text = "Please Select ..." });
 
                                     ViewData["Groups"] = groups;
-                                    return new SaveUserViewModel();
+                                    return new AddUserViewModel();
                                 })
                         .Execute();
         }
 
         [HttpPost]
-        public virtual ActionResult AddUser([Bind(Exclude="Id")]SaveUserViewModel userViewModel)
+        public virtual ActionResult AddUser([Bind(Exclude="Id")]AddUserViewModel userViewModel)
         {
             return new ServiceAction(this)
                         .Put(SessionKey.Empty)
@@ -161,24 +161,31 @@
         {
             return new ServiceAction(this)
                         .Fetch(SessionKey.Empty)
-                        .WithPopup<SaveGroupViewModel>(MVC.Admin.Views._addGroup,
+                        .WithResult<UpdateUserViewModel>(MVC.Admin.Views._upgradeUser,
                                 () =>
                                 {
-                                    return new SaveGroupViewModel();
+                                    var groups = (from gp in _adminService.GetAllGroups()
+                                                  where !gp.IsSysAccount
+                                                  select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
+                                    groups.Insert(0, new SelectListItem { Value = null, Text = "Please Select ..." });
+
+                                    ViewData["Groups"] = groups;
+                                    var user = _adminService.GetSingleUser(id);
+                                    return Mapper.Map<UpdateUserViewModel>(user);
                                 })
                         .Execute();
         }
 
         [HttpPost]
-        public virtual ActionResult UpdateUser(SaveUserViewModel userViewModel)
+        public virtual ActionResult UpdateUser([Bind(Exclude="Password, ConfirmPassword")]UpdateUserViewModel userViewModel)
         {
             return new ServiceAction(this)
                         .Put(SessionKey.Empty)
                         .WithCommand(
                                 () =>
                                 {
-                                    return _adminService.AddUser(userViewModel.Firstname, userViewModel.Lastname, userViewModel.Nickname,
-                                        userViewModel.Username, userViewModel.Password, userViewModel.GroupId);
+                                    return _adminService.UpdateUser(userViewModel.Id, userViewModel.Firstname, userViewModel.Lastname, 
+                                        userViewModel.Nickname, userViewModel.Username, userViewModel.GroupId);
                                 })
                         .Execute();
         }

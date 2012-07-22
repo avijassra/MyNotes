@@ -193,7 +193,7 @@ namespace MyNotes.UI.Web.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult AddUser(MyNotes.UI.Web.ViewModels.Admin.User.SaveUserViewModel userViewModel) {
+        public override System.Web.Mvc.ActionResult AddUser(MyNotes.UI.Web.ViewModels.Admin.User.AddUserViewModel userViewModel) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddUser);
             callInfo.RouteValueDictionary.Add("userViewModel", userViewModel);
             return callInfo;
@@ -205,7 +205,7 @@ namespace MyNotes.UI.Web.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult UpdateUser(MyNotes.UI.Web.ViewModels.Admin.User.SaveUserViewModel userViewModel) {
+        public override System.Web.Mvc.ActionResult UpdateUser(MyNotes.UI.Web.ViewModels.Admin.User.UpdateUserViewModel userViewModel) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateUser);
             callInfo.RouteValueDictionary.Add("userViewModel", userViewModel);
             return callInfo;

@@ -18,7 +18,7 @@
                     { 
                         <tr id="@group.Id">
                             <td class="jqSN" >@index</td>
-                            <td id="@(group.Id)_name">@group.Name</td>
+                            <td id="name_@(group.Id)">@group.Name</td>
                             <td>@(group.IsSysAccount ? "Yes" : "No")</td>
                             <td style="width: 100px;">
                                 @if (!group.IsSysAccount) { 
@@ -30,7 +30,7 @@
                             </td>
                         </tr>
                         if (!group.IsSysAccount) { 
-                            <tr id="@(group.Id)_upd_tr" class="updRow" ><td id="@(group.Id)_upd_td" colspan="4"></td></tr>
+                            <tr id="upd_tr_@(group.Id)" class="updRow" ><td id="upd_td_@(group.Id)" colspan="4"></td></tr>
                         }
                         index += 1;
                     }

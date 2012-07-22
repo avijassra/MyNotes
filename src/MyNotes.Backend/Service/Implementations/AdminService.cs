@@ -69,9 +69,9 @@
             return (new UserStorageProxy(_sessionFactory)).AddUser(firstname, lastname, nickname, username, password, groupId);
         }
         
-        public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, string password, Guid groupId)
+        public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, Guid groupId)
         {
-            return (new UserStorageProxy(_sessionFactory)).UpdateUser(id, firstname, lastname, nickname, username, password, groupId);
+            return (new UserStorageProxy(_sessionFactory)).UpdateUser(id, firstname, lastname, nickname, username, groupId);
         }
 
         public MessageResultDto DeleteUser(Guid id)

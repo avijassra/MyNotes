@@ -15,8 +15,8 @@ handler.admin = function () {
             url: updateGroupUrl,
             data : {id : itemId},
             callback: function (response) {
-                $updTr = $('#' + itemId + '_upd_tr');
-                $('#' + itemId + '_upd_td').html(response.Result);
+                $updTr = $('#upd_tr_' + itemId);
+                $('#upd_td_' + itemId).html(response.Result);
                 $('div.updPnl', $updTr).attr('data-id', itemId);
                 showUpdatePanel($this, $updTr, itemId);
             }
@@ -47,7 +47,7 @@ handler.admin = function () {
                             jAlert(response.Result.Message);
                         } else {
                             $tr.remove();
-                            $('#' + itemId + '_upd_tr').remove();
+                            $('#upd_tr_' + itemId).remove();
                         }
                     }
                 });
@@ -66,29 +66,19 @@ handler.admin = function () {
 
     $('span.icon-edit.jqUser').unbind('click').bind('click', function () {
         $this = $(this);
-        id = $(this).closest('tr').attr('id');
+        itemId = $(this).closest('tr').attr('id');
         hideUpdatePanels();
         $.ajaxGet({
             url: updateUserUrl,
+            data: {id: itemId},
             callback: function (response) {
-                $updTr = $('#' + id + '_upd_tr');
-                $('#' + id + '_upd_td').html(response.Result);
-                $('div.updPnl', $updTr).attr('data-id', id);
-                $('#Id', $updTr).val(id);
-                $('#Name', $updTr).val($('#' + id + '_name').html());
-                showUpdatePanel($this, $updTr, id);
+                $updTr = $('#upd_tr_' + itemId);
+                $('#upd_td_' + itemId).html(response.Result);
+                $('div.updPnl', $updTr).attr('data-id', itemId);
+                showUpdatePanel($this, $updTr, itemId);
             }
         });
     });
-
-    //    $.bind('addUser', function (e, response) {
-    //        if (response.HasError) {
-    //            mynotes.displayErrorMessage(response.Message);
-    //        } else {
-    //            $(mynotes.constants.PopupView).modal('hide');
-    //            $.ajaxGet({ url: userListUrl });
-    //        }
-    //    });
 };
 
 hideUpdatePanels = function (id) {
@@ -125,7 +115,7 @@ addGroupCallback = function (response) {
 }
 
 updateGroupCallback = function (response) {
-    $('#' + response.Result + '_name').html($('#Name').val());
+    $('#name_' + response.Result).html($('#Name').val());
     hideUpdatePanels();
 }
 
@@ -143,4 +133,12 @@ addUserCallback = function (response) {
     $(mynotes.constants.PopupView).modal('hide');
     $userListTbody.append($('#userListTmpl').render(obj));
     $(mynotes.constants.PopupView).html('');
+}
+
+updateUserCallback = function (response) {
+    $('#uname_' + response.Result).html($('#Username').val());
+    $('#name_' + response.Result).html(mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]));
+    $('#nname_' + response.Result).html($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val());
+    $('#gname_' + response.Result).html($('#GroupId option:selected').text());
+    hideUpdatePanels();
 }

@@ -127,7 +127,6 @@
         <xs:element minOccurs="0" name="lastname" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="nickname" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
         <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="groupId" type="q16:guid" />
       </xs:sequence>
     </xs:complexType>

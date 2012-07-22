@@ -112,7 +112,7 @@
             return result;
         }
 
-        public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, string password, Guid groupId)
+        public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, Guid groupId)
         {
             var result = new MessageResultDto();
             result.Message = "User updated successfully";
@@ -134,7 +134,6 @@
                 user.LastName = lastname;
                 user.Nickname = nickname;
                 user.Username = username;
-                user.Password = password;
 
                 userRepository.Add(user);
 

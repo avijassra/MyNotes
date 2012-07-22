@@ -33,7 +33,7 @@
         MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, Guid groupId);
 
         [OperationContract]
-        MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, string password, Guid groupId);
+        MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, Guid groupId);
 
         [OperationContract]
         MessageResultDto DeleteUser(Guid id);

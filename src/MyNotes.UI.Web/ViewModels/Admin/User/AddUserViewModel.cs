@@ -4,15 +4,17 @@
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-    public class SaveUserViewModel
+    public class AddUserViewModel
     {
         [Required]
         public Guid Id { get; set; }
 
         [Required]
+        [Display(Name="First Name")]
         public string Firstname { get; set; }
 
         [Required]
+        [Display(Name = "Last Name")]
         public string Lastname { get; set; }
 
         public string Name
@@ -22,16 +24,19 @@
                 return String.Format("{0} {1}", Firstname, Lastname); 
             }
         }
-        
+
+        [Display(Name = "Nick Name")]
         public string Nickname { get; set; }
 
         [Required]
+        [Display(Name = "Username")]
         public string Username { get; set; }
 
         [Required]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Compare("Password")]
+        [Compare("Confirm Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]

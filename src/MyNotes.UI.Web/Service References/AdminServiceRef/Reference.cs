@@ -369,7 +369,7 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, string password, System.Guid groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UpdateUser", ReplyAction="http://tempuri.org/IAdminService/UpdateUserResponse")]
-        MyNotes.UI.Web.AdminServiceRef.MessageResultDto UpdateUser(System.Guid id, string firstname, string lastname, string nickname, string username, string password, System.Guid groupId);
+        MyNotes.UI.Web.AdminServiceRef.MessageResultDto UpdateUser(System.Guid id, string firstname, string lastname, string nickname, string username, System.Guid groupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/DeleteUser", ReplyAction="http://tempuri.org/IAdminService/DeleteUserResponse")]
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto DeleteUser(System.Guid id);
@@ -434,8 +434,8 @@ namespace MyNotes.UI.Web.AdminServiceRef {
             return base.Channel.AddUser(firstname, lastname, nickname, username, password, groupId);
         }
         
-        public MyNotes.UI.Web.AdminServiceRef.MessageResultDto UpdateUser(System.Guid id, string firstname, string lastname, string nickname, string username, string password, System.Guid groupId) {
-            return base.Channel.UpdateUser(id, firstname, lastname, nickname, username, password, groupId);
+        public MyNotes.UI.Web.AdminServiceRef.MessageResultDto UpdateUser(System.Guid id, string firstname, string lastname, string nickname, string username, System.Guid groupId) {
+            return base.Channel.UpdateUser(id, firstname, lastname, nickname, username, groupId);
         }
         
         public MyNotes.UI.Web.AdminServiceRef.MessageResultDto DeleteUser(System.Guid id) {

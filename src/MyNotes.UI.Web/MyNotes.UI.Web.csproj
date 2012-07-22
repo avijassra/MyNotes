@@ -246,7 +246,8 @@
     </Compile>
     <Compile Include="ViewModels\Admin\Group\GroupViewModel.cs" />
     <Compile Include="ViewModels\Admin\Group\SaveGroupViewModel.cs" />
-    <Compile Include="ViewModels\Admin\User\SaveUserViewModel.cs" />
+    <Compile Include="ViewModels\Admin\User\UpdateUserViewModel.cs" />
+    <Compile Include="ViewModels\Admin\User\AddUserViewModel.cs" />
     <Compile Include="ViewModels\Admin\User\UserViewModel.cs" />
     <Compile Include="ViewModels\Admin\User\UserCredentialViewModel.cs" />
   </ItemGroup>

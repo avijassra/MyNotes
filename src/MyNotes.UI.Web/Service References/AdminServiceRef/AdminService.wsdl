@@ -73,6 +73,12 @@
   <wsdl:message name="IAdminService_ResetPassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="IAdminService_UserLockStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserLockStatus" />
+  </wsdl:message>
+  <wsdl:message name="IAdminService_UserLockStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserLockStatusResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAdminService">
     <wsdl:operation name="GetSingleGroup">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/GetSingleGroup" message="tns:IAdminService_GetSingleGroup_InputMessage" />
@@ -117,6 +123,10 @@
     <wsdl:operation name="ResetPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/ResetPassword" message="tns:IAdminService_ResetPassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/ResetPasswordResponse" message="tns:IAdminService_ResetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLockStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAdminService/UserLockStatus" message="tns:IAdminService_UserLockStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAdminService/UserLockStatusResponse" message="tns:IAdminService_UserLockStatus_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAdminService" type="tns:IAdminService">
@@ -213,6 +223,15 @@
     </wsdl:operation>
     <wsdl:operation name="ResetPassword">
       <soap:operation soapAction="http://tempuri.org/IAdminService/ResetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLockStatus">
+      <soap:operation soapAction="http://tempuri.org/IAdminService/UserLockStatus" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

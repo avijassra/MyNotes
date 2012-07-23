@@ -40,5 +40,8 @@
 
         [OperationContract]
         MessageResultDto ResetPassword(Guid id);
+
+        [OperationContract]
+        MessageResultDto UserLockStatus(Guid id, bool isLocked);
     }
 }

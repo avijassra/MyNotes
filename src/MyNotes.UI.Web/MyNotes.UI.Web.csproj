@@ -251,6 +251,7 @@
     <Compile Include="ViewModels\Admin\User\UserCredentialViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Include\Images\bootstrap\icon-unlock.png" />
     <Content Include="Include\Images\jQuery\jquery.alerts\help.gif" />
     <Content Include="Include\Images\jQuery\jquery.alerts\important.gif" />
     <Content Include="Include\Images\jQuery\jquery.alerts\info.gif" />

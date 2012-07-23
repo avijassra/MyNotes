@@ -13,7 +13,7 @@ handler.admin = function () {
         itemId = $(this).closest('tr').attr('id');
         $.ajaxGet({
             url: updateGroupUrl,
-            data : {id : itemId},
+            data: { id: itemId },
             callback: function (response) {
                 $updTr = $('#upd_tr_' + itemId);
                 $('#upd_td_' + itemId).html(response.Result);
@@ -23,7 +23,32 @@ handler.admin = function () {
         });
     });
 
-    $('span.icon-remove').unbind('click').bind('click', function () {
+    $('#btnNewUser').unbind('click').bind('click', function () {
+        $.ajaxGet({ url: addUserUrl });
+    });
+
+    $('span.icon-edit.jqUser').unbind('click').bind('click', function () {
+        $this = $(this);
+        itemId = $(this).closest('tr').attr('id');
+        hideUpdatePanels();
+        $.ajaxGet({
+            url: updateUserUrl,
+            data: { id: itemId },
+            callback: function (response) {
+                $updTr = $('#upd_tr_' + itemId);
+                $('#upd_td_' + itemId).html(response.Result);
+                $('div.updPnl', $updTr).attr('data-id', itemId);
+                showUpdatePanel($this, $updTr, itemId);
+            }
+        });
+    });
+
+    $('a.jqCancelUpdate').unbind('click').bind('click', function (e) {
+        hideUpdatePanels();
+        e.stopPropagation();
+    });
+
+    $('span.icon-trash').unbind('click').bind('click', function () {
         $this = $(this);
         $tr = $this.closest('tr');
         hideUpdatePanels();
@@ -55,27 +80,40 @@ handler.admin = function () {
         });
     });
 
-    $('#cancelUpdateGroup').unbind('click').bind('click', function (e) {
-        hideUpdatePanels();
-        e.stopPropagation();
-    });
-
-    $('#btnNewUser').unbind('click').bind('click', function () {
-        $.ajaxGet({ url: addUserUrl });
-    });
-
-    $('span.icon-edit.jqUser').unbind('click').bind('click', function () {
+    $('span.icon-repeat').unbind('click').bind('click', function () {
         $this = $(this);
-        itemId = $(this).closest('tr').attr('id');
         hideUpdatePanels();
-        $.ajaxGet({
-            url: updateUserUrl,
-            data: {id: itemId},
-            callback: function (response) {
-                $updTr = $('#upd_tr_' + itemId);
-                $('#upd_td_' + itemId).html(response.Result);
-                $('div.updPnl', $updTr).attr('data-id', itemId);
-                showUpdatePanel($this, $updTr, itemId);
+
+        jConfirm('Are you sure you want to reset the password?', 'Confirmation Dialog', function (r) {
+            if (r) {
+                itemId = $this.closest('tr').attr('id');
+                $.ajaxPut({
+                    url: resetPwdUrl,
+                    data: { id: itemId }
+                });
+            }
+        });
+    });
+
+    $('span.jqAcessStatus').unbind('click').bind('click', function () {
+        $this = $(this);
+        hideUpdatePanels();
+        islockabled = $this.hasClass('icon-lock');
+
+        jConfirm(mynotes.stringFormat('Are you sure you want to {0} this user?', [islockabled ? 'lock' : 'unlock']), 'Confirmation Dialog', function (r) {
+            if (r) {
+                itemId = $this.closest('tr').attr('id');
+                $.ajaxPut({
+                    url: userLockStatusUrl,
+                    data: { id: itemId, isLocked: islockabled },
+                    callback: function (response) {
+                        if (islockabled) {
+                            $this.removeClass('icon-lock').addClass('icon-unlock');
+                        } else {
+                            $this.removeClass('icon-unlock').addClass('icon-lock');
+                        }
+                    }
+                });
             }
         });
     });

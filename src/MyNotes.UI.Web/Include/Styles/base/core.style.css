@@ -16,7 +16,7 @@ table
 
 select
 {
-    -webkit-border-radius: 3px;
+	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	padding-right: 5px;
@@ -58,8 +58,8 @@ Class and Id styling
 ********************************************************/
 .required:after
 {
-    content: "*";
-    color: Red;
+	content: "*";
+	color: Red;
 }
 
 .center
@@ -109,7 +109,24 @@ div.updPnl
 	display:none;
 }
 
+div.action span
+{
+	padding: 5px;
+}
+
 .note
 {
-    color: Red;
+	color: Red;
+}
+
+.icon-unlock
+{
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+	vertical-align: text-top;
+	background-image: url("../../Include/Images/bootstrap/icon-unlock.png");
+	background-position: 14px 14px;
+	background-repeat: no-repeat;
 }

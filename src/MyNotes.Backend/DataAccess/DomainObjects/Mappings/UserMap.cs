@@ -16,6 +16,10 @@
                 .Not.Nullable();
             Map(x => x.Password)
                 .Not.Nullable();
+            Map(x => x.IsLocked)
+                .Not.Nullable();
+            Map(x => x.FirstTimeReset)
+                .Not.Nullable();
             References(x => x.Group)
                 .Not.Nullable();
             HasMany<Account>(x => x.Accounts)

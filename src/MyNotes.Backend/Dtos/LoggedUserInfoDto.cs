@@ -13,6 +13,9 @@
         public string Nickname { get; set; }
 
         [DataMember]
+        public bool FirstTimeReset { get; set; }
+
+        [DataMember]
         public Guid GroupId { get; set; }
 
         [DataMember]

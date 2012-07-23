@@ -27,7 +27,7 @@
             using (ISession session = _sessionFactory.OpenSession())
             {
                 IRepository<User> userRepository = new Repository<User>(session);
-                var user = userRepository.FindOne(x => x.Username == username && x.Password == password);
+                var user = userRepository.FindOne(x => x.Username == username && x.Password == password && !x.IsLocked);
                 userDto = Mapper.Map<LoggedUserInfoDto>(user);
             }
 
@@ -178,6 +178,22 @@
                 user.Password = Constants.DEFAULT_PASSWORD;
                 transaction.Commit();
                 result.Message = "Password has been reset successfully";
+            }
+            return result;
+        }
+
+        public MessageResultDto LockedStatus(Guid id, bool isLocked)
+        {
+            var result = new MessageResultDto();
+
+            using (ISession session = _sessionFactory.OpenSession())
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                IRepository<User> userRepository = new Repository<User>(session);
+                var user = userRepository.FindOne(id);
+                user.IsLocked = isLocked ;
+                transaction.Commit();
+                result.Message = string.Format("User has been {0} successsfully", isLocked ? "locked" : "unlocked");
             }
             return result;
         }

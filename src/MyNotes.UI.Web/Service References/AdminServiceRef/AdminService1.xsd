@@ -165,4 +165,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="UserLockStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q22:guid" />
+        <xs:element minOccurs="0" name="isLocked" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLockStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos" minOccurs="0" name="UserLockStatusResult" nillable="true" type="q23:MessageResultDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -24,12 +24,14 @@
                             <td id="name_@(user.Id)">@user.Name</td>
                             <td id="nname_@(user.Id)">@user.Nickname</td>
                             <td id="gname_@(user.Id)">@user.GroupName</td>
-                            <td style="width: 100px;">
+                            <td style="width: 150px;">
                                 @if (!user.IsSysAccount)
                                 { 
-                                    <div class="pull-right">
+                                    <div class="pull-right action">
                                         <span class="icon-edit jqUser"></span>
-                                        <span class="icon-remove jqUser"></span>
+                                        <span class="icon-repeat jqUser"></span>
+                                        <span class="@(user.IsLocked ? "icon-unlock" : "icon-lock") jqUser jqAcessStatus"></span>
+                                        <span class="icon-trash jqUser"></span>
                                     </div>
                                 }
                             </td>

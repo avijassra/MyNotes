@@ -1,7 +1,16 @@
 (function ($) {
     _ajaxCall = function (settings, axnType) {
+        // clear the existing alert message
+        mynotes.clearAlertMessage();
+
+        // default options
         var options = {
-            type: axnType
+            url: null,
+            data: null,
+            type: axnType,
+            dataType: 'json',
+            callback: null,
+            blockOnCall: false
         };
 
         // $.extend() method takes two or more objects as arguments 
@@ -68,57 +77,19 @@
     }
 
     $.ajaxPost = function (settings) {
-        mynotes.clearAlertMessage();
+        return _ajaxCall(settings, 'post');
+    }
 
-        var options = {
-            url: null,
-            data: null,
-            dataType: 'json',
-            callback: null,
-            blockOnCall: false
-        };
-
-        // $.extend() method takes two or more objects as arguments 
-        // and merges the contents of them into the first object.
-        $.extend(options, settings);
-
-        return _ajaxCall(options, 'post');
+    $.ajaxPut = function (settings) {
+        return _ajaxCall(settings, 'put');
     }
 
     $.ajaxGet = function (settings) {
-        mynotes.clearAlertMessage();
-
-        var options = {
-            url: null,
-            data: null,
-            dataType: 'json',
-            callback: null,
-            blockOnCall: false
-        };
-
-        // $.extend() method takes two or more objects as arguments 
-        // and merges the contents of them into the first object.
-        $.extend(options, settings);
-
-        return _ajaxCall(options, 'get');
+        return _ajaxCall(settings, 'get');
     }
 
     $.ajaxDelete = function (settings) {
-        mynotes.clearAlertMessage();
-
-        var options = {
-            url: null,
-            data: null,
-            dataType: 'json',
-            callback: null,
-            blockOnCall: false
-        };
-
-        // $.extend() method takes two or more objects as arguments 
-        // and merges the contents of them into the first object.
-        $.extend(options, settings);
-
-        return _ajaxCall(options, 'delete');
+        return _ajaxCall(settings, 'delete');
     }
 
     $.validationBinding = function (elm) {

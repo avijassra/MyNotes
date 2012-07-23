@@ -43,6 +43,16 @@
         public virtual string Password { get; set; }
 
         /// <summary>
+        /// Gets or Sets the user lock status
+        /// </summary>
+        public virtual bool IsLocked { get; set; }
+
+        /// <summary>
+        /// Gets or Sets the user first time password reset status
+        /// </summary>
+        public virtual bool FirstTimeReset { get; set; }
+
+        /// <summary>
         /// Gets or Sets the user group
         /// </summary>
         public virtual Group Group { get; set; }

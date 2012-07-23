@@ -24,7 +24,7 @@
         <td id="name_{{:id}}">{{:name}}</td>
         <td>{{:isSysAcc}}</td>
         <td style="width: 100px;">
-            <div class="pull-right"><span class="icon-edit jqGroup"></span><span class="icon-remove jqGroup"></span></div>
+            <div class="pull-right action"><span class="icon-edit jqGroup"></span><span class="icon-trash jqGroup"></span></div>
         </td>
     </tr>
     <tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="4"></td></tr>
@@ -37,8 +37,8 @@
         <td id="name_{{:id}}">{{:name}}</td>
         <td id="nname_{{:id}}">{{:nname}}</td>
         <td id="gname_{{:id}}">{{:gname}}</td>
-        <td style="width: 100px;">
-            <div class="pull-right"><span class="icon-edit jqUser"></span><span class="icon-remove jqUser"></span></div>
+        <td style="width: 150px;">
+            <div class="pull-right action"><span class="icon-edit jqUser"></span><span class="icon-repeat jqUser"></span><span class="icon-lock jqUser jqAcessStatus"></span><span class="icon-trash jqUser"></span></div>
         </td>
     </tr>
     <tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="6"></td></tr>
@@ -57,5 +57,7 @@
         var addUserUrl = '@Url.Action(MVC.Admin.Actions.AddUser())';
         var updateUserUrl = '@Url.Action(MVC.Admin.Actions.UpdateUser())';
         var deleteUserUrl = '@Url.Action(MVC.Admin.Actions.DeleteUser())';
+        var resetPwdUrl = '@Url.Action(MVC.Admin.Actions.ResetPassword())';
+        var userLockStatusUrl = '@Url.Action(MVC.Admin.Actions.UserLockStatus())';
     </script>
 }

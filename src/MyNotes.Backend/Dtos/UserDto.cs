@@ -25,6 +25,9 @@
         public string Password { get; set; }
 
         [DataMember]
+        public bool IsLocked { get; set; }
+
+        [DataMember]
         public Guid GroupId { get; set; }
 
         [DataMember]

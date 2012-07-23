@@ -189,6 +189,9 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         private System.Guid IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsLockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool IsSysAccountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -261,6 +264,19 @@ namespace MyNotes.UI.Web.AdminServiceRef {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsLocked {
+            get {
+                return this.IsLockedField;
+            }
+            set {
+                if ((this.IsLockedField.Equals(value) != true)) {
+                    this.IsLockedField = value;
+                    this.RaisePropertyChanged("IsLocked");
                 }
             }
         }
@@ -376,6 +392,9 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/ResetPassword", ReplyAction="http://tempuri.org/IAdminService/ResetPasswordResponse")]
         MyNotes.UI.Web.AdminServiceRef.MessageResultDto ResetPassword(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdminService/UserLockStatus", ReplyAction="http://tempuri.org/IAdminService/UserLockStatusResponse")]
+        MyNotes.UI.Web.AdminServiceRef.MessageResultDto UserLockStatus(System.Guid id, bool isLocked);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -447,6 +466,10 @@ namespace MyNotes.UI.Web.AdminServiceRef {
         
         public MyNotes.UI.Web.AdminServiceRef.MessageResultDto ResetPassword(System.Guid id) {
             return base.Channel.ResetPassword(id);
+        }
+        
+        public MyNotes.UI.Web.AdminServiceRef.MessageResultDto UserLockStatus(System.Guid id, bool isLocked) {
+            return base.Channel.UserLockStatus(id, isLocked);
         }
     }
 }

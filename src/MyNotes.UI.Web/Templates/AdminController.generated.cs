@@ -57,6 +57,16 @@ namespace MyNotes.UI.Web.Controllers {
         public System.Web.Mvc.ActionResult DeleteUser() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.DeleteUser);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult ResetPassword() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.ResetPassword);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult UserLockStatus() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.UserLockStatus);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public AdminController Actions { get { return MVC.Admin; } }
@@ -81,6 +91,8 @@ namespace MyNotes.UI.Web.Controllers {
             public readonly string AddUser = "AddUser";
             public readonly string UpdateUser = "UpdateUser";
             public readonly string DeleteUser = "DeleteUser";
+            public readonly string ResetPassword = "ResetPassword";
+            public readonly string UserLockStatus = "UserLockStatus";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -94,6 +106,8 @@ namespace MyNotes.UI.Web.Controllers {
             public const string AddUser = "AddUser";
             public const string UpdateUser = "UpdateUser";
             public const string DeleteUser = "DeleteUser";
+            public const string ResetPassword = "ResetPassword";
+            public const string UserLockStatus = "UserLockStatus";
         }
 
 
@@ -124,6 +138,21 @@ namespace MyNotes.UI.Web.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_DeleteUser {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_ResetPassword s_params_ResetPassword = new ActionParamsClass_ResetPassword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ResetPassword ResetPasswordParams { get { return s_params_ResetPassword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ResetPassword {
+            public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_UserLockStatus s_params_UserLockStatus = new ActionParamsClass_UserLockStatus();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UserLockStatus UserLockStatusParams { get { return s_params_UserLockStatus; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UserLockStatus {
+            public readonly string id = "id";
+            public readonly string isLocked = "isLocked";
         }
         static readonly ViewNames s_views = new ViewNames();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -214,6 +243,19 @@ namespace MyNotes.UI.Web.Controllers {
         public override System.Web.Mvc.ActionResult DeleteUser(System.Guid id) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DeleteUser);
             callInfo.RouteValueDictionary.Add("id", id);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult ResetPassword(System.Guid id) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ResetPassword);
+            callInfo.RouteValueDictionary.Add("id", id);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult UserLockStatus(System.Guid id, bool isLocked) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UserLockStatus);
+            callInfo.RouteValueDictionary.Add("id", id);
+            callInfo.RouteValueDictionary.Add("isLocked", isLocked);
             return callInfo;
         }
 

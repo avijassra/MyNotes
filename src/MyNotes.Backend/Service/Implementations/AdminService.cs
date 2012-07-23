@@ -83,5 +83,10 @@
         {
             return (new UserStorageProxy(_sessionFactory)).ResetPassword(id);
         }
+
+        public MessageResultDto UserLockStatus(Guid id, bool isLocked)
+        {
+            return (new UserStorageProxy(_sessionFactory)).LockedStatus(id, isLocked);
+        }
     }
 }

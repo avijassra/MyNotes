@@ -202,5 +202,31 @@
                                 })
                         .Execute();
         }
+
+        [HttpPut]
+        public virtual ActionResult ResetPassword(Guid id)
+        {
+            return new ServiceAction(this)
+                        .Put(SessionKey.Empty)
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _adminService.ResetPassword(id);
+                                })
+                        .Execute();
+        }
+
+        [HttpPut]
+        public virtual ActionResult UserLockStatus(Guid id, bool isLocked)
+        {
+            return new ServiceAction(this)
+                        .Put(SessionKey.Empty)
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _adminService.UserLockStatus(id, isLocked);
+                                })
+                        .Execute();
+        }
     }
 }

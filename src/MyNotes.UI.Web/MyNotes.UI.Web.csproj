@@ -270,7 +270,6 @@
     <Content Include="Include\Scripts\jQuery\jquery.alerts.js" />
     <Content Include="Include\Scripts\jQuery\jquery.contextMenu.js" />
     <Content Include="Include\Scripts\jQuery\jsrender.js" />
-    <Content Include="Include\Scripts\jQuery\jquery.tmpl.min.js" />
     <Content Include="Include\Scripts\jQuery\jquery.ba-bbq.min.js" />
     <Content Include="Include\Scripts\jQuery\jquery.blockUI.js" />
     <Content Include="Include\Scripts\jQuery\jquery.metadata.js" />

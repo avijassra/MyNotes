@@ -18,7 +18,7 @@
                     var index = 1;
                     foreach (var user in Model)
                     { 
-                        <tr id="@user.Id">
+                        <tr id="@user.Id" style="@(user.IsLocked ? "locked" : "")" >
                             <td class="jqSN">@index</td>
                             <td id="uname_@(user.Id)">@user.Username</td>
                             <td id="name_@(user.Id)">@user.Name</td>
@@ -30,7 +30,7 @@
                                     <div class="pull-right action">
                                         <span class="icon-edit jqUser"></span>
                                         <span class="icon-repeat jqUser"></span>
-                                        <span class="@(user.IsLocked ? "icon-unlock" : "icon-lock") jqUser jqAcessStatus"></span>
+                                        <span class="icon-lock jqUser"></span>
                                         <span class="icon-trash jqUser"></span>
                                     </div>
                                 }

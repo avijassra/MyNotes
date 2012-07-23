@@ -95,22 +95,23 @@ handler.admin = function () {
         });
     });
 
-    $('span.jqAcessStatus').unbind('click').bind('click', function () {
+    $('span.icon-lock').unbind('click').bind('click', function () {
         $this = $(this);
+        $tr = $this.closest('tr');
         hideUpdatePanels();
-        islockabled = $this.hasClass('icon-lock');
+        canUserBeLocked = !$tr.hasClass('locked'); // check if locked class is present, means user is currently locked and can be only unlocked
 
-        jConfirm(mynotes.stringFormat('Are you sure you want to {0} this user?', [islockabled ? 'lock' : 'unlock']), 'Confirmation Dialog', function (r) {
+        jConfirm(mynotes.stringFormat('Are you sure you want to {0} this user?', [canUserBeLocked ? 'lock' : 'unlock']), 'Confirmation Dialog', function (r) {
             if (r) {
-                itemId = $this.closest('tr').attr('id');
+                itemId = $tr.attr('id');
                 $.ajaxPut({
                     url: userLockStatusUrl,
-                    data: { id: itemId, isLocked: islockabled },
+                    data: { id: itemId, isLocked: canUserBeLocked },
                     callback: function (response) {
-                        if (islockabled) {
-                            $this.removeClass('icon-lock').addClass('icon-unlock');
+                        if (canUserBeLocked) {
+                            $tr.addClass('locked');
                         } else {
-                            $this.removeClass('icon-unlock').addClass('icon-lock');
+                            $tr.removeClass('locked');
                         }
                     }
                 });

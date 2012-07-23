@@ -119,14 +119,7 @@ div.action span
 	color: Red;
 }
 
-.icon-unlock
+.locked
 {
-	display: inline-block;
-	width: 14px;
-	height: 14px;
-	line-height: 14px;
-	vertical-align: text-top;
-	background-image: url("../../Include/Images/bootstrap/icon-unlock.png");
-	background-position: 14px 14px;
-	background-repeat: no-repeat;
+	color: Red !important;
 }

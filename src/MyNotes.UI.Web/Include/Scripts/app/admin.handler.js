@@ -182,7 +182,3 @@ updateUserCallback = function (response) {
     $('#gname_' + response.Result).html($('#GroupId option:selected').text());
     hideUpdatePanels();
 }
-
-frmAddGroup_InvalidSubmitCallback = function () {
-    alert('failed submit');
-};

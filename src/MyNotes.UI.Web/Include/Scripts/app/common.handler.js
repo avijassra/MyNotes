@@ -10,3 +10,7 @@ handler.common = function () {
         $(this).closest('div.jqInput').prev('div.jqLabel').children('label').removeClass('requiredField').addClass('requiredField');
     });
 };
+
+failedFormValidationCallback = function (id) {
+    //console.log('failed submit for - ' + id);
+};

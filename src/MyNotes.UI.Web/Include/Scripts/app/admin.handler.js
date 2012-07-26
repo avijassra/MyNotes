@@ -137,6 +137,7 @@ hideUpdatePanels = function (id) {
 
 showUpdatePanel = function ($this, $tr, id) {
     hideUpdatePanels(id);
+    $.validationBinding($tr);
     $tr.show();
     $('div.updPnl[data-id="'+id+'"]')
         .slideDown(function () {
@@ -181,3 +182,7 @@ updateUserCallback = function (response) {
     $('#gname_' + response.Result).html($('#GroupId option:selected').text());
     hideUpdatePanels();
 }
+
+frmAddGroup_InvalidSubmitCallback = function () {
+    alert('failed submit');
+};

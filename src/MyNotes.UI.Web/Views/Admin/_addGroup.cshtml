@@ -11,11 +11,12 @@
         </div>
         <div class="modal-body">
             <div class="row-fluid">
-                <div class="span3">
+                <div class="span3 jqLabel">
                     @Html.LabelFor(m => m.Name)
                 </div>
-                <div class="span6">
+                <div class="span6 jqInput">
                     @Html.TextBoxFor(m => m.Name, new { placeholder = "Xyz", @class = "input-xlarge" })
+                    @Html.CustomValidationMessageFor(m => m.Name)
                 </div>
             </div>
         </div>
@@ -24,7 +25,4 @@
             <a href="#" class="btn" data-dismiss="modal">Cancel</a>
         </div>
     }
-</div>
-<div id="popupAltMsg" class="row center" style="display:none;">
- @Html.ValidationSummary(true)
 </div>

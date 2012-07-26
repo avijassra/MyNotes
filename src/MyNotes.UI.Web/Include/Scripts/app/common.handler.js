@@ -5,4 +5,8 @@ handler.common = function () {
         $('li', $ul).removeClass('active');
         $this.addClass('active');
     });
+
+    $('input[data-val="true"],select[data-val="true"]').each(function () {
+        $(this).closest('div.jqInput').prev('div.jqLabel').children('label').removeClass('requiredField').addClass('requiredField');
+    });
 };

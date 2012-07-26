@@ -118,17 +118,17 @@ $.extend($.fn, {
 	},
 	// http://docs.jquery.com/Plugins/Validation/valid
 	valid: function() {
-        if ( $(this[0]).is('form')) {
-            return this.validate().form();
-        } else {
-            var valid = true;
-            var validator = $(this[0].form).validate();
-            this.each(function() {
+		if ( $(this[0]).is('form')) {
+			return this.validate().form();
+		} else {
+			var valid = true;
+			var validator = $(this[0].form).validate();
+			this.each(function() {
 				valid &= validator.element(this);
-            });
-            return valid;
-        }
-    },
+			});
+			return valid;
+		}
+	},
 	// attributes: space seperated list of attributes to retrieve and remove
 	removeAttrs: function(attributes) {
 		var result = {},
@@ -687,7 +687,7 @@ $.extend($.validator, {
 
 		errorsFor: function(element) {
 			var name = this.idOrName(element);
-    		return this.errors().filter(function() {
+			return this.errors().filter(function() {
 				return $(this).attr('for') == name;
 			});
 		},

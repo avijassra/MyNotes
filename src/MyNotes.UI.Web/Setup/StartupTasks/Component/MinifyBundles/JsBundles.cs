@@ -15,8 +15,8 @@
             //mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.ba-bbq.min.js");
             mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.alerts.js");
             mainJsBundle.AddFile("~/Include/Scripts/jQuery/jsrender.js");
-            mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.validate.min.js");
-            mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.validate.unobtrusive.min.js");
+            mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.validate.modified.js");
+            mainJsBundle.AddFile("~/Include/Scripts/jQuery/jquery.validate.unobtrusive.modified.js");
             mainJsBundle.AddFile("~/Include/Scripts/misc/knockout-2.0.0.js");
             mainJsBundle.AddFile("~/Include/Scripts/misc/modernizr-2.5.3.js");
             mainJsBundle.AddFile("~/Include/Scripts/misc/bootstrap.min.js");

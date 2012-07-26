@@ -11,9 +11,10 @@
             </div>
             <div class="offset3 span6">
                 @Html.TextBoxFor(m => m.Name, new { placeholder = "Group Name", @class = "input-xlarge" })
+                @Html.ValidationMessageFor(m => m.Name)
             </div>
         </div>
-        @Html.TextBoxFor(m => m.Id, new { style = "display:none;" })
+        @Html.HiddenFor(m => m.Id, new { style = "display:none;" })
         <div class="row pull-right">
             <input type="submit" id="btnUpdateGroup" class="btn btn-success" value="Update" />
             <a id="cancelUpdateGroup" class="btn jqCancelUpdate" data-dismiss="modal">Cancel</a>

@@ -13,10 +13,12 @@
                 throw new ArgumentNullException("bundle");
             }
 
-#if !DEBUG
+#if DEBUG
+            bundle.Content = bundle.Content;
+#else
             bundle.Content = JavaScriptCompressor.Compress(bundle.Content);
-            bundle.ContentType = "text/javascript";
 #endif
+            bundle.ContentType = "text/javascript";
         }
     }
 }

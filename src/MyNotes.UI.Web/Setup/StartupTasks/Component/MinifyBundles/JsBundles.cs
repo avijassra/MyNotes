@@ -25,12 +25,16 @@
             mainJsBundle.AddFile("~/Include/Scripts/base/core.ajax.js");
             mainJsBundle.AddFile("~/Include/Scripts/base/core.address.js");
             mainJsBundle.AddFile("~/Include/Scripts/base/core.forms.js");
-            mainJsBundle.AddFile("~/Include/Scripts/app/common.handler.js");
+            mainJsBundle.AddFile("~/Include/Scripts/app/handler.common.js");
             BundleTable.Bundles.Add(mainJsBundle);
 
-            var loginBundle = new Bundle("~/Include/Cache/login.script", typeof(YuiJsMinify));
-            mainJsBundle.AddFile("~/Include/Scripts/app/login.js");
-            BundleTable.Bundles.Add(mainJsBundle);
+            var login = new Bundle("~/Include/Cache/login.script", typeof(YuiJsMinify));
+            login.AddFile("~/Include/Scripts/app/login.js");
+            BundleTable.Bundles.Add(login);
+
+            var admin = new Bundle("~/Include/Cache/admin.script", typeof(YuiJsMinify));
+            admin.AddFile("~/Include/Scripts/app/handler.admin.js");
+            BundleTable.Bundles.Add(admin);
         }
     }
 }

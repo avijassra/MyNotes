@@ -45,7 +45,7 @@
 </script>
 
 @section scripts{
-    <script type="text/javascript" src="@Url.Content("~/Include/Scripts/app/admin.handler.js")" ></script>
+    <script src="@Microsoft.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Include/Cache/admin.script")" type="text/javascript"></script>
     <script type="text/javascript" >
         // group screen urls
         var groupListUrl = '@Url.Action(MVC.Admin.Actions.Groups())';

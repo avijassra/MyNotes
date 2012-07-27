@@ -263,9 +263,9 @@
     <Content Include="Include\Images\jQuery\jquery.contextMenu\page_white_delete.png" />
     <Content Include="Include\Images\jQuery\jquery.contextMenu\page_white_edit.png" />
     <Content Include="Include\Images\jQuery\jquery.contextMenu\page_white_paste.png" />
-    <Content Include="Include\Scripts\app\admin.handler.js" />
+    <Content Include="Include\Scripts\app\handler.admin.js" />
     <Content Include="Include\Scripts\app\login.js" />
-    <Content Include="Include\Scripts\app\common.handler.js" />
+    <Content Include="Include\Scripts\app\handler.common.js" />
     <Content Include="Include\Scripts\base\core.handler.js" />
     <Content Include="Include\Scripts\jQuery\jquery.validate.modified.js" />
     <Content Include="Include\Scripts\jQuery\jquery.validate.unobtrusive.modified.js" />

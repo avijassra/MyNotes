@@ -266,7 +266,6 @@
     <Content Include="Include\Scripts\app\login.js" />
     <Content Include="Include\Scripts\app\common.handler.js" />
     <Content Include="Include\Scripts\base\core.handler.js" />
-    <Content Include="Include\Scripts\jQuery\chosen.jquery.js" />
     <Content Include="Include\Scripts\jQuery\jquery.validate.modified.js" />
     <Content Include="Include\Scripts\jQuery\jquery.validate.unobtrusive.modified.js" />
     <Content Include="Include\Scripts\jQuery\jquery.alerts.js" />

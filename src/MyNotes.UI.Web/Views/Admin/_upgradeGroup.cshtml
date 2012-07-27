@@ -6,12 +6,12 @@
     @using (Ajax.BeginJqueryForm("frmUpdateGroup", MVC.Admin.Actions.UpdateGroup(), "updateGroupCallback"))
     { 
         <div class="row-fluid">
-            <div class="span3">
+            <div class="span3 jqLabel">
                 @Html.LabelFor(m => m.Name)
             </div>
-            <div class="offset3 span6">
+            <div class="span9 jqInput">
                 @Html.TextBoxFor(m => m.Name, new { placeholder = "Group Name", @class = "input-xlarge" })
-                @Html.ValidationMessageFor(m => m.Name)
+                @Html.PopoverValidationMessageFor(m => m.Name)
             </div>
         </div>
         @Html.HiddenFor(m => m.Id, new { style = "display:none;" })

@@ -134,7 +134,7 @@
                                     var groups = (from gp in _adminService.GetAllGroups()
                                                     where !gp.IsSysAccount
                                                     select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
-                                    groups.Insert(0, new SelectListItem { Value = null, Text = "Please Select ..." });
+                                    groups.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
 
                                     ViewData["Groups"] = groups;
                                     return new SaveUserViewModel();
@@ -167,7 +167,7 @@
                                     var groups = (from gp in _adminService.GetAllGroups()
                                                   where !gp.IsSysAccount
                                                   select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
-                                    groups.Insert(0, new SelectListItem { Value = null, Text = "Please Select ..." });
+                                    groups.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
 
                                     ViewData["Groups"] = groups;
                                     var user = _adminService.GetSingleUser(id);

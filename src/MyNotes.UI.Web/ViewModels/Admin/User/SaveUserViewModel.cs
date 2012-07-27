@@ -33,6 +33,7 @@
         public string Username { get; set; }
 
         [Required]
+        [Display(Name = "Group")]
         public Guid GroupId { get; set; }
 
         public string GroupName { get; set; }

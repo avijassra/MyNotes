@@ -7,51 +7,59 @@
 
 <div id="updateUser" class="updPnl" >
     @using (Ajax.BeginJqueryForm("frmUpdateUser", MVC.Admin.Actions.UpdateUser(), "updateUserCallback"))
-    { 
+    {
         if (Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount)
         { 
             <div class="row-fluid">
-                <div class="span3">
+                <div class="span3 jqLabel">
                     @Html.LabelFor(m => m.GroupId)
                 </div>
-                <div class="span6">
+                <div class="span9 jqInput">
                     @Html.DropDownListFor(m => m.GroupId, (IEnumerable<SelectListItem>)ViewBag.Groups, new { @class = "input-xlarge" })
+                    @Html.PopoverValidationMessageFor(m => m.GroupId)
                 </div>
             </div>
         }
+        else 
+        { 
+            @Html.HiddenFor(m => m.GroupId, new { style = "display:none;" })
+        }
         <div class="row-fluid">
-            <div class="span3">
+            <div class="span3 jqLabel">
                 @Html.LabelFor(m => m.Firstname)
             </div>
-            <div class="span6">
+            <div class="span9 jqInput">
                 @Html.TextBoxFor(m => m.Firstname, new { placeholder = "John", @class = "input-xlarge" })
+                @Html.PopoverValidationMessageFor(m => m.Firstname)
             </div>
         </div>
         <div class="row-fluid">
-            <div class="span3">
+            <div class="span3 jqLabel">
                 @Html.LabelFor(m => m.Lastname)
             </div>
-            <div class="span6">
+            <div class="span9 jqInput">
                 @Html.TextBoxFor(m => m.Lastname, new { placeholder = "Doe", @class = "input-xlarge" })
+                @Html.PopoverValidationMessageFor(m => m.Lastname)
             </div>
         </div>
         <div class="row-fluid">
-            <div class="span3">
+            <div class="span3 jqLabel">
                 @Html.LabelFor(m => m.Nickname)
             </div>
-            <div class="span6">
+            <div class="span9 jqInput">
                 @Html.TextBoxFor(m => m.Nickname, new { placeholder = "Joe", @class = "input-xlarge" })
             </div>
         </div>
         <div class="row-fluid">
-            <div class="span3">
+            <div class="span3 jqLabel">
                 @Html.LabelFor(m => m.Username)
             </div>
-            <div class="span6">
+            <div class="span9 jqInput">
                 @Html.TextBoxFor(m => m.Username, new { placeholder = "jdoe", @class = "input-xlarge" })
+                @Html.PopoverValidationMessageFor(m => m.Username)
             </div>
         </div>
-        @Html.HiddenFor(m => m.Id, new { style = "display:none;" })
+        @Html.HiddenFor(m => m.Id, new { style = "display:none;" })    
         <div class="row pull-right">
             <input type="submit" id="btnUpdateUser" class="btn btn-success" value="Update" />
             <a id="cancelUpdateUser" class="btn jqCancelUpdate" data-dismiss="modal">Cancel</a>

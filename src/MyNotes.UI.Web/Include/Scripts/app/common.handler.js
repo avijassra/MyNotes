@@ -9,8 +9,10 @@ handler.common = function () {
     $('input[data-val="true"],select[data-val="true"]').each(function () {
         $(this).closest('div.jqInput').prev('div.jqLabel').children('label').removeClass('requiredField').addClass('requiredField');
     });
+
+    $('a.jqValErr').popover();
 };
 
 failedFormValidationCallback = function (id) {
-    //console.log('failed submit for - ' + id);
+    $('div.field-validation-error').tooltip();
 };

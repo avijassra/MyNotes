@@ -95,6 +95,11 @@ Class and Id styling
 	z-index:1100;
 }
 
+.readOnly
+{
+    font-weight:bold;
+}
+
 .updateFrm > td
 {
 	background-color: White !important;
@@ -137,4 +142,9 @@ div.action span
 {
     color:Red;
     content:" *";
+}
+
+.errorLabel
+{
+    color: #B94A48;
 }

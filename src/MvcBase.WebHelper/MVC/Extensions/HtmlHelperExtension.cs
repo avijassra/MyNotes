@@ -109,5 +109,61 @@
 
             return MvcHtmlString.Create(builder.ToString());
         }
+
+        public static MvcHtmlString PopoverValidationMessageFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression)
+        {
+            string validationMessage = null;
+            var modelMetadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
+            var strExpression = ExpressionHelper.GetExpressionText(expression);
+            var modelName = htmlHelper.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldName(strExpression);
+            //var formContext = htmlHelper.ViewContext.GetFormContextForClientValidation();
+            var formContext = (htmlHelper.ViewContext.ClientValidationEnabled) ? htmlHelper.ViewContext.FormContext : null;
+
+            if (!htmlHelper.ViewData.ModelState.ContainsKey(modelName) && formContext == null)
+            {
+                return null;
+            }
+
+            var modelState = htmlHelper.ViewData.ModelState[modelName];
+            var modelErrors = (modelState == null) ? null : modelState.Errors;
+            var modelError = (((modelErrors == null) || (modelErrors.Count == 0)) ? null : modelErrors.FirstOrDefault(m => !String.IsNullOrEmpty(m.ErrorMessage)) ?? modelErrors[0]);
+
+            if (modelError == null && formContext == null)
+            {
+                return null;
+            }
+
+            TagBuilder builder = new TagBuilder("a");
+            builder.AddCssClass("icon-question-sign jqValErr");
+            builder.MergeAttribute("style", "display:none;");
+            builder.MergeAttribute("rel", "popover");
+
+            if (modelError != null)
+            {
+                builder.SetInnerText(modelError.ErrorMessage);
+            }
+
+            if (formContext != null)
+            {
+                bool replaceValidationMessageContents = String.IsNullOrEmpty(validationMessage);
+
+                if (htmlHelper.ViewContext.UnobtrusiveJavaScriptEnabled)
+                {
+                    builder.MergeAttribute("for", modelName);
+                }
+                else
+                {
+                    FieldValidationMetadata fieldMetadata = ApplyFieldValidationMetadata(htmlHelper, modelMetadata, modelName);
+                    // rules will already have been written to the metadata object
+                    fieldMetadata.ReplaceValidationMessageContents = replaceValidationMessageContents; // only replace contents if no explicit message was specified
+
+                    // client validation always requires an ID
+                    builder.GenerateId(modelName + "_validationMessage");
+                    fieldMetadata.ValidationMessageId = builder.Attributes["id"];
+                }
+            }
+
+            return MvcHtmlString.Create(builder.ToString());
+        }
     }
 }

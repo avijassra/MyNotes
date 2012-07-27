@@ -14,9 +14,9 @@
                 <div class="span3 jqLabel">
                     @Html.LabelFor(m => m.Name)
                 </div>
-                <div class="span6 jqInput">
+                <div class="span9 jqInput">
                     @Html.TextBoxFor(m => m.Name, new { placeholder = "Xyz", @class = "input-xlarge" })
-                    @Html.CustomValidationMessageFor(m => m.Name)
+                    @Html.PopoverValidationMessageFor(m => m.Name)
                 </div>
             </div>
         </div>

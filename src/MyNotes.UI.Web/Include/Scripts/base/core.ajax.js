@@ -44,7 +44,7 @@
 
                         if (response.ContentView) {
                             $(mynotes.constants.ContentView).html(response.ContentView);
-                            $.validationBinding($(mynotes.constants.PopupView));
+                            $.validationBinding($(mynotes.constants.ContentView));
                         }
 
                         if (options.callback) {

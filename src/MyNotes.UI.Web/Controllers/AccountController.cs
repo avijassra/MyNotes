@@ -1,10 +1,11 @@
 ﻿namespace MyNotes.UI.Web.Controllers
 {
     using System.Web.Mvc;
+    using MyNotes.UI.Web.Setup.Helper;
 
-    public class AccountController : Controller
+    public partial class AccountController : MyNotesControllerBase
     {
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
             return View();
         }

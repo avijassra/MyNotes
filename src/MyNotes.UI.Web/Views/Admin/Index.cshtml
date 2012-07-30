@@ -1,4 +1,7 @@
 ﻿@using MvcBase.WebHelper.Mvc.Extensions;
+@using MyNotes.UI.Web.Setup.Extensions;
+@using MyNotes.UI.Web.UserServiceRef;
+@using MyNotes.UI.Web.Setup.Helper;
 
 @{
     ViewBag.Title = "My Notes - Admin";
@@ -7,9 +10,14 @@
 
 <div class="hero-unit" style="position:absolute;">
     <div class="row span8">
-        <ul class="nav nav-pills">  
-            <li class="jqTab active">@Html.ActionLinkWithFragment("Groups", MVC.Admin.Actions.Groups(), "Groups")</li>     
+        <ul class="nav nav-pills">
+            @if (Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount) { 
+                <li class="jqTab active">@Html.ActionLinkWithFragment("Groups", MVC.Admin.Actions.Groups(), "Groups")</li>           
+            }
             <li class="jqTab">@Html.ActionLinkWithFragment("Users", MVC.Admin.Actions.Users(), "Users")</li>  
+            @if (!Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount) { 
+                <li class="jqTab">@Html.ActionLinkWithFragment("Accounts", MVC.Admin.Actions.Groups(), "Accounts")</li>           
+            }
         </ul>        
     </div>
     <div id="mainContainer" class="hero-unit">

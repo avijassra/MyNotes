@@ -2,24 +2,22 @@
 {
     using System;
     using System.Web.Mvc;
-    using MyNotes.UI.Web.Setup.Common;
+    using MyNotes.UI.Web.Setup.Helper;
     using MvcBase.WebHelper.Mvc.Extensions;
     using MyNotes.UI.Web.AdminServiceRef;
 
     public class ServiceSetAction : IServiceSetAction
     {
         private Controller _controller;
-        private SessionKey _sessionKey;
         private Func<MessageResultDto> _serviceCommand;
         private ActionResult _onSuccess;
         private bool _onSuccessIsFragmentAction;
         private ActionResult _onFailure;
         private bool _onFailureIsFragmentAction;
 
-        public ServiceSetAction(Controller controller, SessionKey sessionKey)
+        public ServiceSetAction(Controller controller)
         {
             _controller = controller;
-            _sessionKey = sessionKey;
         }
 
         public IServiceSetAction WithCommand(Func<MessageResultDto> serviceCommand)

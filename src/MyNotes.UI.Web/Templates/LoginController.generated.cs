@@ -42,6 +42,11 @@ namespace MyNotes.UI.Web.Controllers {
         public System.Web.Mvc.ActionResult ValidateCredentials() {
             return new T4MVC_ActionResult(Area, Name, ActionNames.ValidateCredentials);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public System.Web.Mvc.ActionResult LogOff() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.LogOff);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public LoginController Actions { get { return MVC.Login; } }
@@ -59,12 +64,14 @@ namespace MyNotes.UI.Web.Controllers {
         public class ActionNamesClass {
             public readonly string Index = "Index";
             public readonly string ValidateCredentials = "ValidateCredentials";
+            public readonly string LogOff = "LogOff";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
             public const string ValidateCredentials = "ValidateCredentials";
+            public const string LogOff = "LogOff";
         }
 
 
@@ -73,6 +80,13 @@ namespace MyNotes.UI.Web.Controllers {
         public ActionParamsClass_ValidateCredentials ValidateCredentialsParams { get { return s_params_ValidateCredentials; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ValidateCredentials {
+            public readonly string viewmodel = "viewmodel";
+        }
+        static readonly ActionParamsClass_LogOff s_params_LogOff = new ActionParamsClass_LogOff();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_LogOff LogOffParams { get { return s_params_LogOff; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_LogOff {
             public readonly string viewmodel = "viewmodel";
         }
         static readonly ViewNames s_views = new ViewNames();
@@ -95,6 +109,12 @@ namespace MyNotes.UI.Web.Controllers {
 
         public override System.Web.Mvc.ActionResult ValidateCredentials(MyNotes.UI.Web.ViewModels.Admin.User.UserCredentialViewModel viewmodel) {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.ValidateCredentials);
+            callInfo.RouteValueDictionary.Add("viewmodel", viewmodel);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult LogOff(MyNotes.UI.Web.ViewModels.Admin.User.UserCredentialViewModel viewmodel) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.LogOff);
             callInfo.RouteValueDictionary.Add("viewmodel", viewmodel);
             return callInfo;
         }

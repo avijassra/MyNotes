@@ -1,7 +1,7 @@
 ﻿namespace MyNotes.UI.Web.Setup.Extensions
 {
     using System.Web;
-    using MyNotes.UI.Web.Setup.Common;
+    using MyNotes.UI.Web.Setup.Helper;
 
     public static class SessionExtension
     {

@@ -1,4 +1,4 @@
-﻿namespace MyNotes.UI.Web.Setup.ActionApi
+﻿namespace MyNotes.UI.Web.Setup.Helper
 {
     using System;
     using System.Web;

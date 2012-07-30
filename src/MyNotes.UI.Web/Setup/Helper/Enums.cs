@@ -1,4 +1,4 @@
-﻿namespace MyNotes.UI.Web.Setup.Common
+﻿namespace MyNotes.UI.Web.Setup.Helper
 {
     public enum CommitLevel
     {

@@ -40,7 +40,7 @@
                         LastName = "Administrator",
                         Username = "admin",
                         Nickname = "SuperAdmin",
-                        Password = "@dm1n",
+                        Password = "@dm1n_123",
                         Group = group,
                     };
 

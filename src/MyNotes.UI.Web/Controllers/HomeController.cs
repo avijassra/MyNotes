@@ -3,8 +3,9 @@
     using System.Web.Mvc;
     using MyNotes.UI.Web.EchoServiceRef;
     using Microsoft.Practices.Unity;
+    using MyNotes.UI.Web.Setup.Helper;
 
-    public partial class HomeController : Controller
+    public partial class HomeController : MyNotesControllerBase
     {
         [Dependency]
         public IEchoService EchoService { get; set; }

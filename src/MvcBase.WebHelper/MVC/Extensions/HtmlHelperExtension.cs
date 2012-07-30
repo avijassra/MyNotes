@@ -36,7 +36,7 @@
 
             var options = string.Empty;
 
-            var actionLink = string.Format("{0}#{1}",
+            var actionLink = string.Format("{0}#!{1}",
                         RouteTable.Routes.GetVirtualPathForArea(htmlHelper.ViewContext.RequestContext,
                                                         new RouteValueDictionary(new
                                                         {

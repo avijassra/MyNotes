@@ -3,11 +3,11 @@
     using System;
     using AutoMapper;
     using System.Web.Mvc;
-    using MyNotes.UI.Web.Setup.Common;
+    using MyNotes.UI.Web.Setup.Helper;
 
     public class ServiceGetAction : IServiceGetAction
     {
-        public SessionKey _sessionKey;
+        private Controller _controller;
         private string _contentViewName;
         private object _contentViewModel;
         private string _popupViewName;
@@ -15,9 +15,9 @@
         private string _resultViewName;
         private object _resultViewModel;
 
-        public ServiceGetAction(SessionKey sessionKey)
+        public ServiceGetAction(Controller controller)
         {
-            _sessionKey = sessionKey;
+            _controller = controller;
         }
 
         public IServiceGetAction WithPopup<TViewModel>(string viewName, Func<TViewModel> serviceQuery = null)

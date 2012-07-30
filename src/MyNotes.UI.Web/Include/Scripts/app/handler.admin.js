@@ -1,7 +1,3 @@
-$(function () {
-    $.ajaxGet({ url: groupListUrl });
-});
-
 handler.admin = function () {
     $('#btnNewGroup').unbind('click').bind('click', function () {
         hideUpdatePanels();

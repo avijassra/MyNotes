@@ -1,4 +1,9 @@
-﻿<div class="navbar navbar-fixed-top">
+﻿@using MvcBase.WebHelper.Mvc.Extensions;
+@using MyNotes.UI.Web.Setup.Extensions;
+@using MyNotes.UI.Web.UserServiceRef;
+@using MyNotes.UI.Web.Setup.Helper;
+
+<div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -9,7 +14,10 @@
             @Html.ActionLink("My Notes", MVC.Home.Actions.Index(), new { @class = "brand" })
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li>@Html.ActionLink("Admin", MVC.Admin.Actions.Index())</li>
+                    <li>@Html.ActionLinkWithFragment("Admin", Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount ? MVC.Admin.Actions.Groups() : MVC.Admin.Actions.Users())</li>
+                </ul>
+                <ul class="nav pull-right">
+                    <li>@Html.ActionLink("Log Off", MVC.Login.Actions.LogOff())</li>
                 </ul>
             </div><!--/.nav-collapse -->                    
         </div>

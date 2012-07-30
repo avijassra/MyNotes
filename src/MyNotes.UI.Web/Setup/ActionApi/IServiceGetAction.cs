@@ -1,6 +1,7 @@
 ﻿namespace MyNotes.UI.Web.Setup.ActionApi
 {
     using System;
+    using System.Web.Mvc;
 
     public interface IServiceGetAction
     {

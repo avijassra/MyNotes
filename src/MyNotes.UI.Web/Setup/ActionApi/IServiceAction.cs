@@ -1,14 +1,14 @@
 ﻿namespace MyNotes.UI.Web.Setup.ActionApi
 {
     using System.Web.Mvc;
-    using MyNotes.UI.Web.Setup.Common;
+    using MyNotes.UI.Web.Setup.Helper;
 
     public interface IServiceAction
     {
-        void Initialize(Controller controller, SessionKey sessionKey);
+        void Initialize(Controller controller);
 
-        IServiceGetAction Fetch(SessionKey sessionKey);
+        IServiceGetAction Fetch();
 
-        IServiceSetAction Put(SessionKey sessionKey);
+        IServiceSetAction Put();
     }
 }

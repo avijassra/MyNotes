@@ -4,7 +4,7 @@
     using System.Web.Mvc;
     using MyNotes.UI.Web.AdminServiceRef;
     using MyNotes.UI.Web.Setup.ActionApi;
-    using MyNotes.UI.Web.Setup.Common;
+    using MyNotes.UI.Web.Setup.Helper;
     using System.Collections.Generic;
     using AutoMapper;
     using MyNotes.UI.Web.Setup.Extensions;
@@ -13,7 +13,7 @@
     using MyNotes.UI.Web.UserServiceRef;
     using System.Linq;
 
-    public partial class AdminController : Controller
+    public partial class AdminController : MyNotesControllerBase
     {
         IAdminService _adminService;
 
@@ -32,7 +32,7 @@
         public virtual ActionResult Groups()
         {
             return new ServiceAction(this)
-                        .Fetch(SessionKey.Empty)
+                        .Fetch()
                         .WithContent<IList<GroupViewModel>>(MVC.Admin.Views._groups,
                                 () =>
                                 {
@@ -46,7 +46,7 @@
         public virtual ActionResult Users()
         {
             return new ServiceAction(this)
-                        .Fetch(SessionKey.Empty)
+                        .Fetch()
                         .WithContent<IList<UserViewModel>>(MVC.Admin.Views._users,
                                 () =>
                                 {
@@ -61,7 +61,7 @@
         public virtual ActionResult AddGroup()
         {
             return new ServiceAction(this)
-                        .Fetch(SessionKey.Empty)
+                        .Fetch()
                         .WithPopup<SaveGroupViewModel>(MVC.Admin.Views._addGroup,
                                 () =>
                                 {
@@ -74,7 +74,7 @@
         public virtual ActionResult AddGroup([Bind(Exclude="Id")]SaveGroupViewModel groupViewModel)
         {
             return new ServiceAction(this)
-                        .Put(SessionKey.Empty)
+                        .Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -87,7 +87,7 @@
         public virtual ActionResult UpdateGroup(Guid id)
         {
             return new ServiceAction(this)
-                        .Fetch(SessionKey.Empty)
+                        .Fetch()
                         .WithResult<SaveGroupViewModel>(MVC.Admin.Views._upgradeGroup,
                                 () =>
                                 {
@@ -101,7 +101,7 @@
         public virtual ActionResult UpdateGroup(SaveGroupViewModel groupViewModel)
         {
             return new ServiceAction(this)
-                        .Put(SessionKey.Empty)
+                        .Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -114,7 +114,7 @@
         public virtual ActionResult DeleteGroup(Guid id)
         {
             return new ServiceAction(this)
-                        .Fetch(SessionKey.Empty)
+                        .Fetch()
                         .WithResult<MessageResultDto>(
                                 () =>
                                 {
@@ -127,7 +127,7 @@
         public virtual ActionResult AddUser()
         {
             return new ServiceAction(this)
-                        .Fetch(SessionKey.Empty)
+                        .Fetch()
                         .WithPopup<SaveUserViewModel>(MVC.Admin.Views._addUser,
                                 () =>
                                 {
@@ -146,7 +146,7 @@
         public virtual ActionResult AddUser([Bind(Exclude="Id")]SaveUserViewModel userViewModel)
         {
             return new ServiceAction(this)
-                        .Put(SessionKey.Empty)
+                        .Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -160,7 +160,7 @@
         public virtual ActionResult UpdateUser(Guid id)
         {
             return new ServiceAction(this)
-                        .Fetch(SessionKey.Empty)
+                        .Fetch()
                         .WithResult<SaveUserViewModel>(MVC.Admin.Views._upgradeUser,
                                 () =>
                                 {
@@ -180,7 +180,7 @@
         public virtual ActionResult UpdateUser([Bind(Exclude="Password, ConfirmPassword")]SaveUserViewModel userViewModel)
         {
             return new ServiceAction(this)
-                        .Put(SessionKey.Empty)
+                        .Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -194,7 +194,7 @@
         public virtual ActionResult DeleteUser(Guid id)
         {
             return new ServiceAction(this)
-                        .Fetch(SessionKey.Empty)
+                        .Fetch()
                         .WithResult<MessageResultDto>(
                                 () =>
                                 {
@@ -207,7 +207,7 @@
         public virtual ActionResult ResetPassword(Guid id)
         {
             return new ServiceAction(this)
-                        .Put(SessionKey.Empty)
+                        .Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -220,7 +220,7 @@
         public virtual ActionResult UserLockStatus(Guid id, bool isLocked)
         {
             return new ServiceAction(this)
-                        .Put(SessionKey.Empty)
+                        .Put()
                         .WithCommand(
                                 () =>
                                 {

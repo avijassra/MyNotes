@@ -15,7 +15,7 @@
 
         public static string UrlWithActionFragment(this UrlHelper urlHelper, ActionResult fragmentAction)
         {
-            return String.Format("{0}#{1}",
+            return String.Format("{0}#!{1}",
                         RouteTable.Routes.GetVirtualPathForArea(urlHelper.RequestContext,
                                                         new RouteValueDictionary(new
                                                         {

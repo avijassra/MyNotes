@@ -3,7 +3,7 @@
     using System;
     using System.Web;
     using System.Web.Mvc;
-    using MyNotes.UI.Web.Setup.Common;
+    using MyNotes.UI.Web.Setup.Helper;
     using MyNotes.UI.Web.Setup.Extensions;
 
     public class ServiceAction : IServiceAction
@@ -17,21 +17,20 @@
             _controller = controller;
         }
 
-        public void Initialize(Controller controller, SessionKey sessionKey)
+        public void Initialize(Controller controller)
         {
             _controller = controller;
-            _controller.Session.RemoveValue(sessionKey);
         }
 
-        public IServiceSetAction Put(SessionKey sessionKey)
+        public IServiceSetAction Put()
         {
-            _serviceSetAction = new ServiceSetAction(_controller, sessionKey);
+            _serviceSetAction = new ServiceSetAction(_controller);
             return _serviceSetAction;
         }
 
-        public IServiceGetAction Fetch(SessionKey sessionKey)
+        public IServiceGetAction Fetch()
         {
-            _serviceGetAction = new ServiceGetAction(sessionKey);
+            _serviceGetAction = new ServiceGetAction(_controller);
             return _serviceGetAction;
         }
     }

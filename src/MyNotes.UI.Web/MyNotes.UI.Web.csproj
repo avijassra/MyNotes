@@ -208,15 +208,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Setup\Common\Enums.cs" />
+    <Compile Include="Setup\Helper\Enums.cs" />
+    <Compile Include="Setup\Helper\MyNotesControllerBase.cs" />
     <Compile Include="Setup\Extensions\SessionExtension.cs" />
     <Compile Include="Setup\ActionApi\AjaxResponse.cs" />
     <Compile Include="Setup\ActionApi\IServiceAction.cs" />
     <Compile Include="Setup\ActionApi\IServiceGetAction.cs" />
     <Compile Include="Setup\ActionApi\IServiceSetAction.cs" />
-    <Compile Include="Setup\ActionApi\MyNotesControllerBase.cs" />
     <Compile Include="Setup\ActionApi\JsonResponseActionResult.cs" />
-    <Compile Include="Setup\ActionApi\NotEqual.cs" />
+    <Compile Include="Setup\Helper\NotEqual.cs" />
     <Compile Include="Setup\ActionApi\RefreshOptions.cs" />
     <Compile Include="Setup\ActionApi\ServiceAction.cs" />
     <Compile Include="Setup\ActionApi\ServiceGetAction.cs" />
@@ -228,6 +228,9 @@
     <Compile Include="Setup\StartupTasks\Registration\ServiceDependency.cs" />
     <Compile Include="Setup\StartupTasks\Registration\LoggerDependency.cs" />
     <Compile Include="Setup\WebDependencyBuilder.cs" />
+    <Compile Include="Templates\AccountController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Templates\AdminController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>

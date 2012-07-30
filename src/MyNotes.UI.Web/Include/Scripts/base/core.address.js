@@ -1,6 +1,4 @@
 $(function () {
-    $(window).trigger('hashchange');
-
     //Grab hash off URL (default to first tab) and update
     $(window).bind("hashchange", function (e) {
         // check if its ajax call or not
@@ -17,6 +15,12 @@ $(function () {
     var url = document.URL;
 
     if (url.indexOf('#!') > 0) {
+        // get the action name 
+        axn = url.slice(url.indexOf('#!') + 2);
+        // if element is Tab then it should be wrapped in li tag having jqTab class and
+        // element itself should have class of same name as axn with prepened 'jq'
+        $elem = $('.jq' + axn).parent('li.jqTab');
+        if ($elem.length > 0) $elem.addClass('active');
         $(window).trigger('hashchange');
     }
 });

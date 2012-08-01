@@ -123,8 +123,6 @@
     <Compile Include="Mvc\Extensions\UrlHelperExtension.cs" />
     <Compile Include="Mvc\Minifications\YuiCssMinify.cs" />
     <Compile Include="Mvc\Minifications\YuiJsMinify.cs" />
-    <Compile Include="Mvc\Responses\AjaxResponse.cs" />
-    <Compile Include="Mvc\Responses\RefreshOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartupTasks\ControllerTasks\UnityDependencyResolver.cs" />
     <Compile Include="StartupTasks\IIncludeComponent.cs" />

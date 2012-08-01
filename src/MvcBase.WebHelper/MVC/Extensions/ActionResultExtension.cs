@@ -1,14 +1,29 @@
 ﻿namespace MvcBase.WebHelper.Mvc.Extensions
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Routing;
 
+    /// <summary>
+    /// Action Result Extension class
+    /// </summary>
     internal static class ActionResultExtension
     {
+        /// <summary>
+        /// Ases the MVC result.
+        /// </summary>
+        /// <param name="actionResult">The action result.</param>
+        /// <returns>IMVCResult</returns>
         public static IMvcResult AsMVCResult(this ActionResult actionResult)
         {
-            IMvcResult mvcResult = new MvcResult();
+            // actionResult null check
+            if (null == actionResult)
+            {
+                throw new ArgumentNullException("actionResult", "actionResult cannot be a null reference (Nothing in Visual Basic)");
+            }
+
+            var mvcResult = new MvcResult();
             var properties = actionResult.GetType().GetProperties();
 
             if (properties != null)
@@ -20,5 +35,5 @@
 
             return mvcResult;
         }
-    } 
+    }
 }

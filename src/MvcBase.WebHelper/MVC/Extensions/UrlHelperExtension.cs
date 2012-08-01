@@ -4,8 +4,8 @@
     using System.Web.Mvc;
     using System.Web.Routing;
 
-    // <summary>
-    /// UrlHelperExtension
+    /// <summary>
+    /// UrlHelper Extension
     /// </summary>
     public static class UrlHelperExtension
     {
@@ -13,17 +13,18 @@
         /// URLs the with action.
         /// </summary>
         /// <param name="urlHelper">The URL helper.</param>
-        /// <param name="controllerAction">The controller action.</param>
+        /// <param name="actionResult">The controller action.</param>
         /// <returns>URL</returns>
-        public static string UrlWithAction(this UrlHelper urlHelper, ActionResult controllerAction)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings", Justification = "Ajax url created for page history tracking")]
+        public static string UrlWithAction(this UrlHelper urlHelper, ActionResult actionResult)
         {
-            if (urlHelper == null)
+            // urlHelper null check
+            if (null == urlHelper)
             {
-                throw new ArgumentNullException("urlHelper");
+                throw new ArgumentNullException("urlHelper", "urlHelper cannot be a null reference (Nothing in Visual Basic)");
             }
 
-            var callInfo = controllerAction.AsMVCResult();
-
+            var callInfo = actionResult.AsMVCResult();
             return urlHelper.Action(callInfo.Action, callInfo.Controller, callInfo.RouteValueDictionary);
         }
 
@@ -33,15 +34,16 @@
         /// <param name="urlHelper">The URL helper.</param>
         /// <param name="fragmentAction">The fragment action.</param>
         /// <returns>URL</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings", Justification = "Ajax url created for page history tracking")]
         public static string UrlWithActionFragment(this UrlHelper urlHelper, ActionResult fragmentAction)
         {
-            if (urlHelper == null)
+            // urlHelper null check
+            if (null == urlHelper)
             {
-                throw new ArgumentNullException("urlHelper");
+                throw new ArgumentNullException("urlHelper", "urlHelper cannot be a null reference (Nothing in Visual Basic)");
             }
 
             object routeValue = new { area = string.Empty, controller = fragmentAction.AsMVCResult().Controller, action = string.Empty };
-
             return String.Format("{0}#!{1}", RouteTable.Routes.GetVirtualPathForArea(urlHelper.RequestContext, new RouteValueDictionary(routeValue)).VirtualPath, fragmentAction.AsMVCResult().Action);
         }
     }

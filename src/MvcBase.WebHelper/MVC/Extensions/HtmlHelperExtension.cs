@@ -7,14 +7,70 @@
     using System.Linq;
     using System.Linq.Expressions;
     using System.Collections.Generic;
-    using System.Web;
-    using System.Globalization;
 
     /// <summary>
     /// HtmlHelperExtension class
     /// </summary>
     public static class HtmlHelperExtension
     {
+        /// <summary>
+        /// Actions the link with fragment.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="fragmentAction">The fragment action.</param>
+        /// <returns>string</returns>
+        public static MvcHtmlString ActionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction)
+        {
+            // htmlHelper null check
+            if (null == htmlHelper)
+            {
+                throw new ArgumentNullException("htmlHelper", "htmlHelper cannot be a null reference (Nothing in Visual Basic)");
+            }
+
+            return ActionLinkWithFragment(htmlHelper, text, fragmentAction, string.Empty);
+        }
+
+        /// <summary>
+        /// Actions the link with fragment.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="fragmentAction">The fragment action.</param>
+        /// <param name="cssClass">The CSS class.</param>
+        /// <returns>string</returns>
+        public static MvcHtmlString ActionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction, string cssClass)
+        {
+            // htmlHelper null check
+            if (null == htmlHelper)
+            {
+                throw new ArgumentNullException("htmlHelper", "htmlHelper cannot be a null reference (Nothing in Visual Basic)");
+            }
+
+            var mvcActionResult = fragmentAction as IMvcResult;
+
+            if (null == mvcActionResult)
+            {
+                return null;
+            }
+
+            var actionLink = string.Format("{0}#!{1}",
+                        RouteTable.Routes.GetVirtualPathForArea(htmlHelper.ViewContext.RequestContext,
+                                                        new RouteValueDictionary(new
+                                                        {
+                                                            area = string.Empty,
+                                                            controller = mvcActionResult.Controller,
+                                                            action = string.Empty,
+                                                        })).VirtualPath,
+                         mvcActionResult.Action);
+
+            return new MvcHtmlString(string.Format("<a id=\"{0}\" href=\"{1}\" class=\"jqAddress {2}\">{3}</a>",
+                                                Guid.NewGuid(),
+                                                actionLink,
+                                                (!string.IsNullOrEmpty(cssClass) ? cssClass : string.Empty),
+                                                text));
+        }
+
         private static FieldValidationMetadata ApplyFieldValidationMetadata(HtmlHelper htmlHelper, ModelMetadata modelMetadata, string modelName)
         {
             FormContext formContext = htmlHelper.ViewContext.FormContext;
@@ -28,42 +84,6 @@
             }
 
             return fieldMetadata;
-        }
-
-        /// <summary>
-        /// Actions the link with fragment.
-        /// </summary>
-        /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="text">The text.</param>
-        /// <param name="fragmentAction">The fragment action.</param>
-        /// <param name="title">The title.</param>
-        /// <param name="cssClass">The CSS class.</param>
-        /// <returns>string</returns>
-        public static MvcHtmlString ActionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction, string cssClass = null, string dataOptions = null)
-        {
-            var mvcActionResult = fragmentAction.AsMVCResult() as IMvcResult;
-
-            if (mvcActionResult == null)
-                return null;
-
-            var options = string.Empty;
-
-            var actionLink = string.Format("{0}#!{1}",
-                        RouteTable.Routes.GetVirtualPathForArea(htmlHelper.ViewContext.RequestContext,
-                                                        new RouteValueDictionary(new
-                                                        {
-                                                            area = string.Empty,
-                                                            controller = mvcActionResult.Controller,
-                                                            action = string.Empty,
-                                                        })).VirtualPath,
-                         mvcActionResult.Action);
-
-            if (!string.IsNullOrEmpty(dataOptions))
-                options = "data-options=\"" + dataOptions.Trim() + "\"";
-            
-            return new MvcHtmlString(string.Format("<a id=\"{0}\" href=\"{1}\" class=\"jqAddress {2}\" {3}>{4}</a>", Guid.NewGuid(), actionLink, 
-                (string.IsNullOrEmpty(cssClass) ? string.Empty : cssClass.Trim()),
-                (string.IsNullOrEmpty(options) ? string.Empty : options.Trim()), text));
         }
 
         public static MvcHtmlString CustomValidationMessageFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel, TProperty>> expression, IDictionary<string, object> htmlAttributes = null)

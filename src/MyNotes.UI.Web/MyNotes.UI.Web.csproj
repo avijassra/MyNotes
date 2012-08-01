@@ -208,6 +208,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Setup\Attributes\AdminAuthorizeFilterAttribute.cs" />
     <Compile Include="Setup\Helper\Enums.cs" />
     <Compile Include="Setup\Helper\MyNotesControllerBase.cs" />
     <Compile Include="Setup\Extensions\SessionExtension.cs" />
@@ -253,6 +254,7 @@
     <Compile Include="ViewModels\Admin\User\SaveUserViewModel.cs" />
     <Compile Include="ViewModels\Admin\User\UserViewModel.cs" />
     <Compile Include="ViewModels\Admin\User\UserCredentialViewModel.cs" />
+    <Compile Include="ViewModels\Shared\ErrorMessageInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Include\Images\bootstrap\icon-unlock.png" />

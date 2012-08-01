@@ -10,6 +10,9 @@
     using System.Web;
     using System.Globalization;
 
+    /// <summary>
+    /// HtmlHelperExtension class
+    /// </summary>
     public static class HtmlHelperExtension
     {
         private static FieldValidationMetadata ApplyFieldValidationMetadata(HtmlHelper htmlHelper, ModelMetadata modelMetadata, string modelName)
@@ -27,6 +30,15 @@
             return fieldMetadata;
         }
 
+        /// <summary>
+        /// Actions the link with fragment.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="fragmentAction">The fragment action.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="cssClass">The CSS class.</param>
+        /// <returns>string</returns>
         public static MvcHtmlString ActionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction, string cssClass = null, string dataOptions = null)
         {
             var mvcActionResult = fragmentAction.AsMVCResult() as IMvcResult;

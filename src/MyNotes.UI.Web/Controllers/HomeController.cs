@@ -4,6 +4,7 @@
     using MyNotes.UI.Web.EchoServiceRef;
     using Microsoft.Practices.Unity;
     using MyNotes.UI.Web.Setup.Helper;
+    using MyNotes.UI.Web.ViewModels.Shared;
 
     public partial class HomeController : MyNotesControllerBase
     {

@@ -12,6 +12,7 @@
     using MyNotes.UI.Web.ViewModels.Admin.User;
     using MyNotes.UI.Web.UserServiceRef;
     using System.Linq;
+    using MyNotes.UI.Web.Setup.Attributes;
 
     public partial class AdminController : MyNotesControllerBase
     {
@@ -29,6 +30,7 @@
         }
 
         [HttpGet]
+        [AdminAuthorizeFilter]
         public virtual ActionResult Groups()
         {
             return new ServiceAction(this)

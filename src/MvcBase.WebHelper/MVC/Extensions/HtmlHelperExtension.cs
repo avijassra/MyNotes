@@ -47,7 +47,7 @@
                 throw new ArgumentNullException("htmlHelper", "htmlHelper cannot be a null reference (Nothing in Visual Basic)");
             }
 
-            var mvcActionResult = fragmentAction as IMvcResult;
+            var mvcActionResult = fragmentAction.AsMVCResult() as IMvcResult;
 
             if (null == mvcActionResult)
             {

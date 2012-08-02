@@ -10,27 +10,26 @@
     {
         private IServiceGetAction _serviceGetAction;
         private IServiceSetAction _serviceSetAction;
-        private Controller _controller;
 
-        public ServiceAction(Controller controller)
+        /// <summary>
+        /// Fetch action api's for the server
+        /// </summary>
+        /// <param name="controller">Controller object</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceSetAction Put(Controller controller)
         {
-            _controller = controller;
-        }
-
-        public void Initialize(Controller controller)
-        {
-            _controller = controller;
-        }
-
-        public IServiceSetAction Put()
-        {
-            _serviceSetAction = new ServiceSetAction(_controller);
+            _serviceSetAction = new ServiceSetAction(controller);
             return _serviceSetAction;
         }
 
-        public IServiceGetAction Fetch()
+        /// <summary>
+        /// Put action api's for the server
+        /// </summary>
+        /// <param name="controller">Controller object</param>
+        /// <returns>Object of type IServiceSetAction</returns>
+        public IServiceGetAction Fetch(Controller controller)
         {
-            _serviceGetAction = new ServiceGetAction(_controller);
+            _serviceGetAction = new ServiceGetAction(controller);
             return _serviceGetAction;
         }
     }

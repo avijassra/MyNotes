@@ -12,6 +12,11 @@
         }
 
         /// <summary>
+        /// Gets or Sets the name of the account
+        /// </summary>
+        public virtual string Name {get; set;}
+
+        /// <summary>
         /// Gets or Sets the currency type
         /// </summary>
         public virtual CurrencyType CurrencyType { get; set; }

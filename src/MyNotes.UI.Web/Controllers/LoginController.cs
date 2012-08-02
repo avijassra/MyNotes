@@ -14,10 +14,12 @@
     public partial class LoginController : Controller
     {
         IUserService _userService;
+        IServiceAction _serviceAction;
 
-        public LoginController(IUserService userService)
+        public LoginController(IServiceAction serviceAction, IUserService userService)
         {
             _userService = userService;
+            _serviceAction = serviceAction;
         }
 
         public virtual ActionResult Index()
@@ -28,8 +30,7 @@
         [HttpGet]
         public virtual ActionResult ValidateCredentials(UserCredentialViewModel viewmodel)
         {
-            return new ServiceAction(this)
-                        .Fetch()
+            return _serviceAction.Fetch(this)
                         .WithResult<LoggedUserInfoDto>(() => {
                                 var loggedUserInfo = _userService.Authenticate(viewmodel.Username, viewmodel.Password);
                                 Session.SetValue(SessionKey.LoggedUser, loggedUserInfo);

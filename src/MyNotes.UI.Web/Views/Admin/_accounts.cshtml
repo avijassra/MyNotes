@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MyNotes.UI.Web.ViewModels.Admin.Account.AccountViewModel>
+
+<div id="groupListDiv" class="row span8" >
+    <div class="list">
+        <table id="groupListTbl" class="table table-striped">  
+            <thead>
+                <tr>
+                    <th>S#</th>
+                    <th>Name</th>
+                    <th>User</th>
+                    <th>&nbsp;</th>
+                </tr>  
+            </thead>  
+            <tbody id="groupListTbody">
+                @{
+                    var index = 1;
+                    foreach (var account in Model)
+                    { 
+                        <tr id="@account.Id">
+                            <td class="jqSN" >@index</td>
+                            <td id="name_@(account.Id)">@account.Name</td>
+                            <td>@account.UserName</td>
+                            <td style="width: 100px;">
+                                <div class="pull-right action">
+                                    <span class="icon-edit jqGroup"></span>
+                                    <span class="icon-trash jqGroup"></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="upd_tr_@(account.Id)" class="updRow" ><td id="upd_td_@(account.Id)" colspan="4"></td></tr>
+                        index += 1;
+                    }
+                }
+            </tbody>  
+        </table>
+    </div>
+    <div class="row" >&nbsp;</div>
+    <div class="row pull-right">
+        <button id="btnNewGroup" class="btn btn-primary">New Group</button>
+    </div>
+</div>

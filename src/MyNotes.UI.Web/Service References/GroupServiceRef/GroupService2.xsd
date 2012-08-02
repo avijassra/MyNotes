@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:47834/Service/Hosts/AdminService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:47834/Service/Hosts/GroupService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="GroupDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="ser:guid" />
@@ -23,25 +23,4 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="MessageResultDto" nillable="true" type="tns:MessageResultDto" />
-  <xs:complexType name="UserDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="GroupId" type="ser:guid" />
-      <xs:element minOccurs="0" name="GroupName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="ser:guid" />
-      <xs:element minOccurs="0" name="IsLocked" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IsSysAccount" type="xs:boolean" />
-      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Nickname" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="UserDto" nillable="true" type="tns:UserDto" />
-  <xs:complexType name="ArrayOfUserDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDto" nillable="true" type="tns:UserDto" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUserDto" nillable="true" type="tns:ArrayOfUserDto" />
 </xs:schema>

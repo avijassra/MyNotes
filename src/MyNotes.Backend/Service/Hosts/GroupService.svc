@@ -1,4 +1,4 @@
 ﻿<%@ ServiceHost Language="C#" Debug="true" 
-    Service="MyNotes.Backend.Service.Implementations.AdminService" 
-    CodeBehind="AdminService.cs" 
+    Service="MyNotes.Backend.Service.Implementations.GroupService" 
+    CodeBehind="GroupService.cs" 
     Factory="MyNotes.Backend.Setup.Base.HostFactory.UnityServiceHostFactory" %>

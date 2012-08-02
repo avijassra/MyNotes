@@ -20,7 +20,25 @@
             _controller = controller;
         }
 
-        public IServiceGetAction WithPopup<TViewModel>(string viewName, Func<TViewModel> serviceQuery = null)
+        /// <summary>
+        /// In this method, we can specify the view we want to render which replaces the html in the popup container
+        /// </summary>
+        /// <param name="viewName">View name</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceGetAction WithPopup(string viewName)
+        {
+            _popupViewName = viewName;
+            return this;
+        }
+
+        /// <summary>
+        /// In this method, we can specify the view we want to render which replaces the html in the popup container
+        /// </summary>
+        /// <typeparam name="TViewModel">Func of type TViewModel</typeparam>
+        /// <param name="viewName">View name</param>
+        /// <param name="serviceQuery">Func to return view model for the view</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceGetAction WithPopup<TViewModel>(string viewName, Func<TViewModel> serviceQuery)
         {
             _popupViewName = viewName;
 
@@ -30,7 +48,24 @@
             return this;
         }
 
-        public IServiceGetAction WithContent<TViewModel>(string viewName, Func<TViewModel> serviceQuery = null)
+        /// <summary>
+        /// In this method, we can specify the view we want to render which replaces the html in the main html container
+        /// </summary>
+        /// <param name="viewName">View name</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceGetAction WithContent(string viewName)
+        {
+            _contentViewName = viewName;
+            return this;
+        }
+
+        /// <summary>
+        /// In this method, we can specify the view we want to render which replaces the html in the main html container
+        /// </summary>
+        /// <param name="viewName">View name</param>
+        /// <param name="serviceQuery">Func to return view model for the view</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceGetAction WithContent<TViewModel>(string viewName, Func<TViewModel> serviceQuery)
         {
             _contentViewName = viewName;
 
@@ -40,11 +75,33 @@
             return this;
         }
 
+        /// <summary>
+        /// In this method, we can specify the view we want to render as result and we can use it on client side
+        /// </summary>
+        /// <param name="serviceQuery">Func to return view model for the result</param>
+        /// <returns>Object of type IServiceGetAction</returns>
         public IServiceGetAction WithResult<TViewModel>(Func<TViewModel> serviceQuery)
         {
             return WithResult<TViewModel>(null, serviceQuery);
         }
 
+        /// <summary>
+        /// In this method, we can specify the view we want to render as result and we can use it on client side
+        /// </summary>
+        /// <param name="viewName">View name for result</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceGetAction WithResult(string viewName)
+        {
+            _resultViewName = viewName;
+            return this;
+        }
+
+        /// <summary>
+        /// In this method, we can specify the view we want to render as result and we can use it on client side
+        /// </summary>
+        /// <param name="viewName">View name for result</param>
+        /// <param name="serviceQuery">Func to return view model for the result</param>
+        /// <returns>Object of type IServiceGetAction</returns>
         public IServiceGetAction WithResult<TViewModel>(string viewName, Func<TViewModel> serviceQuery = null)
         {
             _resultViewName = viewName;
@@ -55,6 +112,10 @@
             return this;
         }
 
+        /// <summary>
+        /// Executes all the options selected in fluent api
+        /// </summary>
+        /// <returns>Json response action result </returns>
         public JsonResponseActionResult Execute()
         {
             return new JsonResponseActionResult(

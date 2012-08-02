@@ -23,6 +23,9 @@ namespace MyNotes.UI.Web.UserServiceRef {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool FirstTimeResetField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Guid GroupIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -44,6 +47,19 @@ namespace MyNotes.UI.Web.UserServiceRef {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool FirstTimeReset {
+            get {
+                return this.FirstTimeResetField;
+            }
+            set {
+                if ((this.FirstTimeResetField.Equals(value) != true)) {
+                    this.FirstTimeResetField = value;
+                    this.RaisePropertyChanged("FirstTimeReset");
+                }
             }
         }
         
@@ -122,12 +138,299 @@ namespace MyNotes.UI.Web.UserServiceRef {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserDto", Namespace="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos")]
+    [System.SerializableAttribute()]
+    public partial class UserDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid GroupIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GroupNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsLockedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsSysAccountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LastNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NicknameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FirstName {
+            get {
+                return this.FirstNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstNameField, value) != true)) {
+                    this.FirstNameField = value;
+                    this.RaisePropertyChanged("FirstName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid GroupId {
+            get {
+                return this.GroupIdField;
+            }
+            set {
+                if ((this.GroupIdField.Equals(value) != true)) {
+                    this.GroupIdField = value;
+                    this.RaisePropertyChanged("GroupId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GroupName {
+            get {
+                return this.GroupNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GroupNameField, value) != true)) {
+                    this.GroupNameField = value;
+                    this.RaisePropertyChanged("GroupName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsLocked {
+            get {
+                return this.IsLockedField;
+            }
+            set {
+                if ((this.IsLockedField.Equals(value) != true)) {
+                    this.IsLockedField = value;
+                    this.RaisePropertyChanged("IsLocked");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsSysAccount {
+            get {
+                return this.IsSysAccountField;
+            }
+            set {
+                if ((this.IsSysAccountField.Equals(value) != true)) {
+                    this.IsSysAccountField = value;
+                    this.RaisePropertyChanged("IsSysAccount");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string LastName {
+            get {
+                return this.LastNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LastNameField, value) != true)) {
+                    this.LastNameField = value;
+                    this.RaisePropertyChanged("LastName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nickname {
+            get {
+                return this.NicknameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NicknameField, value) != true)) {
+                    this.NicknameField = value;
+                    this.RaisePropertyChanged("Nickname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MessageResultDto", Namespace="http://schemas.datacontract.org/2004/07/MyNotes.Backend.Dtos")]
+    [System.SerializableAttribute()]
+    public partial class MessageResultDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool HasErrorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool HasError {
+            get {
+                return this.HasErrorField;
+            }
+            set {
+                if ((this.HasErrorField.Equals(value) != true)) {
+                    this.HasErrorField = value;
+                    this.RaisePropertyChanged("HasError");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserServiceRef.IUserService")]
     public interface IUserService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/Authenticate", ReplyAction="http://tempuri.org/IUserService/AuthenticateResponse")]
         MyNotes.UI.Web.UserServiceRef.LoggedUserInfoDto Authenticate(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetSingleUser", ReplyAction="http://tempuri.org/IUserService/GetSingleUserResponse")]
+        MyNotes.UI.Web.UserServiceRef.UserDto GetSingleUser(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/GetAllUsers", ReplyAction="http://tempuri.org/IUserService/GetAllUsersResponse")]
+        MyNotes.UI.Web.UserServiceRef.UserDto[] GetAllUsers(System.Guid groupId, bool isSysAccount);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/AddUser", ReplyAction="http://tempuri.org/IUserService/AddUserResponse")]
+        MyNotes.UI.Web.UserServiceRef.MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, System.Guid groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UpdateUser", ReplyAction="http://tempuri.org/IUserService/UpdateUserResponse")]
+        MyNotes.UI.Web.UserServiceRef.MessageResultDto UpdateUser(System.Guid id, string firstname, string lastname, string nickname, string username, System.Guid groupId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/DeleteUser", ReplyAction="http://tempuri.org/IUserService/DeleteUserResponse")]
+        MyNotes.UI.Web.UserServiceRef.MessageResultDto DeleteUser(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/ResetPassword", ReplyAction="http://tempuri.org/IUserService/ResetPasswordResponse")]
+        MyNotes.UI.Web.UserServiceRef.MessageResultDto ResetPassword(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUserService/UserLockStatus", ReplyAction="http://tempuri.org/IUserService/UserLockStatusResponse")]
+        MyNotes.UI.Web.UserServiceRef.MessageResultDto UserLockStatus(System.Guid id, bool isLocked);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -159,6 +462,34 @@ namespace MyNotes.UI.Web.UserServiceRef {
         
         public MyNotes.UI.Web.UserServiceRef.LoggedUserInfoDto Authenticate(string username, string password) {
             return base.Channel.Authenticate(username, password);
+        }
+        
+        public MyNotes.UI.Web.UserServiceRef.UserDto GetSingleUser(System.Guid id) {
+            return base.Channel.GetSingleUser(id);
+        }
+        
+        public MyNotes.UI.Web.UserServiceRef.UserDto[] GetAllUsers(System.Guid groupId, bool isSysAccount) {
+            return base.Channel.GetAllUsers(groupId, isSysAccount);
+        }
+        
+        public MyNotes.UI.Web.UserServiceRef.MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, System.Guid groupId) {
+            return base.Channel.AddUser(firstname, lastname, nickname, username, groupId);
+        }
+        
+        public MyNotes.UI.Web.UserServiceRef.MessageResultDto UpdateUser(System.Guid id, string firstname, string lastname, string nickname, string username, System.Guid groupId) {
+            return base.Channel.UpdateUser(id, firstname, lastname, nickname, username, groupId);
+        }
+        
+        public MyNotes.UI.Web.UserServiceRef.MessageResultDto DeleteUser(System.Guid id) {
+            return base.Channel.DeleteUser(id);
+        }
+        
+        public MyNotes.UI.Web.UserServiceRef.MessageResultDto ResetPassword(System.Guid id) {
+            return base.Channel.ResetPassword(id);
+        }
+        
+        public MyNotes.UI.Web.UserServiceRef.MessageResultDto UserLockStatus(System.Guid id, bool isLocked) {
+            return base.Channel.UserLockStatus(id, isLocked);
         }
     }
 }

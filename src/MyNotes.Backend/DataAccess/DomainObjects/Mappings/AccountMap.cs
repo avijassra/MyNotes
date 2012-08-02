@@ -7,6 +7,8 @@
     {
         public AccountMap()
         {
+            Map(x => x.Name)
+                .Not.Nullable();
             Map(x => x.CurrencyType)
                 .Not.Nullable();
             References(x => x.User)

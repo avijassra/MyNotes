@@ -30,5 +30,43 @@
         {
             return (new UserStorageProxy(_sessionFactory)).ValidateUser(username, password);
         }
+
+        public UserDto GetSingleUser(Guid id)
+        {
+            return (new UserStorageProxy(_sessionFactory)).GetSingle(id);
+        }
+
+        public IList<UserDto> GetAllUsers(Guid groupId, bool isSysAccount)
+        {
+            if (isSysAccount)
+                return (new UserStorageProxy(_sessionFactory)).GetAll();
+            else
+                return (new UserStorageProxy(_sessionFactory)).GetAllInGroup(groupId);
+        }
+
+        public MessageResultDto AddUser(string firstname, string lastname, string nickname, string username, Guid groupId)
+        {
+            return (new UserStorageProxy(_sessionFactory)).AddUser(firstname, lastname, nickname, username, groupId);
+        }
+
+        public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, Guid groupId)
+        {
+            return (new UserStorageProxy(_sessionFactory)).UpdateUser(id, firstname, lastname, nickname, username, groupId);
+        }
+
+        public MessageResultDto DeleteUser(Guid id)
+        {
+            return (new UserStorageProxy(_sessionFactory)).DeleteUser(id);
+        }
+
+        public MessageResultDto ResetPassword(Guid id)
+        {
+            return (new UserStorageProxy(_sessionFactory)).ResetPassword(id);
+        }
+
+        public MessageResultDto UserLockStatus(Guid id, bool isLocked)
+        {
+            return (new UserStorageProxy(_sessionFactory)).LockedStatus(id, isLocked);
+        }
     }
 }

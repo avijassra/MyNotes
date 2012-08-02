@@ -5,10 +5,18 @@
 
     public interface IServiceAction
     {
-        void Initialize(Controller controller);
+        /// <summary>
+        /// Fetch action api's for the server
+        /// </summary>
+        /// <param name="controller">Controller object</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        IServiceGetAction Fetch(Controller controller);
 
-        IServiceGetAction Fetch();
-
-        IServiceSetAction Put();
+        /// <summary>
+        /// Put action api's for the server
+        /// </summary>
+        /// <param name="controller">Controller object</param>
+        /// <returns>Object of type IServiceSetAction</returns>
+        IServiceSetAction Put(Controller controller);
     }
 }

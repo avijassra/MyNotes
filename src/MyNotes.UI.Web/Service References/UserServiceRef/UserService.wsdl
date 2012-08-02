@@ -13,16 +13,149 @@
   <wsdl:message name="IUserService_Authenticate_OutputMessage">
     <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
   </wsdl:message>
+  <wsdl:message name="IUserService_GetSingleUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetSingleUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsers" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_GetAllUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UpdateUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUser" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_DeleteUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_ResetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_ResetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UserLockStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserLockStatus" />
+  </wsdl:message>
+  <wsdl:message name="IUserService_UserLockStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserLockStatusResponse" />
+  </wsdl:message>
   <wsdl:portType name="IUserService">
     <wsdl:operation name="Authenticate">
       <wsdl:input wsaw:Action="http://tempuri.org/IUserService/Authenticate" message="tns:IUserService_Authenticate_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AuthenticateResponse" message="tns:IUserService_Authenticate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetSingleUser" message="tns:IUserService_GetSingleUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetSingleUserResponse" message="tns:IUserService_GetSingleUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/GetAllUsers" message="tns:IUserService_GetAllUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/GetAllUsersResponse" message="tns:IUserService_GetAllUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/AddUser" message="tns:IUserService_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/AddUserResponse" message="tns:IUserService_AddUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UpdateUser" message="tns:IUserService_UpdateUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UpdateUserResponse" message="tns:IUserService_UpdateUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/DeleteUser" message="tns:IUserService_DeleteUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/DeleteUserResponse" message="tns:IUserService_DeleteUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/ResetPassword" message="tns:IUserService_ResetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/ResetPasswordResponse" message="tns:IUserService_ResetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLockStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUserService/UserLockStatus" message="tns:IUserService_UserLockStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUserService/UserLockStatusResponse" message="tns:IUserService_UserLockStatus_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IUserService" type="tns:IUserService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Authenticate">
       <soap:operation soapAction="http://tempuri.org/IUserService/Authenticate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingleUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetSingleUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUsers">
+      <soap:operation soapAction="http://tempuri.org/IUserService/GetAllUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/UpdateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteUser">
+      <soap:operation soapAction="http://tempuri.org/IUserService/DeleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap:operation soapAction="http://tempuri.org/IUserService/ResetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLockStatus">
+      <soap:operation soapAction="http://tempuri.org/IUserService/UserLockStatus" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

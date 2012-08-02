@@ -137,14 +137,12 @@
             tagBuilder.GenerateId(formId);
             ajaxHelper.ViewContext.Writer.Write(tagBuilder.ToString(TagRenderMode.StartTag));
 
-            using (var form = new MvcForm(ajaxHelper.ViewContext))
+            var form = new MvcForm(ajaxHelper.ViewContext);
+            if (ajaxHelper.ViewContext.ClientValidationEnabled)
             {
-                if (ajaxHelper.ViewContext.ClientValidationEnabled)
-                {
-                    ajaxHelper.ViewContext.FormContext.FormId = tagBuilder.Attributes["id"];
-                }
-                return form;
+                ajaxHelper.ViewContext.FormContext.FormId = tagBuilder.Attributes["id"];
             }
+            return form;
         }
     }
 }

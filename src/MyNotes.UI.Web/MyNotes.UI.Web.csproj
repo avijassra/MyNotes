@@ -193,12 +193,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\AdminServiceRef\Reference.cs">
+    <Compile Include="Service References\AccountServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\EchoServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\GroupServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -249,6 +254,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\Admin\Account\AccountViewModel.cs" />
+    <Compile Include="ViewModels\Admin\Account\SaveAccountViewModel.cs" />
     <Compile Include="ViewModels\Admin\Group\GroupViewModel.cs" />
     <Compile Include="ViewModels\Admin\Group\SaveGroupViewModel.cs" />
     <Compile Include="ViewModels\Admin\User\SaveUserViewModel.cs" />
@@ -355,23 +362,20 @@
     <Content Include="Include\Scripts\misc\bootstrap.js" />
     <Content Include="Include\Scripts\misc\bootstrap.min.js" />
     <Content Include="Include\Scripts\misc\modernizr-2.5.3.js" />
-    <None Include="Service References\AdminServiceRef\AdminService.wsdl" />
-    <None Include="Service References\AdminServiceRef\AdminService.xsd">
+    <None Include="Service References\AccountServiceRef\AccountService.wsdl" />
+    <None Include="Service References\AccountServiceRef\AccountService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AdminServiceRef\AdminService1.xsd">
+    <None Include="Service References\AccountServiceRef\AccountService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AdminServiceRef\AdminService2.xsd">
+    <None Include="Service References\AccountServiceRef\AccountService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AdminServiceRef\MyNotes.UI.Web.AdminServiceRef.GroupDto.datasource">
+    <None Include="Service References\AccountServiceRef\MyNotes.UI.Web.AccountServiceRef.AccountDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\AdminServiceRef\MyNotes.UI.Web.AdminServiceRef.MessageResultDto.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\AdminServiceRef\MyNotes.UI.Web.AdminServiceRef.UserDto.datasource">
+    <None Include="Service References\AccountServiceRef\MyNotes.UI.Web.AccountServiceRef.MessageResultDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\EchoServiceRef\EchoService.wsdl" />
@@ -381,7 +385,29 @@
     <None Include="Service References\EchoServiceRef\EchoService1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\GroupServiceRef\GroupService.wsdl" />
+    <None Include="Service References\GroupServiceRef\GroupService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GroupServiceRef\GroupService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GroupServiceRef\GroupService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GroupServiceRef\MyNotes.UI.Web.GroupServiceRef.GroupDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GroupServiceRef\MyNotes.UI.Web.GroupServiceRef.MessageResultDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\UserServiceRef\MyNotes.UI.Web.UserServiceRef.LoggedUserInfoDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UserServiceRef\MyNotes.UI.Web.UserServiceRef.MessageResultDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\UserServiceRef\MyNotes.UI.Web.UserServiceRef.UserDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\UserServiceRef\UserService.disco" />
@@ -398,10 +424,17 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\AdminServiceRef\AdminService.disco" />
-    <None Include="Service References\AdminServiceRef\configuration91.svcinfo" />
-    <None Include="Service References\AdminServiceRef\configuration.svcinfo" />
-    <None Include="Service References\AdminServiceRef\Reference.svcmap">
+    <None Include="Service References\GroupServiceRef\GroupService.disco" />
+    <None Include="Service References\GroupServiceRef\configuration91.svcinfo" />
+    <None Include="Service References\GroupServiceRef\configuration.svcinfo" />
+    <None Include="Service References\GroupServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AccountServiceRef\AccountService.disco" />
+    <None Include="Service References\AccountServiceRef\configuration91.svcinfo" />
+    <None Include="Service References\AccountServiceRef\configuration.svcinfo" />
+    <None Include="Service References\AccountServiceRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -430,6 +463,9 @@
     <Content Include="Views\Admin\_addGroup.cshtml" />
     <Content Include="Views\Admin\_upgradeGroup.cshtml" />
     <Content Include="Views\Admin\_upgradeUser.cshtml" />
+    <Content Include="Views\Admin\_accounts.cshtml" />
+    <Content Include="Views\Admin\_addAccount.cshtml" />
+    <Content Include="Views\Admin\_upgradeAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -468,8 +504,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AdminServiceRef\" />
+    <WCFMetadataStorage Include="Service References\AccountServiceRef\" />
     <WCFMetadataStorage Include="Service References\EchoServiceRef\" />
+    <WCFMetadataStorage Include="Service References\GroupServiceRef\" />
     <WCFMetadataStorage Include="Service References\UserServiceRef\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

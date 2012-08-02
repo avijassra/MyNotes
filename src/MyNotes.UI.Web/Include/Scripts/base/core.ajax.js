@@ -34,33 +34,37 @@
                 //console.log(response);
                 if (response) {
                     if (!response.HasError) {
-                        if (response.RedirectUrl)
-                            window.location = response.RedirectUrl;
+                        if (response.Result && response.Result.HasError && response.Result.HasError == true) {
+                            mynotes.displayErrorMessage(response.Result.Message);
+                        } else {
+                            if (response.RedirectUrl)
+                                window.location = response.RedirectUrl;
 
-                        if (response.PopupView) {
-                            $(mynotes.constants.PopupView).html(response.PopupView).modal();
-                            $.validationBinding($(mynotes.constants.PopupView));
-                        }
+                            if (response.PopupView) {
+                                $(mynotes.constants.PopupView).html(response.PopupView).modal();
+                                $.validationBinding($(mynotes.constants.PopupView));
+                            }
 
-                        if (response.ContentView) {
-                            $(mynotes.constants.ContentView).html(response.ContentView);
-                            $.validationBinding($(mynotes.constants.ContentView));
-                        }
+                            if (response.ContentView) {
+                                $(mynotes.constants.ContentView).html(response.ContentView);
+                                $.validationBinding($(mynotes.constants.ContentView));
+                            }
 
-                        if (options.callback) {
-                            if (options.callback && typeof (options.callback) === "function")
-                                options.callback(response);
-                            else
-                                window[options.callback](response);
-                        }
+                            if (options.callback) {
+                                if (options.callback && typeof (options.callback) === "function")
+                                    options.callback(response);
+                                else
+                                    window[options.callback](response);
+                            }
 
-                        handler.bindFunctions();
+                            handler.bindFunctions();
 
-                        if (response.Message)
-                            mynotes.displaySuccessMessage(response.Message);
+                            if (response.Message)
+                                mynotes.displaySuccessMessage(response.Message);
 
-                        if (options.blockOnCall) {
-                            $('#main').unblock();
+                            if (options.blockOnCall) {
+                                $('#main').unblock();
+                            }
                         }
                     } else {
                         mynotes.displayErrorMessage(response.Message);

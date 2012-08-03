@@ -42,11 +42,10 @@
         public virtual ActionResult Groups()
         {
             return _serviceAction.Fetch(this)
-                        .WithContent<IList<GroupViewModel>>(MVC.Admin.Views._groups,
+                        .WithContent<IList<GroupDto>, IList<GroupViewModel>>(MVC.Admin.Views._groups,
                                 () =>
                                 {
-                                    var groups = _groupService.GetAllGroups();
-                                    return Mapper.Map<IList<GroupViewModel>>(groups);
+                                    return _groupService.GetAllGroups();
                                 })
                         .Execute();
         }
@@ -79,11 +78,10 @@
         public virtual ActionResult UpdateGroup(Guid id)
         {
             return _serviceAction.Fetch(this)
-                        .WithResult<SaveGroupViewModel>(MVC.Admin.Views._upgradeGroup,
+                        .WithResult<GroupDto, SaveGroupViewModel>(MVC.Admin.Views._upgradeGroup,
                                 () =>
                                 {
-                                    var group = _groupService.GetSingleGroup(id);
-                                    return Mapper.Map<SaveGroupViewModel>(group);
+                                    return _groupService.GetSingleGroup(id);
                                 })
                         .Execute();
         }
@@ -116,12 +114,11 @@
         public virtual ActionResult Users()
         {
             return _serviceAction.Fetch(this)
-                        .WithContent<IList<UserViewModel>>(MVC.Admin.Views._users,
+                        .WithContent<IList<UserDto>, IList<UserViewModel>>(MVC.Admin.Views._users,
                                 () =>
                                 {
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
-                                    var users = _userService.GetAllUsers(loggedInUser.GroupId, loggedInUser.IsSysAccount);
-                                    return Mapper.Map<IList<UserViewModel>>(users);
+                                    return _userService.GetAllUsers(loggedInUser.GroupId, loggedInUser.IsSysAccount);
                                 })
                         .Execute();
         }
@@ -161,7 +158,7 @@
         public virtual ActionResult UpdateUser(Guid id)
         {
             return _serviceAction.Fetch(this)
-                        .WithResult<SaveUserViewModel>(MVC.Admin.Views._upgradeUser,
+                        .WithResult<UserDto, SaveUserViewModel>(MVC.Admin.Views._upgradeUser,
                                 () =>
                                 {
                                     var groups = (from gp in _groupService.GetAllGroups()
@@ -170,8 +167,7 @@
                                     groups.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
 
                                     ViewData["Groups"] = groups;
-                                    var user = _userService.GetSingleUser(id);
-                                    return Mapper.Map<SaveUserViewModel>(user);
+                                    return _userService.GetSingleUser(id);
                                 })
                         .Execute();
         }
@@ -225,99 +221,90 @@
                         .Execute();
         }
 
-        //[HttpGet]
-        //public virtual ActionResult Accounts()
-        //{
-        //    return new ServiceAction(this)
-        //                .Fetch()
-        //                .WithContent<IList<UserViewModel>>(MVC.Admin.Views._users,
-        //                        () =>
-        //                        {
-        //                            var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
-        //                            var users = _adminService.GetAllUsers(loggedInUser.GroupId, loggedInUser.IsSysAccount);
-        //                            return Mapper.Map<IList<UserViewModel>>(users);
-        //                        })
-        //                .Execute();
-        //}
+        [HttpGet]
+        public virtual ActionResult Accounts()
+        {
+            return _serviceAction.Fetch(this)
+                        .WithContent<IList<AccountViewModel>>(MVC.Admin.Views._users,
+                                () =>
+                                {
+                                    var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
+                                    var accounts = _accountService.GetAllAccountsInGroup(loggedInUser.GroupId);
+                                    return Mapper.Map<IList<AccountViewModel>>(accounts);
+                                })
+                        .Execute();
+        }
 
-        //[HttpGet]
-        //public virtual ActionResult AddAccounts()
-        //{
-        //    return new ServiceAction(this)
-        //                .Fetch()
-        //                .WithPopup<SaveUserViewModel>(MVC.Admin.Views._addUser,
-        //                        () =>
-        //                        {
-        //                            var groups = (from gp in _adminService.GetAllGroups()
-        //                                          where !gp.IsSysAccount
-        //                                          select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
-        //                            groups.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
+        [HttpGet]
+        public virtual ActionResult AddAccounts()
+        {
+            return _serviceAction.Fetch(this)
+                        .WithPopup<SaveUserViewModel>(MVC.Admin.Views._addUser,
+                                () =>
+                                {
+                                    var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
+                                    var users = (from user in _userService.GetAllUsers(loggedInUser.GroupId, false)
+                                                 select new SelectListItem { Value = user.Id.ToString(), Text = user.Username }).ToList();
+                                    users.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
 
-        //                            ViewData["Groups"] = groups;
-        //                            return new SaveUserViewModel();
-        //                        })
-        //                .Execute();
-        //}
+                                    ViewData["Users"] = users;
+                                    return new SaveUserViewModel();
+                                })
+                        .Execute();
+        }
 
-        //[HttpPost]
-        //public virtual ActionResult AddAccounts([Bind(Exclude = "Id")]SaveAccountViewModel accountViewModel)
-        //{
-        //    return new ServiceAction(this)
-        //                .Put()
-        //                .WithCommand(
-        //                        () =>
-        //                        {
-        //                            return _adminService.AddUser(accountViewModel.Firstname, accountViewModel.Lastname, accountViewModel.Nickname,
-        //                                accountViewModel.Username, accountViewModel.GroupId);
-        //                        })
-        //                .Execute();
-        //}
+        [HttpPost]
+        public virtual ActionResult AddAccounts([Bind(Exclude = "Id")]SaveAccountViewModel accountViewModel)
+        {
+            return _serviceAction.Put(this)
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _accountService.AddAccount(accountViewModel.Name, accountViewModel.UserId);
+                                })
+                        .Execute();
+        }
 
-        //[HttpGet]
-        //public virtual ActionResult UpdateAccounts(Guid id)
-        //{
-        //    return new ServiceAction(this)
-        //                .Fetch()
-        //                .WithResult<SaveUserViewModel>(MVC.Admin.Views._upgradeUser,
-        //                        () =>
-        //                        {
-        //                            var groups = (from gp in _adminService.GetAllGroups()
-        //                                          where !gp.IsSysAccount
-        //                                          select new SelectListItem { Value = gp.Id.ToString(), Text = gp.Name }).ToList();
-        //                            groups.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
+        [HttpGet]
+        public virtual ActionResult UpdateAccounts(Guid id)
+        {
+            return _serviceAction.Fetch(this)
+                        .WithResult<AccountDto, SaveAccountViewModel>(MVC.Admin.Views._upgradeUser,
+                                () =>
+                                {
+                                    var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
+                                    var users = (from user in _userService.GetAllUsers(loggedInUser.GroupId, false)
+                                                  select new SelectListItem { Value = user.Id.ToString(), Text = user.Username }).ToList();
+                                    users.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
 
-        //                            ViewData["Groups"] = groups;
-        //                            var user = _adminService.GetSingleUser(id);
-        //                            return Mapper.Map<SaveUserViewModel>(user);
-        //                        })
-        //                .Execute();
-        //}
+                                    ViewData["Users"] = users;
+                                    return _accountService.GetSingleAccount(id);
+                                })
+                        .Execute();
+        }
 
-        //[HttpPost]
-        //public virtual ActionResult UpdateAccounts([Bind(Exclude = "Password, ConfirmPassword")]SaveAccountViewModel accountViewModel)
-        //{
-        //    return new ServiceAction(this)
-        //                .Put()
-        //                .WithCommand(
-        //                        () =>
-        //                        {
-        //                            return _adminService.UpdateUser(accountViewModel.Id, accountViewModel.Firstname, accountViewModel.Lastname,
-        //                                accountViewModel.Nickname, accountViewModel.Username, accountViewModel.GroupId);
-        //                        })
-        //                .Execute();
-        //}
+        [HttpPost]
+        public virtual ActionResult UpdateAccounts([Bind(Exclude = "Password, ConfirmPassword")]SaveAccountViewModel accountViewModel)
+        {
+            return _serviceAction.Put(this)
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _accountService.UpdateAccount(accountViewModel.Id, accountViewModel.Name, accountViewModel.UserId);
+                                })
+                        .Execute();
+        }
 
-        //[HttpDelete]
-        //public virtual ActionResult DeleteAccounts(Guid id)
-        //{
-        //    return new ServiceAction(this)
-        //                .Fetch()
-        //                .WithResult<MessageResultDto>(
-        //                        () =>
-        //                        {
-        //                            return _adminService.DeleteUser(id);
-        //                        })
-        //                .Execute();
-        //}
+        [HttpDelete]
+        public virtual ActionResult DeleteAccounts(Guid id)
+        {
+            return _serviceAction.Fetch(this)
+                        .WithResult<MyNotes.UI.Web.AccountServiceRef.MessageResultDto>(
+                                () =>
+                                {
+                                    return _accountService.DeleteAccount(id);
+                                })
+                        .Execute();
+        }
     }
 }

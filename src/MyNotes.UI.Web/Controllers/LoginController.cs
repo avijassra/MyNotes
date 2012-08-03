@@ -31,7 +31,8 @@
         public virtual ActionResult ValidateCredentials(UserCredentialViewModel viewmodel)
         {
             return _serviceAction.Fetch(this)
-                        .WithResult<LoggedUserInfoDto>(() => {
+                        .WithResult<LoggedUserInfoDto>(() =>
+                        {
                                 var loggedUserInfo = _userService.Authenticate(viewmodel.Username, viewmodel.Password);
                                 Session.SetValue(SessionKey.LoggedUser, loggedUserInfo);
                                 return loggedUserInfo;

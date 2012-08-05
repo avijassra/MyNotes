@@ -10,6 +10,8 @@
     {
         Controller _controller;
         object _result;
+        bool _hasError = false;
+        string _message = null;
         ActionResult _onSuccess;
         bool _onSuccessIsFragmentAction;
         ActionResult _onFailure;
@@ -24,7 +26,15 @@
         {
             if (_controller.ModelState.IsValid)
             {
-                _result = serviceCommand();
+                try
+                {
+                    _result = serviceCommand();
+                }
+                catch(Exception e)
+                {
+                    _hasError = true;
+                    _message = e.Message;
+                }
             }
             
             return this;
@@ -65,29 +75,26 @@
 
         public JsonResponseActionResult Execute()
         {
-            var hasError = false;
-            string message = null;
             object data = null;
             string redirectLink = null;
 
             if (!_controller.ModelState.IsValid)
             {
-                hasError = true;
-                message = "Please fix the errors";
+                _hasError = true;
+                _message = "Please fix the errors";
             }
             else
             {
-                hasError = false;
                 data = _result;
             }
             
-            if (hasError && _onSuccess != null)
+            if (_hasError && _onSuccess != null)
             {
                 redirectLink = (_onSuccessIsFragmentAction ?
                     _controller.Url.UrlWithActionFragment(_onSuccess) :
                     _controller.Url.UrlWithAction(_onSuccess));
             }
-            else if(!hasError && _onFailure!=null)
+            else if(!_hasError && _onFailure!=null)
             {
                 redirectLink = (_onFailureIsFragmentAction ?
                     _controller.Url.UrlWithActionFragment(_onFailure) :
@@ -97,8 +104,8 @@
             return new JsonResponseActionResult(
                     new RefreshOptions()
                     {
-                        HasError = hasError,
-                        Message = message,
+                        HasError = _hasError,
+                        Message = _message,
                         ResultViewModel = data,
                         RedirectUrl = redirectLink,
                     }

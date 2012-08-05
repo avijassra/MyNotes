@@ -213,6 +213,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Setup\ActionApi\ActionApiException.cs" />
     <Compile Include="Setup\Attributes\AdminAuthorizeFilterAttribute.cs" />
     <Compile Include="Setup\Helper\Enums.cs" />
     <Compile Include="Setup\Helper\MyNotesControllerBase.cs" />

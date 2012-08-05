@@ -225,11 +225,11 @@
         public virtual ActionResult Accounts()
         {
             return _serviceAction.Fetch(this)
-                        .WithContent<IList<AccountViewModel>>(MVC.Admin.Views._users,
+                        .WithContent<IList<AccountViewModel>>(MVC.Admin.Views._accounts,
                                 () =>
                                 {
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
-                                    var accounts = _accountService.GetAllAccountsInGroup(loggedInUser.GroupId);
+                                    var accounts = _accountService.GetAllAccountsInGroup(loggedInUser.Id);
                                     return Mapper.Map<IList<AccountViewModel>>(accounts);
                                 })
                         .Execute();
@@ -239,7 +239,7 @@
         public virtual ActionResult AddAccounts()
         {
             return _serviceAction.Fetch(this)
-                        .WithPopup<SaveUserViewModel>(MVC.Admin.Views._addUser,
+                        .WithPopup<SaveAccountViewModel>(MVC.Admin.Views._addAccount,
                                 () =>
                                 {
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
@@ -248,7 +248,7 @@
                                     users.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
 
                                     ViewData["Users"] = users;
-                                    return new SaveUserViewModel();
+                                    return new SaveAccountViewModel();
                                 })
                         .Execute();
         }
@@ -269,7 +269,7 @@
         public virtual ActionResult UpdateAccounts(Guid id)
         {
             return _serviceAction.Fetch(this)
-                        .WithResult<AccountDto, SaveAccountViewModel>(MVC.Admin.Views._upgradeUser,
+                        .WithResult<AccountDto, SaveAccountViewModel>(MVC.Admin.Views._upgradeAccount,
                                 () =>
                                 {
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);

@@ -7,6 +7,7 @@
     using MyNotes.Backend.DataAccess.DomainObjects.Repositories;
     using MyNotes.Backend.Dtos;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Linq.Expressions;
 
     internal class GroupStorageProxy

@@ -15,7 +15,7 @@
         /// <summary>
         /// In this method, we can specify the view we want to render which replaces the html in the popup container
         /// </summary>
-        /// <typeparam name="TViewModel">Func of type TViewModel</typeparam>
+        /// <typeparam name="TViewModel">Func return type</typeparam>
         /// <param name="viewName">View name</param>
         /// <param name="serviceQuery">Func to return view model for the view</param>
         /// <returns>Object of type IServiceGetAction</returns>

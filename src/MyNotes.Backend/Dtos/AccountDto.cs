@@ -13,6 +13,6 @@
         public string Name { get; set; }
 
         [DataMember]
-        public virtual bool UserId { get; set; }
+        public virtual Guid UserId { get; set; }
     }
 }

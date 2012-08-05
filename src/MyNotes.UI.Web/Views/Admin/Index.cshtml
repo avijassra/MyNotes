@@ -16,12 +16,14 @@
             }
             <li class="jqTab">@Html.ActionLinkWithFragment("Users", MVC.Admin.Actions.Users(), "jqUsers")</li>
             @if (!Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount) { 
-                <li class="jqTab">@Html.ActionLinkWithFragment("Accounts", MVC.Admin.Actions.Groups(), "jqAccounts")</li>
+                <li class="jqTab">@Html.ActionLinkWithFragment("Accounts", MVC.Admin.Actions.Accounts(), "jqAccounts")</li>
             }
         </ul>        
     </div>
     <div id="mainContainer" class="hero-unit">
-    
+        <ul class="jqSlideCont">
+            
+        </ul>
     </div>
     <div id="altMsg" class="row center" style="display:none;">&nbsp;</div>
 </div>

@@ -40,8 +40,9 @@
 
             using (ISession session = _sessionFactory.OpenSession())
             {
-                IRepository<Account> accountRepository = new Repository<Account>(session);
-                var accounts = accountRepository.FindAll(x => x.User.Group.Id ==  groupId).List();
+                var accounts = (from user in session.QueryOver<User>()
+                               where user.Group.Id == groupId
+                               select user.Accounts).List();
                 accountDtos = Mapper.Map<IList<AccountDto>>(accounts);
             }
 
@@ -55,7 +56,7 @@
             using (ISession session = _sessionFactory.OpenSession())
             {
                 IRepository<Account> accountRepository = new Repository<Account>(session);
-                var accounts = accountRepository.FindAll(x => x.User.Group.Id == groupId && x.User.Id == userId).List();
+                var accounts = accountRepository.FindAll(x => x.User.Id == userId).List();
                 accountDtos = Mapper.Map<IList<AccountDto>>(accounts);
             }
 

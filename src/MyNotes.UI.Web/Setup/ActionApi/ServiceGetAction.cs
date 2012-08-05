@@ -46,9 +46,10 @@
         /// <summary>
         /// In this method, we can specify the view we want to render which replaces the html in the popup container
         /// </summary>
-        /// <typeparam name="TViewModel">Func of type TViewModel</typeparam>
+        /// <typeparam name="TDto">Func return type</typeparam>
+        /// <typeparam name="TViewModel">Mapping Func type to object type</typeparam>
         /// <param name="viewName">View name</param>
-        /// <param name="serviceQuery">Func to return view model for the view</param>
+        /// <param name="serviceQuery">Func to return view model of type</param>
         /// <returns>Object of type IServiceGetAction</returns>
         public IServiceGetAction WithPopup<TDto, TViewModel>(string viewName, Func<TDto> serviceQuery)
         {
@@ -84,6 +85,7 @@
         /// <summary>
         /// In this method, we can specify the view we want to render which replaces the html in the main html container
         /// </summary>
+        /// <typeparam name="TDto">Func return type</typeparam>
         /// <param name="viewName">View name</param>
         /// <param name="serviceQuery">Func to return view model for the view</param>
         /// <returns>Object of type IServiceGetAction</returns>
@@ -95,6 +97,8 @@
         /// <summary>
         /// In this method, we can specify the view we want to render which replaces the html in the main html container
         /// </summary>
+        /// <typeparam name="TDto">Func return type</typeparam>
+        /// <typeparam name="TViewModel">Mapping Func type to object type</typeparam>
         /// <param name="viewName">View name</param>
         /// <param name="serviceQuery">Func to return view model for the view</param>
         /// <returns>Object of type IServiceGetAction</returns>
@@ -121,6 +125,8 @@
         /// <summary>
         /// In this method, we can specify the view we want to render as result and we can use it on client side
         /// </summary>
+        /// <typeparam name="TDto">Func return type</typeparam>
+        /// <typeparam name="TViewModel">Mapping Func type to object type</typeparam>
         /// <param name="serviceQuery">Func to return view model for the result</param>
         /// <returns>Object of type IServiceGetAction</returns>
         public IServiceGetAction WithResult<TDto, TViewModel>(Func<TDto> serviceQuery)
@@ -131,6 +137,7 @@
         /// <summary>
         /// In this method, we can specify the view we want to render as result and we can use it on client side
         /// </summary>
+        /// <typeparam name="TDto">Func return type</typeparam>
         /// <param name="serviceQuery">Func to return view model for the result</param>
         /// <returns>Object of type IServiceGetAction</returns>
         public IServiceGetAction WithResult<TDto>(Func<TDto> serviceQuery)
@@ -152,6 +159,8 @@
         /// <summary>
         /// In this method, we can specify the view we want to render as result and we can use it on client side
         /// </summary>
+        /// <typeparam name="TDto">Func return type</typeparam>
+        /// <typeparam name="TViewModel">Mapping Func type to object type</typeparam>
         /// <param name="viewName">View name for result</param>
         /// <param name="serviceQuery">Func to return view model for the result</param>
         /// <returns>Object of type IServiceGetAction</returns>

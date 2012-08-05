@@ -8,6 +8,7 @@
         /// <summary>
         /// The server post/put action with command
         /// </summary>
+        /// <typeparam name="TViewModel">Func return type</typeparam>
         /// <param name="serviceCommand">Func with return type of bool</param>
         /// <returns>Object of type IServiceSetAction</returns>
         IServiceSetAction WithCommand<TViewModel>(Func<TViewModel> serviceCommand);

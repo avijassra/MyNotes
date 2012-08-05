@@ -69,13 +69,13 @@ namespace MyNotes.UI.Web.Controllers {
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult UpdateAccounts() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccounts);
+        public System.Web.Mvc.ActionResult UpdateAccount() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccount);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult DeleteAccounts() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.DeleteAccounts);
+        public System.Web.Mvc.ActionResult DeleteAccount() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.DeleteAccount);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -104,9 +104,9 @@ namespace MyNotes.UI.Web.Controllers {
             public readonly string ResetPassword = "ResetPassword";
             public readonly string UserLockStatus = "UserLockStatus";
             public readonly string Accounts = "Accounts";
-            public readonly string AddAccounts = "AddAccounts";
-            public readonly string UpdateAccounts = "UpdateAccounts";
-            public readonly string DeleteAccounts = "DeleteAccounts";
+            public readonly string AddAccount = "AddAccount";
+            public readonly string UpdateAccount = "UpdateAccount";
+            public readonly string DeleteAccount = "DeleteAccount";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -123,9 +123,9 @@ namespace MyNotes.UI.Web.Controllers {
             public const string ResetPassword = "ResetPassword";
             public const string UserLockStatus = "UserLockStatus";
             public const string Accounts = "Accounts";
-            public const string AddAccounts = "AddAccounts";
-            public const string UpdateAccounts = "UpdateAccounts";
-            public const string DeleteAccounts = "DeleteAccounts";
+            public const string AddAccount = "AddAccount";
+            public const string UpdateAccount = "UpdateAccount";
+            public const string DeleteAccount = "DeleteAccount";
         }
 
 
@@ -172,18 +172,18 @@ namespace MyNotes.UI.Web.Controllers {
             public readonly string id = "id";
             public readonly string isLocked = "isLocked";
         }
-        static readonly ActionParamsClass_UpdateAccounts s_params_UpdateAccounts = new ActionParamsClass_UpdateAccounts();
+        static readonly ActionParamsClass_UpdateAccount s_params_UpdateAccount = new ActionParamsClass_UpdateAccount();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UpdateAccounts UpdateAccountsParams { get { return s_params_UpdateAccounts; } }
+        public ActionParamsClass_UpdateAccount UpdateAccountParams { get { return s_params_UpdateAccount; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UpdateAccounts {
+        public class ActionParamsClass_UpdateAccount {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_DeleteAccounts s_params_DeleteAccounts = new ActionParamsClass_DeleteAccounts();
+        static readonly ActionParamsClass_DeleteAccount s_params_DeleteAccount = new ActionParamsClass_DeleteAccount();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_DeleteAccounts DeleteAccountsParams { get { return s_params_DeleteAccounts; } }
+        public ActionParamsClass_DeleteAccount DeleteAccountParams { get { return s_params_DeleteAccount; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_DeleteAccounts {
+        public class ActionParamsClass_DeleteAccount {
             public readonly string id = "id";
         }
         static readonly ViewNames s_views = new ViewNames();
@@ -299,31 +299,31 @@ namespace MyNotes.UI.Web.Controllers {
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult AddAccounts() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddAccounts);
+        public override System.Web.Mvc.ActionResult AddAccount() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddAccount);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult AddAccounts(MyNotes.UI.Web.ViewModels.Admin.Account.SaveAccountViewModel accountViewModel) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddAccounts);
+        public override System.Web.Mvc.ActionResult AddAccount(MyNotes.UI.Web.ViewModels.Admin.Account.SaveAccountViewModel accountViewModel) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddAccount);
             callInfo.RouteValueDictionary.Add("accountViewModel", accountViewModel);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult UpdateAccounts(System.Guid id) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccounts);
+        public override System.Web.Mvc.ActionResult UpdateAccount(System.Guid id) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccount);
             callInfo.RouteValueDictionary.Add("id", id);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult UpdateAccounts(MyNotes.UI.Web.ViewModels.Admin.Account.SaveAccountViewModel accountViewModel) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccounts);
+        public override System.Web.Mvc.ActionResult UpdateAccount(MyNotes.UI.Web.ViewModels.Admin.Account.SaveAccountViewModel accountViewModel) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccount);
             callInfo.RouteValueDictionary.Add("accountViewModel", accountViewModel);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult DeleteAccounts(System.Guid id) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DeleteAccounts);
+        public override System.Web.Mvc.ActionResult DeleteAccount(System.Guid id) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DeleteAccount);
             callInfo.RouteValueDictionary.Add("id", id);
             return callInfo;
         }

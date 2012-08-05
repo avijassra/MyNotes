@@ -56,18 +56,4 @@
 
 @section scripts{
     <script src="@Microsoft.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Include/Cache/admin.script")" type="text/javascript"></script>
-    <script type="text/javascript" >
-        // group screen urls
-        var groupListUrl = '@Url.Action(MVC.Admin.Actions.Groups())';
-        var addGroupUrl = '@Url.Action(MVC.Admin.Actions.AddGroup())';
-        var updateGroupUrl = '@Url.Action(MVC.Admin.Actions.UpdateGroup())';
-        var deleteGroupUrl = '@Url.Action(MVC.Admin.Actions.DeleteGroup())';
-        // user screen urls
-        var userListUrl = '@Url.Action(MVC.Admin.Actions.Users())';
-        var addUserUrl = '@Url.Action(MVC.Admin.Actions.AddUser())';
-        var updateUserUrl = '@Url.Action(MVC.Admin.Actions.UpdateUser())';
-        var deleteUserUrl = '@Url.Action(MVC.Admin.Actions.DeleteUser())';
-        var resetPwdUrl = '@Url.Action(MVC.Admin.Actions.ResetPassword())';
-        var userLockStatusUrl = '@Url.Action(MVC.Admin.Actions.UserLockStatus())';
-    </script>
 }

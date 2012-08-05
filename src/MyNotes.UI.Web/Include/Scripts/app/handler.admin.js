@@ -1,14 +1,16 @@
 handler.admin = function () {
     $('#btnNewGroup').unbind('click').bind('click', function () {
         hideUpdatePanels();
-        $.ajaxGet({ url: addGroupUrl });
+        addUrl = $(this).data('add-url');
+        $.ajaxGet({ url: addUrl });
     });
 
     $('span.icon-edit.jqGroup').unbind('click').bind('click', function () {
         $this = $(this);
-        itemId = $(this).closest('tr').attr('id');
+        updateUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).update;
+        itemId = $this.closest('tr').attr('id');
         $.ajaxGet({
-            url: updateGroupUrl,
+            url: updateUrl,
             data: { id: itemId },
             callback: function (response) {
                 $updTr = $('#upd_tr_' + itemId);
@@ -20,12 +22,38 @@ handler.admin = function () {
     });
 
     $('#btnNewUser').unbind('click').bind('click', function () {
-        $.ajaxGet({ url: addUserUrl });
+        hideUpdatePanels();
+        addUrl = $(this).data('add-url');
+        $.ajaxGet({ url: addUrl });
     });
 
     $('span.icon-edit.jqUser').unbind('click').bind('click', function () {
         $this = $(this);
-        itemId = $(this).closest('tr').attr('id');
+        updateUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).update;
+        itemId = $this.closest('tr').attr('id');
+        hideUpdatePanels();
+        $.ajaxGet({
+            url: updateUrl,
+            data: { id: itemId },
+            callback: function (response) {
+                $updTr = $('#upd_tr_' + itemId);
+                $('#upd_td_' + itemId).html(response.Result);
+                $('div.updPnl', $updTr).attr('data-id', itemId);
+                showUpdatePanel($this, $updTr, itemId);
+            }
+        });
+    });
+
+    $('#btnNewAccount').unbind('click').bind('click', function () {
+        hideUpdatePanels();
+        addUrl = $(this).data('add-url');
+        $.ajaxGet({ url: addUserUrl });
+    });
+
+    $('span.icon-edit.jqAccount').unbind('click').bind('click', function () {
+        $this = $(this);
+        updateUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).update;
+        itemId = $this.closest('tr').attr('id');
         hideUpdatePanels();
         $.ajaxGet({
             url: updateUserUrl,
@@ -51,15 +79,14 @@ handler.admin = function () {
 
         if ($this.hasClass('jqGroup')) {
             confirmMsg = "Are you sure you want to delete this group?";
-            deleteUrl = deleteGroupUrl;
         } else if ($this.hasClass('jqUser')) {
             confirmMsg = "Are you sure you want to delete this user?";
-            deleteUrl = deleteUserUrl;
         }
 
         jConfirm(confirmMsg, 'Confirmation Dialog', function (r) {
             if (r) {
                 itemId = $tr.attr('id');
+                deleteUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).deleteUrl;
                 $.ajaxDelete({
                     url: deleteUrl,
                     data: { id: itemId },
@@ -78,13 +105,14 @@ handler.admin = function () {
 
     $('span.icon-repeat').unbind('click').bind('click', function () {
         $this = $(this);
+        resetUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).reset;
         hideUpdatePanels();
 
         jConfirm('Are you sure you want to reset the password?', 'Confirmation Dialog', function (r) {
             if (r) {
                 itemId = $this.closest('tr').attr('id');
                 $.ajaxPut({
-                    url: resetPwdUrl,
+                    url: resetUrl,
                     data: { id: itemId }
                 });
             }
@@ -93,6 +121,7 @@ handler.admin = function () {
 
     $('span.icon-lock').unbind('click').bind('click', function () {
         $this = $(this);
+        lockUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).lock;
         $tr = $this.closest('tr');
         hideUpdatePanels();
         canUserBeLocked = !$tr.hasClass('locked'); // check if locked class is present, means user is currently locked and can be only unlocked
@@ -101,7 +130,7 @@ handler.admin = function () {
             if (r) {
                 itemId = $tr.attr('id');
                 $.ajaxPut({
-                    url: userLockStatusUrl,
+                    url: lockUrl,
                     data: { id: itemId, isLocked: canUserBeLocked },
                     callback: function (response) {
                         if (canUserBeLocked) {
@@ -144,7 +173,7 @@ showUpdatePanel = function ($this, $tr, id) {
 addGroupCallback = function (response) {
     $groupListTbody = $('#groupListTbody');
     newsno = $('td.jqSN').length + 1;
-    obj = { sno: newsno, id: response.Result, name: $('#Name').val(), isSysAcc: 'No' };
+    obj = { sno: newsno, id: response.Result.Id, name: $('#Name').val(), isSysAcc: 'No' };
     $(mynotes.constants.PopupView).modal('hide');
     $groupListTbody.append($('#groupListTmpl').render(obj));
     $(mynotes.constants.PopupView).html('');
@@ -158,9 +187,9 @@ updateGroupCallback = function (response) {
 addUserCallback = function (response) {
     $userListTbody = $('#userListTbody');
     newsno = $('td.jqSN').length + 1;
-    obj = { 
+    obj = {
         sno: newsno,
-        id: response.Result,
+        id: response.Result.Id,
         uname: $('#Username').val(),
         name: mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]),
         nname: ($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val()),

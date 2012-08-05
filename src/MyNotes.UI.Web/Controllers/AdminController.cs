@@ -236,7 +236,7 @@
         }
 
         [HttpGet]
-        public virtual ActionResult AddAccounts()
+        public virtual ActionResult AddAccount()
         {
             return _serviceAction.Fetch(this)
                         .WithPopup<SaveAccountViewModel>(MVC.Admin.Views._addAccount,
@@ -254,7 +254,7 @@
         }
 
         [HttpPost]
-        public virtual ActionResult AddAccounts([Bind(Exclude = "Id")]SaveAccountViewModel accountViewModel)
+        public virtual ActionResult AddAccount([Bind(Exclude = "Id")]SaveAccountViewModel accountViewModel)
         {
             return _serviceAction.Put(this)
                         .WithCommand(
@@ -266,7 +266,7 @@
         }
 
         [HttpGet]
-        public virtual ActionResult UpdateAccounts(Guid id)
+        public virtual ActionResult UpdateAccount(Guid id)
         {
             return _serviceAction.Fetch(this)
                         .WithResult<AccountDto, SaveAccountViewModel>(MVC.Admin.Views._upgradeAccount,
@@ -284,7 +284,7 @@
         }
 
         [HttpPost]
-        public virtual ActionResult UpdateAccounts([Bind(Exclude = "Password, ConfirmPassword")]SaveAccountViewModel accountViewModel)
+        public virtual ActionResult UpdateAccount([Bind(Exclude = "Password, ConfirmPassword")]SaveAccountViewModel accountViewModel)
         {
             return _serviceAction.Put(this)
                         .WithCommand(
@@ -296,7 +296,7 @@
         }
 
         [HttpDelete]
-        public virtual ActionResult DeleteAccounts(Guid id)
+        public virtual ActionResult DeleteAccount(Guid id)
         {
             return _serviceAction.Fetch(this)
                         .WithResult<MyNotes.UI.Web.AccountServiceRef.MessageResultDto>(

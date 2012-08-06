@@ -3,6 +3,7 @@
     using System;
     using AutoMapper;
     using NHibernate;
+    using NHibernate.Linq;
     using MyNotes.Backend.DataAccess.DomainObjects.Entities;
     using MyNotes.Backend.DataAccess.DomainObjects.Repositories;
     using MyNotes.Backend.Dtos;
@@ -10,6 +11,7 @@
     using System.Linq.Expressions;
     using System.Linq;
     using MyNotes.Backend.Setup.Helper;
+    using MyNotes.Backend.DataAccess.DomainObjects.StorageProxies.Queries;
 
     internal class AccountStorageProxy
     {
@@ -40,10 +42,9 @@
 
             using (ISession session = _sessionFactory.OpenSession())
             {
-                var accounts = (from user in session.QueryOver<User>()
-                               where user.Group.Id == groupId
-                               select user.Accounts).List();
-                accountDtos = Mapper.Map<IList<AccountDto>>(accounts);
+                IRepository<Account> accountRepository = new Repository<Account>(session);
+                var accounts = accountRepository.FindAll(x => x.User.Group.Id == groupId);
+                accountDtos = Mapper.Map<IList<AccountDto>>(accounts.ToList());
             }
 
             return accountDtos;
@@ -56,7 +57,7 @@
             using (ISession session = _sessionFactory.OpenSession())
             {
                 IRepository<Account> accountRepository = new Repository<Account>(session);
-                var accounts = accountRepository.FindAll(x => x.User.Id == userId).List();
+                var accounts = accountRepository.FindAll(x => x.User.Id == userId).ToList();
                 accountDtos = Mapper.Map<IList<AccountDto>>(accounts);
             }
 
@@ -75,7 +76,7 @@
                 var user = userRepository.FindOne(x => x.Id == userId);
 
                 IRepository<Account> accountRepository = new Repository<Account>(session);
-                var existingAccount = accountRepository.FindOne(new Tuple<Expression<Func<Account, object>>, string>(x => x.Name, name));
+                var existingAccount = accountRepository.FindOne(new AccountNameExistsQuery(session, userId, name));
 
                 if (null == existingAccount)
                 {

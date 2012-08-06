@@ -1,8 +1,10 @@
 ﻿namespace MyNotes.Backend.DataAccess.DomainObjects.Repositories
 {
     using System;
-    using NHibernate;
+    using System.Linq;
     using System.Linq.Expressions;
+    using NHibernate;
+    using NHibernate.Linq;
     using MyNotes.Backend.Setup.Extensions;
     using System.Collections.Generic;
 
@@ -69,7 +71,7 @@
         /// <returns>Entity of type TEntity</returns>
         public TEntity FindOne(Expression<Func<TEntity, bool>> expression)
         {
-            var query = _session.QueryOver<TEntity>().Where(expression);
+            var query = _session.Query<TEntity>().Where(expression);
 
             return query.SingleOrDefault<TEntity>();
         }
@@ -77,78 +79,20 @@
         /// <summary>
         /// Find entity of type TEntity by expresion
         /// </summary>
-        /// <param name="caseSensitiveExpression">Case sensitive expresion</param>
+        /// <param name="entityQuery">Entity query to fetch entity</param>
         /// <returns>Entity of type TEntity</returns>
-        public TEntity FindOne(Tuple<Expression<Func<TEntity, object>>, string> caseSensitiveExpression)
+        public TEntity FindOne(IEntityQuery<TEntity> entityQuery)
         {
-            return FindOne(new List<Tuple<Expression<Func<TEntity, object>>, string>> { caseSensitiveExpression });
-        }
-
-        /// <summary>
-        /// Find entity of type TEntity by expresion
-        /// </summary>
-        /// <param name="caseSensitiveExpression">List of tuple case sensitive expresion</param>
-        /// <returns>Entity of type TEntity</returns>
-        public TEntity FindOne(List<Tuple<Expression<Func<TEntity, object>>, string>> caseSensitiveExpressions)
-        {
-            var query = _session.QueryOver<TEntity>();
-
-            foreach(var caseSensitiveExpression in caseSensitiveExpressions)
-            {
-                if (null != query)
-                    query = query.Where(caseSensitiveExpression.Item1, caseSensitiveExpression.Item2);
-                else
-                    break;
-            }
-
-            if (null != query)
-                return query.Take(1).SingleOrDefault<TEntity>();
-            else
-                return null;
-        }
-
-        /// <summary>
-        /// Find entity of type TEntity by expresion
-        /// </summary>
-        /// <param name="expression">Linq expression</param>
-        /// <param name="caseSensitiveExpression">Case sensitive expresion</param>
-        /// <returns>Entity of type TEntity</returns>
-        public TEntity FindOne(Expression<Func<TEntity, bool>> expression, Tuple<Expression<Func<TEntity, object>>, string> caseSensitiveExpression)
-        {
-            return FindOne(expression, new List<Tuple<Expression<Func<TEntity, object>>, string>> { caseSensitiveExpression });
-        }
-
-        /// <summary>
-        /// Find entity of type TEntity by expresion
-        /// </summary>
-        /// <param name="expression">Linq expression</param>
-        /// <param name="caseSensitiveExpression">List of case sensitive expresion</param>
-        /// <returns>Entity of type TEntity</returns>
-        public TEntity FindOne(Expression<Func<TEntity, bool>> expression, List<Tuple<Expression<Func<TEntity, object>>, string>> caseSensitiveExpressions)
-        {
-            var query = _session.QueryOver<TEntity>().Where(expression);
-
-            foreach (var caseSensitiveExpression in caseSensitiveExpressions)
-            {
-                if (null != query)
-                    query = query.Where(caseSensitiveExpression.Item1, caseSensitiveExpression.Item2);
-                else
-                    break;
-            }
-
-            if (null != query)
-                return query.Take(1).SingleOrDefault<TEntity>();
-            else
-                return null;
+            return entityQuery.Execute();
         }
 
         /// <summary>
         /// Find all entities
         /// </summary>
         /// <returns>IQueryOver of entity of type TEntity</returns>
-        public IQueryOver<TEntity> FindAll()
+        public IQueryable<TEntity> FindAll()
         {
-            var query = _session.QueryOver<TEntity>();
+            var query = _session.Query<TEntity>();
 
             query.Cacheable().CacheMode(CacheMode.Normal);
 
@@ -160,9 +104,9 @@
         /// </summary>
         /// <param name="expression">Linq expression</param>
         /// <returns>IQueryOver of entity of type TEntity</returns>
-        public IQueryOver<TEntity> FindAll(Expression<Func<TEntity, bool>> expression)
+        public IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> expression)
         {
-            var query = _session.QueryOver<TEntity>();
+            var query = _session.Query<TEntity>();
 
             query.Cacheable().CacheMode(CacheMode.Normal);
 
@@ -172,63 +116,11 @@
         /// <summary>
         /// Find all entities with filter
         /// </summary>
-        /// <param name="caseSensitiveExpression">Case sensitive expresion</param>
-        /// <returns>IQueryOver of entities of type TEntity</returns>
-        public IQueryOver<TEntity> FindAll(Tuple<Expression<Func<TEntity, object>>, string> caseSensitiveExpression)
+        /// <param name="entityListQuery">Entity list query </param>
+        /// <returns>IQueryable of entity of type TEntity</returns>
+        public IQueryable<TEntity> FindAll(IEntityListQuery<TEntity> entityListQuery)
         {
-            return FindAll(new List<Tuple<Expression<Func<TEntity, object>>, string>> { caseSensitiveExpression });
-        }
-
-        /// <summary>
-        /// Find all entities with filter
-        /// </summary>
-        /// <param name="caseSensitiveExpression">List of tuple case sensitive expresion</param>
-        /// <returns>IQueryOver of entities of type TEntity</returns>
-        public IQueryOver<TEntity> FindAll(List<Tuple<Expression<Func<TEntity, object>>, string>> caseSensitiveExpressions)
-        {
-            var query = _session.QueryOver<TEntity>();
-
-            foreach (var caseSensitiveExpression in caseSensitiveExpressions)
-            {
-                if (null != query)
-                    query = query.Where(caseSensitiveExpression.Item1, caseSensitiveExpression.Item2);
-                else
-                    break;
-            }
-
-            return query;
-        }
-
-        /// <summary>
-        /// Find all entities with filter
-        /// </summary>
-        /// <param name="expression">Linq expression</param>
-        /// <param name="caseSensitiveExpression">Case sensitive expresion</param>
-        /// <returns>IQueryOver of entities of type TEntity</returns>
-        public IQueryOver<TEntity> FindAll(Expression<Func<TEntity, bool>> expression, Tuple<Expression<Func<TEntity, object>>, string> caseSensitiveExpression)
-        {
-            return FindAll(expression, new List<Tuple<Expression<Func<TEntity, object>>, string>> { caseSensitiveExpression });
-        }
-
-        /// <summary>
-        /// Find all entities with filter
-        /// </summary>
-        /// <param name="expression">Linq expression</param>
-        /// <param name="caseSensitiveExpression">List of case sensitive expresion</param>
-        /// <returns>IQueryOver of entities of type TEntity</returns>
-        public IQueryOver<TEntity> FindAll(Expression<Func<TEntity, bool>> expression, List<Tuple<Expression<Func<TEntity, object>>, string>> caseSensitiveExpressions)
-        {
-            var query = _session.QueryOver<TEntity>().Where(expression);
-
-            foreach (var caseSensitiveExpression in caseSensitiveExpressions)
-            {
-                if (null != query)
-                    query = query.Where(caseSensitiveExpression.Item1, caseSensitiveExpression.Item2);
-                else
-                    break;
-            }
-
-            return query;
+            return entityListQuery.Execute();
         }
     }
 }

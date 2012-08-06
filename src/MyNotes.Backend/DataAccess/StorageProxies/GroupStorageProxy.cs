@@ -9,6 +9,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Linq.Expressions;
+    using MyNotes.Backend.DataAccess.DomainObjects.StorageProxies.Queries;
 
     internal class GroupStorageProxy
     {
@@ -40,7 +41,7 @@
             using (ISession session = _sessionFactory.OpenSession())
             {
                 IRepository<Group> groupRepository = new Repository<Group>(session);
-                var groups = groupRepository.FindAll().List();
+                var groups = groupRepository.FindAll().ToList();
                 groupDtos = Mapper.Map<IList<GroupDto>>(groups);
             }
 
@@ -55,8 +56,9 @@
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
+                
                 IRepository<Group> groupRepository = new Repository<Group>(session);
-                var existingGroup = groupRepository.FindOne(new Tuple<Expression<Func<Group, object>>, string>(x => x.Name, name));
+                var existingGroup = groupRepository.FindOne(new GroupNameExistsQuery(session, name));
 
                 if (null == existingGroup)
                 {
@@ -81,7 +83,7 @@
             using (ITransaction transaction = session.BeginTransaction())
             {
                 IRepository<Group> groupRepository = new Repository<Group>(session);
-                var existingGroup = groupRepository.FindOne(x => x.Id != id, new Tuple<Expression<Func<Group, object>>, string>(x => x.Name, name));
+                var existingGroup = groupRepository.FindOne(new GroupNameExistsQuery(session, name, id));
 
 
                 if (null == existingGroup)

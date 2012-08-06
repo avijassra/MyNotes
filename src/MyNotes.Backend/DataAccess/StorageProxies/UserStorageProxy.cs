@@ -10,6 +10,7 @@
     using System.Linq.Expressions;
     using System.Linq;
     using MyNotes.Backend.Setup.Helper;
+    using MyNotes.Backend.DataAccess.DomainObjects.StorageProxies.Queries;
 
     internal class UserStorageProxy
     {
@@ -55,7 +56,7 @@
             using (ISession session = _sessionFactory.OpenSession())
             {
                 IRepository<User> userRepository = new Repository<User>(session);
-                var users = userRepository.FindAll().List();
+                var users = userRepository.FindAll().ToList();
                 userDtos = Mapper.Map<IList<UserDto>>(users);
             }
 
@@ -69,7 +70,7 @@
             using (ISession session = _sessionFactory.OpenSession())
             {
                 IRepository<User> userRepository = new Repository<User>(session);
-                var users = userRepository.FindAll(x => x.Group.Id ==  groupId).List();
+                var users = userRepository.FindAll(x => x.Group.Id ==  groupId).ToList();
                 userDtos = Mapper.Map<IList<UserDto>>(users);
             }
 
@@ -88,7 +89,7 @@
                 var group = groupRepository.FindOne(x => x.Id == groupId);
 
                 IRepository<User> userRepository = new Repository<User>(session);
-                var existingUser = userRepository.FindOne(new Tuple<Expression<Func<User, object>>, string>(x => x.Username, username));
+                var existingUser = userRepository.FindOne(new UsernameExistsQuery(session, username));
 
                 if (null == existingUser)
                 {

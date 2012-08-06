@@ -1,62 +1,16 @@
 handler.admin = function () {
-    $('#btnNewGroup').unbind('click').bind('click', function () {
+    $('button.jqAddNew').unbind('click').bind('click', function () {
         hideUpdatePanels();
         addUrl = $(this).data('add-url');
         $.ajaxGet({ url: addUrl });
     });
 
-    $('span.icon-edit.jqGroup').unbind('click').bind('click', function () {
+    $('span.icon-edit').unbind('click').bind('click', function () {
         $this = $(this);
         updateUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).update;
         itemId = $this.closest('tr').attr('id');
         $.ajaxGet({
             url: updateUrl,
-            data: { id: itemId },
-            callback: function (response) {
-                $updTr = $('#upd_tr_' + itemId);
-                $('#upd_td_' + itemId).html(response.Result);
-                $('div.updPnl', $updTr).attr('data-id', itemId);
-                showUpdatePanel($this, $updTr, itemId);
-            }
-        });
-    });
-
-    $('#btnNewUser').unbind('click').bind('click', function () {
-        hideUpdatePanels();
-        addUrl = $(this).data('add-url');
-        $.ajaxGet({ url: addUrl });
-    });
-
-    $('span.icon-edit.jqUser').unbind('click').bind('click', function () {
-        $this = $(this);
-        updateUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).update;
-        itemId = $this.closest('tr').attr('id');
-        hideUpdatePanels();
-        $.ajaxGet({
-            url: updateUrl,
-            data: { id: itemId },
-            callback: function (response) {
-                $updTr = $('#upd_tr_' + itemId);
-                $('#upd_td_' + itemId).html(response.Result);
-                $('div.updPnl', $updTr).attr('data-id', itemId);
-                showUpdatePanel($this, $updTr, itemId);
-            }
-        });
-    });
-
-    $('#btnNewAccount').unbind('click').bind('click', function () {
-        hideUpdatePanels();
-        addUrl = $(this).data('add-url');
-        $.ajaxGet({ url: addUserUrl });
-    });
-
-    $('span.icon-edit.jqAccount').unbind('click').bind('click', function () {
-        $this = $(this);
-        updateUrl = $this.closest('tbody').metadata({ type: 'attr', name: 'data-url' }).update;
-        itemId = $this.closest('tr').attr('id');
-        hideUpdatePanels();
-        $.ajaxGet({
-            url: updateUserUrl,
             data: { id: itemId },
             callback: function (response) {
                 $updTr = $('#upd_tr_' + itemId);

@@ -34,7 +34,14 @@
         /// <returns>Account object</returns>
         public Account Execute()
         {
-            return _session.Query<Account>().Where(a => a.Id != _id && a.User.Id == _userId && a.Name.ToLower() == _name).FirstOrDefault();
+            var accounts =  _session.Query<Account>().Where(a => a.User.Id == _userId && a.Name.ToLower() == _name);
+            if (Guid.Empty != _id)
+            {
+                accounts = accounts.Where(a => a.Id != _id);
+            }
+
+            return accounts.FirstOrDefault();
+            
         }
     }
 }

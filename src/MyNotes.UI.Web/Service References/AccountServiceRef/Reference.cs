@@ -29,7 +29,10 @@ namespace MyNotes.UI.Web.AccountServiceRef {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool UserIdField;
+        private System.Guid UserIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UserNicknameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -68,7 +71,7 @@ namespace MyNotes.UI.Web.AccountServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool UserId {
+        public System.Guid UserId {
             get {
                 return this.UserIdField;
             }
@@ -76,6 +79,19 @@ namespace MyNotes.UI.Web.AccountServiceRef {
                 if ((this.UserIdField.Equals(value) != true)) {
                     this.UserIdField = value;
                     this.RaisePropertyChanged("UserId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string UserNickname {
+            get {
+                return this.UserNicknameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UserNicknameField, value) != true)) {
+                    this.UserNicknameField = value;
+                    this.RaisePropertyChanged("UserNickname");
                 }
             }
         }

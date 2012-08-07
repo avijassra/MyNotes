@@ -14,5 +14,8 @@
 
         [DataMember]
         public virtual Guid UserId { get; set; }
+
+        [DataMember]
+        public virtual string UserNickname { get; set; }
     }
 }

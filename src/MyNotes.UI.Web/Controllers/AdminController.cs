@@ -229,7 +229,7 @@
                                 () =>
                                 {
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
-                                    var accounts = _accountService.GetAllAccountsInGroup(loggedInUser.Id);
+                                    var accounts = _accountService.GetAllAccountsInGroup(loggedInUser.GroupId);
                                     return Mapper.Map<IList<AccountViewModel>>(accounts);
                                 })
                         .Execute();

@@ -9,7 +9,8 @@
         public void Add()
         {
             Mapper.CreateMap<Account, AccountDto>()
-                .ForMember(d => d.UserId, o => o.MapFrom(s => s.User.Id));
+                .ForMember(d => d.UserId, o => o.MapFrom(s => s.User.Id))
+                .ForMember(d => d.UserNickname, o => o.MapFrom(s => s.User.Nickname));
         }
     }
 }

@@ -228,6 +228,7 @@
     <Compile Include="Setup\ActionApi\ServiceAction.cs" />
     <Compile Include="Setup\ActionApi\ServiceGetAction.cs" />
     <Compile Include="Setup\ActionApi\ServiceSetAction.cs" />
+    <Compile Include="Setup\StartupTasks\Component\AutoMappings\AccountDtoMappingSetup.cs" />
     <Compile Include="Setup\StartupTasks\Component\AutoMappings\GroupDtoMappingSetup.cs" />
     <Compile Include="Setup\StartupTasks\Component\AutoMappings\UserDtoMappingSetup.cs" />
     <Compile Include="Setup\StartupTasks\Component\MinifyBundles\CssBundles.cs" />

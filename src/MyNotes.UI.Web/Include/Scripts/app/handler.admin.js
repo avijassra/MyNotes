@@ -35,6 +35,8 @@ handler.admin = function () {
             confirmMsg = "Are you sure you want to delete this group?";
         } else if ($this.hasClass('jqUser')) {
             confirmMsg = "Are you sure you want to delete this user?";
+        } else if ($this.hasClass('jqAccount')) {
+            confirmMsg = "Are you sure you want to delete this account?";
         }
 
         jConfirm(confirmMsg, 'Confirmation Dialog', function (r) {
@@ -159,5 +161,20 @@ updateUserCallback = function (response) {
     $('#name_' + response.Result).html(mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]));
     $('#nname_' + response.Result).html($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val());
     $('#gname_' + response.Result).html($('#GroupId option:selected').text());
+    hideUpdatePanels();
+}
+
+addAccountCallback = function (response) {
+    $accountListTbody = $('#accountListTbody');
+    newsno = $('td.jqSN').length + 1;
+    obj = { sno: newsno, id: response.Result.Id, name: $('#Name').val(), uname: $('#UserId option:selected').text() };
+    $(mynotes.constants.PopupView).modal('hide');
+    $accountListTbody.append($('#accountListTmpl').render(obj));
+    $(mynotes.constants.PopupView).html('');
+}
+
+updateGroupCallback = function (response) {
+    $('#name_' + response.Result).html($('#Name').val());
+    $('#uname_' + response.Result).html($('#UserId option:selected').text());
     hideUpdatePanels();
 }

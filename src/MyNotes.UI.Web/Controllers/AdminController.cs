@@ -244,7 +244,7 @@
                                 {
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
                                     var users = (from user in _userService.GetAllUsers(loggedInUser.GroupId, false)
-                                                 select new SelectListItem { Value = user.Id.ToString(), Text = user.Username }).ToList();
+                                                 select new SelectListItem { Value = user.Id.ToString(), Text = user.Nickname }).ToList();
                                     users.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
 
                                     ViewData["Users"] = users;
@@ -274,7 +274,7 @@
                                 {
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
                                     var users = (from user in _userService.GetAllUsers(loggedInUser.GroupId, false)
-                                                  select new SelectListItem { Value = user.Id.ToString(), Text = user.Username }).ToList();
+                                                 select new SelectListItem { Value = user.Id.ToString(), Text = user.Nickname }).ToList();
                                     users.Insert(0, new SelectListItem { Value = "", Text = "Please Select ..." });
 
                                     ViewData["Users"] = users;
@@ -284,7 +284,7 @@
         }
 
         [HttpPost]
-        public virtual ActionResult UpdateAccount([Bind(Exclude = "Password, ConfirmPassword")]SaveAccountViewModel accountViewModel)
+        public virtual ActionResult UpdateAccount(SaveAccountViewModel accountViewModel)
         {
             return _serviceAction.Put(this)
                         .WithCommand(

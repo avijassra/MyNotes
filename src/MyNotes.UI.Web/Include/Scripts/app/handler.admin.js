@@ -175,6 +175,6 @@ addAccountCallback = function (response) {
 
 updateGroupCallback = function (response) {
     $('#name_' + response.Result).html($('#Name').val());
-    $('#uname_' + response.Result).html($('#UserId option:selected').text());
+    $('#nname_' + response.Result).html($('#UserId option:selected').text());
     hideUpdatePanels();
 }

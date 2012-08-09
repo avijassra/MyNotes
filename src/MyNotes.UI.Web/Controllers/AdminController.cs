@@ -2,18 +2,20 @@
 {
     using System;
     using System.Web.Mvc;
+    using System.Linq;
+    using System.Collections.Generic;
+    using AutoMapper;
+    using Microsoft.Practices.Unity;
     using MyNotes.UI.Web.GroupServiceRef;
     using MyNotes.UI.Web.UserServiceRef;
     using MyNotes.UI.Web.AccountServiceRef;
     using MyNotes.UI.Web.Setup.ActionApi;
     using MyNotes.UI.Web.Setup.Helper;
-    using System.Collections.Generic;
-    using AutoMapper;
     using MyNotes.UI.Web.Setup.Extensions;
+    using MyNotes.UI.Web.Setup;
+    using MyNotes.UI.Web.Setup.Attributes;
     using MyNotes.UI.Web.ViewModels.Admin.Group;
     using MyNotes.UI.Web.ViewModels.Admin.User;
-    using System.Linq;
-    using MyNotes.UI.Web.Setup.Attributes;
     using MyNotes.UI.Web.ViewModels.Admin.Account;
 
     public partial class AdminController : MyNotesControllerBase
@@ -23,12 +25,15 @@
         IUserService _userService;
         IAccountService _accountService;
 
-        public AdminController(IServiceAction serviceAction, IGroupService groupService, IUserService userService, IAccountService accountService)
+        public AdminController(IGroupService groupService, IUserService userService, IAccountService accountService)
         {
-            _serviceAction = serviceAction;
             _groupService = groupService;
             _userService = userService;
             _accountService = accountService;
+            _serviceAction = WebDependencyBuilder.Container.Resolve<IServiceAction>(new ResolverOverride[]
+                                   {
+                                       new ParameterOverride("controller", this)
+                                   });
         }
 
         [HttpGet]
@@ -41,7 +46,7 @@
         [AdminAuthorizeFilter]
         public virtual ActionResult Groups()
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithContent<IList<GroupDto>, IList<GroupViewModel>>(MVC.Admin.Views._groups,
                                 () =>
                                 {
@@ -53,7 +58,7 @@
         [HttpGet]
         public virtual ActionResult AddGroup()
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithPopup<SaveGroupViewModel>(MVC.Admin.Views._addGroup,
                                 () =>
                                 {
@@ -65,7 +70,7 @@
         [HttpPost]
         public virtual ActionResult AddGroup([Bind(Exclude="Id")]SaveGroupViewModel groupViewModel)
         {
-            return _serviceAction.Put(this)
+            return _serviceAction.Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -77,7 +82,7 @@
         [HttpGet]
         public virtual ActionResult UpdateGroup(Guid id)
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithResult<GroupDto, SaveGroupViewModel>(MVC.Admin.Views._upgradeGroup,
                                 () =>
                                 {
@@ -89,7 +94,7 @@
         [HttpPost]
         public virtual ActionResult UpdateGroup(SaveGroupViewModel groupViewModel)
         {
-            return _serviceAction.Put(this)
+            return _serviceAction.Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -101,7 +106,7 @@
         [HttpDelete]
         public virtual ActionResult DeleteGroup(Guid id)
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithResult<MyNotes.UI.Web.GroupServiceRef.MessageResultDto>(
                                 () =>
                                 {
@@ -113,7 +118,7 @@
         [HttpGet]
         public virtual ActionResult Users()
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithContent<IList<UserDto>, IList<UserViewModel>>(MVC.Admin.Views._users,
                                 () =>
                                 {
@@ -126,7 +131,7 @@
         [HttpGet]
         public virtual ActionResult AddUser()
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithPopup<SaveUserViewModel>(MVC.Admin.Views._addUser,
                                 () =>
                                 {
@@ -144,7 +149,7 @@
         [HttpPost]
         public virtual ActionResult AddUser([Bind(Exclude="Id")]SaveUserViewModel userViewModel)
         {
-            return _serviceAction.Put(this)
+            return _serviceAction.Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -157,7 +162,7 @@
         [HttpGet]
         public virtual ActionResult UpdateUser(Guid id)
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithResult<UserDto, SaveUserViewModel>(MVC.Admin.Views._upgradeUser,
                                 () =>
                                 {
@@ -175,7 +180,7 @@
         [HttpPost]
         public virtual ActionResult UpdateUser([Bind(Exclude="Password, ConfirmPassword")]SaveUserViewModel userViewModel)
         {
-            return _serviceAction.Put(this)
+            return _serviceAction.Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -188,7 +193,7 @@
         [HttpDelete]
         public virtual ActionResult DeleteUser(Guid id)
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithResult<MyNotes.UI.Web.UserServiceRef.MessageResultDto>(
                                 () =>
                                 {
@@ -200,7 +205,7 @@
         [HttpPut]
         public virtual ActionResult ResetPassword(Guid id)
         {
-            return _serviceAction.Put(this)
+            return _serviceAction.Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -212,7 +217,7 @@
         [HttpPut]
         public virtual ActionResult UserLockStatus(Guid id, bool isLocked)
         {
-            return _serviceAction.Put(this)
+            return _serviceAction.Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -224,7 +229,7 @@
         [HttpGet]
         public virtual ActionResult Accounts()
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithContent<IList<AccountViewModel>>(MVC.Admin.Views._accounts,
                                 () =>
                                 {
@@ -238,7 +243,7 @@
         [HttpGet]
         public virtual ActionResult AddAccount()
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithPopup<SaveAccountViewModel>(MVC.Admin.Views._addAccount,
                                 () =>
                                 {
@@ -256,7 +261,7 @@
         [HttpPost]
         public virtual ActionResult AddAccount([Bind(Exclude = "Id")]SaveAccountViewModel accountViewModel)
         {
-            return _serviceAction.Put(this)
+            return _serviceAction.Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -268,7 +273,7 @@
         [HttpGet]
         public virtual ActionResult UpdateAccount(Guid id)
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithResult<AccountDto, SaveAccountViewModel>(MVC.Admin.Views._upgradeAccount,
                                 () =>
                                 {
@@ -286,7 +291,7 @@
         [HttpPost]
         public virtual ActionResult UpdateAccount(SaveAccountViewModel accountViewModel)
         {
-            return _serviceAction.Put(this)
+            return _serviceAction.Put()
                         .WithCommand(
                                 () =>
                                 {
@@ -298,7 +303,7 @@
         [HttpDelete]
         public virtual ActionResult DeleteAccount(Guid id)
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithResult<MyNotes.UI.Web.AccountServiceRef.MessageResultDto>(
                                 () =>
                                 {

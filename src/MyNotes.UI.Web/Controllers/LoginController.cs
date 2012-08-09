@@ -1,13 +1,13 @@
 ﻿namespace MyNotes.UI.Web.Controllers
 {
     using System.Web.Mvc;
+    using AutoMapper;
+    using Microsoft.Practices.Unity;
+    using MvcBase.WebHelper.Mvc.Attributes;
     using MyNotes.UI.Web.ViewModels.Admin.User;
     using MyNotes.UI.Web.UserServiceRef;
-    using MvcBase.WebHelper.Mvc.Attributes;
-    using AutoMapper;
     using MyNotes.UI.Web.Setup;
     using MyNotes.UI.Web.Setup.ActionApi;
-    using Microsoft.Practices.Unity;
     using MyNotes.UI.Web.Setup.Helper;
     using MyNotes.UI.Web.Setup.Extensions;
 
@@ -16,10 +16,13 @@
         IUserService _userService;
         IServiceAction _serviceAction;
 
-        public LoginController(IServiceAction serviceAction, IUserService userService)
+        public LoginController(IUserService userService)
         {
             _userService = userService;
-            _serviceAction = serviceAction;
+            _serviceAction = WebDependencyBuilder.Container.Resolve<IServiceAction>(new ResolverOverride[]
+                                   {
+                                       new ParameterOverride("controller", this)
+                                   });
         }
 
         public virtual ActionResult Index()
@@ -30,7 +33,7 @@
         [HttpGet]
         public virtual ActionResult ValidateCredentials(UserCredentialViewModel viewmodel)
         {
-            return _serviceAction.Fetch(this)
+            return _serviceAction.Fetch()
                         .WithResult<LoggedUserInfoDto>(() =>
                         {
                                 var loggedUserInfo = _userService.Authenticate(viewmodel.Username, viewmodel.Password);

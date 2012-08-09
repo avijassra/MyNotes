@@ -136,7 +136,7 @@ addGroupCallback = function (response) {
 }
 
 updateGroupCallback = function (response) {
-    $('#name_' + response.Result).html($('#Name').val());
+    $('#name_' + response.Result.Id).html($('#Name').val());
     hideUpdatePanels();
 }
 
@@ -157,10 +157,10 @@ addUserCallback = function (response) {
 }
 
 updateUserCallback = function (response) {
-    $('#uname_' + response.Result).html($('#Username').val());
-    $('#name_' + response.Result).html(mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]));
-    $('#nname_' + response.Result).html($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val());
-    $('#gname_' + response.Result).html($('#GroupId option:selected').text());
+    $('#uname_' + response.Result.Id).html($('#Username').val());
+    $('#name_' + response.Result.Id).html(mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]));
+    $('#nname_' + response.Result.Id).html($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val());
+    $('#gname_' + response.Result.Id).html($('#GroupId option:selected').text());
     hideUpdatePanels();
 }
 
@@ -173,8 +173,8 @@ addAccountCallback = function (response) {
     $(mynotes.constants.PopupView).html('');
 }
 
-updateGroupCallback = function (response) {
-    $('#name_' + response.Result).html($('#Name').val());
-    $('#nname_' + response.Result).html($('#UserId option:selected').text());
+updateAccountCallback = function (response) {
+    $('#name_' + response.Result.Id).html($('#Name').val());
+    $('#nname_' + response.Result.Id).html($('#UserId option:selected').text());
     hideUpdatePanels();
 }

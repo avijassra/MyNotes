@@ -115,9 +115,9 @@
                 }
 
                 account.Name = name;
-                accountRepository.Add(account);
+                accountRepository.Update(account);
                 transaction.Commit();
-                result.Message = "Account updated successfully";
+                result.SuccessMessage("Account updated successfully", account.Id);
             }
             return result;
         }

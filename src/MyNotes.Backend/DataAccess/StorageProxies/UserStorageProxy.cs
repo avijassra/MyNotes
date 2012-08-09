@@ -117,7 +117,7 @@
         public MessageResultDto UpdateUser(Guid id, string firstname, string lastname, string nickname, string username, Guid groupId)
         {
             var result = new MessageResultDto();
-            result.Message = "User updated successfully";
+            
 
             using (ISession session = _sessionFactory.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
@@ -137,9 +137,9 @@
                 user.Nickname = nickname;
                 user.Username = username;
 
-                userRepository.Add(user);
-
+                userRepository.Update(user);
                 transaction.Commit();
+                result.SuccessMessage("User updated successfully", user.Id);
             }
             return result;
         }

@@ -6,7 +6,7 @@
 @using MyNotes.UI.Web.Setup.Helper;
 
 <div id="updateUser" class="updPnl" >
-    @using (Ajax.BeginJqueryForm("frmUpdateUser", MVC.Admin.Actions.UpdateUser(), "updateUserCallback"))
+    @using (Ajax.BeginJqueryForm("frmUpdateUser", MVC.User.Actions.UpdateUser(), "updateUserCallback"))
     {
         if (Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount)
         { 

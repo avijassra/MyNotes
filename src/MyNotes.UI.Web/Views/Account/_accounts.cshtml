@@ -11,7 +11,7 @@
                     <th>&nbsp;</th>
                 </tr>  
             </thead>  
-            <tbody id="accountListTbody" data-url="{update: '@Url.Action(MVC.Account.Actions.UpdateAccount())', deleteUrl: '@Url.Action(MVC.Account.Actions.DeleteAccount())'}">
+            <tbody id="accountListTbody" data-url="{update: '@Url.Action(MVC.Admin.Actions.UpdateAccount())', deleteUrl: '@Url.Action(MVC.Admin.Actions.DeleteAccount())'}">
                 @{
                     var index = 0;
                     foreach (var account in Model)
@@ -44,6 +44,6 @@
     </div>
     <div class="row" >&nbsp;</div>
     <div class="row pull-right">
-        <button id="btnNewAccount" data-add-url="@Url.Action(MVC.Account.Actions.AddAccount())"  class="btn btn-primary jqAddNew">New Account</button>
+        <button id="btnNewAccount" data-add-url="@Url.Action(MVC.Admin.Actions.AddAccount())"  class="btn btn-primary jqAddNew">New Account</button>
     </div>
 </div>

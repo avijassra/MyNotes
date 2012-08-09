@@ -13,7 +13,7 @@
                     <th>&nbsp;</th>
                 </tr>  
             </thead>  
-            <tbody id="userListTbody" data-url="{update: '@Url.Action(MVC.User.Actions.UpdateUser())', deleteUrl: '@Url.Action(MVC.User.Actions.DeleteUser())', lock: '@Url.Action(MVC.User.Actions.UserLockStatus())', reset: '@Url.Action(MVC.User.Actions.ResetPassword())'}">
+            <tbody id="userListTbody" data-url="{update: '@Url.Action(MVC.Admin.Actions.UpdateUser())', deleteUrl: '@Url.Action(MVC.Admin.Actions.DeleteUser())', lock: '@Url.Action(MVC.Admin.Actions.UserLockStatus())', reset: '@Url.Action(MVC.Admin.Actions.ResetPassword())'}">
                 @{
                     var index = 1;
                     foreach (var user in Model)
@@ -49,6 +49,6 @@
     </div>
     <div class="row" >&nbsp;</div>
     <div class="row pull-right">
-        <button id="btnNewUser" data-add-url="@Url.Action(MVC.User.Actions.AddUser())" class="btn btn-primary jqAddNew">New User</button>
+        <button id="btnNewUser" data-add-url="@Url.Action(MVC.Admin.Actions.AddUser())" class="btn btn-primary jqAddNew">New User</button>
     </div>
 </div>

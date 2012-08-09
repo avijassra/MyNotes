@@ -7,29 +7,21 @@
     using AutoMapper;
     using Microsoft.Practices.Unity;
     using MyNotes.UI.Web.GroupServiceRef;
-    using MyNotes.UI.Web.UserServiceRef;
-    using MyNotes.UI.Web.AccountServiceRef;
     using MyNotes.UI.Web.Setup.ActionApi;
     using MyNotes.UI.Web.Setup.Helper;
     using MyNotes.UI.Web.Setup.Extensions;
     using MyNotes.UI.Web.Setup;
     using MyNotes.UI.Web.Setup.Attributes;
     using MyNotes.UI.Web.ViewModels.Admin.Group;
-    using MyNotes.UI.Web.ViewModels.Admin.User;
-    using MyNotes.UI.Web.ViewModels.Admin.Account;
 
-    public partial class AdminController : MyNotesControllerBase
+    public partial class GroupController : MyNotesControllerBase
     {
         IServiceAction _serviceAction;
         IGroupService _groupService;
-        IUserService _userService;
-        IAccountService _accountService;
 
-        public AdminController(IGroupService groupService, IUserService userService, IAccountService accountService)
+        public GroupController(IGroupService groupService)
         {
             _groupService = groupService;
-            _userService = userService;
-            _accountService = accountService;
             _serviceAction = WebDependencyBuilder.Container.Resolve<IServiceAction>(new ResolverOverride[]
                                    {
                                        new ParameterOverride("controller", this)
@@ -55,31 +47,62 @@
                         .Execute();
         }
 
-       
-
         [HttpGet]
-        public virtual ActionResult Users()
+        public virtual ActionResult AddGroup()
         {
             return _serviceAction.Fetch()
-                        .WithContent<IList<UserDto>, IList<UserViewModel>>(MVC.Admin.Views._users,
+                        .WithPopup<SaveGroupViewModel>(MVC.Group.Views._addGroup,
                                 () =>
                                 {
-                                    var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
-                                    return _userService.GetAllUsers(loggedInUser.GroupId, loggedInUser.IsSysAccount);
+                                    return new SaveGroupViewModel();
                                 })
                         .Execute();
         }
-        
-        [HttpGet]
-        public virtual ActionResult Accounts()
+
+        [HttpPost]
+        public virtual ActionResult AddGroup([Bind(Exclude="Id")]SaveGroupViewModel groupViewModel)
         {
-            return _serviceAction.Fetch()
-                        .WithContent<IList<AccountViewModel>>(MVC.Admin.Views._accounts,
+            return _serviceAction.Put()
+                        .WithCommand(
                                 () =>
                                 {
-                                    var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
-                                    var accounts = _accountService.GetAllAccountsInGroup(loggedInUser.GroupId);
-                                    return Mapper.Map<IList<AccountViewModel>>(accounts);
+                                    return _groupService.AddGroup(groupViewModel.Name);
+                                })
+                        .Execute();
+        }
+
+        [HttpGet]
+        public virtual ActionResult UpdateGroup(Guid id)
+        {
+            return _serviceAction.Fetch()
+                        .WithResult<GroupDto, SaveGroupViewModel>(MVC.Group.Views._upgradeGroup,
+                                () =>
+                                {
+                                    return _groupService.GetSingleGroup(id);
+                                })
+                        .Execute();
+        }
+
+        [HttpPost]
+        public virtual ActionResult UpdateGroup(SaveGroupViewModel groupViewModel)
+        {
+            return _serviceAction.Put()
+                        .WithCommand(
+                                () =>
+                                {
+                                    return _groupService.UpdateGroup(groupViewModel.Id, groupViewModel.Name);
+                                })
+                        .Execute();
+        }
+
+        [HttpDelete]
+        public virtual ActionResult DeleteGroup(Guid id)
+        {
+            return _serviceAction.Fetch()
+                        .WithResult<MyNotes.UI.Web.GroupServiceRef.MessageResultDto>(
+                                () =>
+                                {
+                                    return _groupService.DeleteGroup(id);
                                 })
                         .Execute();
         }

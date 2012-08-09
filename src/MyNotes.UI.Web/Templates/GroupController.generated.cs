@@ -21,9 +21,9 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
 namespace MyNotes.UI.Web.Controllers {
-    public partial class AccountController {
+    public partial class GroupController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected AccountController(Dummy d) { }
+        protected GroupController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result) {
@@ -39,23 +39,23 @@ namespace MyNotes.UI.Web.Controllers {
 
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult UpdateAccount() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccount);
+        public System.Web.Mvc.ActionResult UpdateGroup() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.UpdateGroup);
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public System.Web.Mvc.ActionResult DeleteAccount() {
-            return new T4MVC_ActionResult(Area, Name, ActionNames.DeleteAccount);
+        public System.Web.Mvc.ActionResult DeleteGroup() {
+            return new T4MVC_ActionResult(Area, Name, ActionNames.DeleteGroup);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public AccountController Actions { get { return MVC.Account; } }
+        public GroupController Actions { get { return MVC.Group; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Account";
+        public readonly string Name = "Group";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Account";
+        public const string NameConst = "Group";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -63,34 +63,34 @@ namespace MyNotes.UI.Web.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Index = "Index";
-            public readonly string Accounts = "Accounts";
-            public readonly string AddAccount = "AddAccount";
-            public readonly string UpdateAccount = "UpdateAccount";
-            public readonly string DeleteAccount = "DeleteAccount";
+            public readonly string Groups = "Groups";
+            public readonly string AddGroup = "AddGroup";
+            public readonly string UpdateGroup = "UpdateGroup";
+            public readonly string DeleteGroup = "DeleteGroup";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
-            public const string Accounts = "Accounts";
-            public const string AddAccount = "AddAccount";
-            public const string UpdateAccount = "UpdateAccount";
-            public const string DeleteAccount = "DeleteAccount";
+            public const string Groups = "Groups";
+            public const string AddGroup = "AddGroup";
+            public const string UpdateGroup = "UpdateGroup";
+            public const string DeleteGroup = "DeleteGroup";
         }
 
 
-        static readonly ActionParamsClass_UpdateAccount s_params_UpdateAccount = new ActionParamsClass_UpdateAccount();
+        static readonly ActionParamsClass_UpdateGroup s_params_UpdateGroup = new ActionParamsClass_UpdateGroup();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_UpdateAccount UpdateAccountParams { get { return s_params_UpdateAccount; } }
+        public ActionParamsClass_UpdateGroup UpdateGroupParams { get { return s_params_UpdateGroup; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_UpdateAccount {
+        public class ActionParamsClass_UpdateGroup {
             public readonly string id = "id";
         }
-        static readonly ActionParamsClass_DeleteAccount s_params_DeleteAccount = new ActionParamsClass_DeleteAccount();
+        static readonly ActionParamsClass_DeleteGroup s_params_DeleteGroup = new ActionParamsClass_DeleteGroup();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ActionParamsClass_DeleteAccount DeleteAccountParams { get { return s_params_DeleteAccount; } }
+        public ActionParamsClass_DeleteGroup DeleteGroupParams { get { return s_params_DeleteGroup; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public class ActionParamsClass_DeleteAccount {
+        public class ActionParamsClass_DeleteGroup {
             public readonly string id = "id";
         }
         static readonly ViewNames s_views = new ViewNames();
@@ -98,51 +98,51 @@ namespace MyNotes.UI.Web.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _accounts = "~/Views/Account/_accounts.cshtml";
-            public readonly string _addAccount = "~/Views/Account/_addAccount.cshtml";
-            public readonly string _upgradeAccount = "~/Views/Account/_upgradeAccount.cshtml";
+            public readonly string _addGroup = "~/Views/Group/_addGroup.cshtml";
+            public readonly string _groups = "~/Views/Group/_groups.cshtml";
+            public readonly string _upgradeGroup = "~/Views/Group/_upgradeGroup.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public class T4MVC_AccountController: MyNotes.UI.Web.Controllers.AccountController {
-        public T4MVC_AccountController() : base(Dummy.Instance) { }
+    public class T4MVC_GroupController: MyNotes.UI.Web.Controllers.GroupController {
+        public T4MVC_GroupController() : base(Dummy.Instance) { }
 
         public override System.Web.Mvc.ActionResult Index() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult Accounts() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Accounts);
+        public override System.Web.Mvc.ActionResult Groups() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Groups);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult AddAccount() {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddAccount);
+        public override System.Web.Mvc.ActionResult AddGroup() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddGroup);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult AddAccount(MyNotes.UI.Web.ViewModels.Admin.Account.SaveAccountViewModel accountViewModel) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddAccount);
-            callInfo.RouteValueDictionary.Add("accountViewModel", accountViewModel);
+        public override System.Web.Mvc.ActionResult AddGroup(MyNotes.UI.Web.ViewModels.Admin.Group.SaveGroupViewModel groupViewModel) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.AddGroup);
+            callInfo.RouteValueDictionary.Add("groupViewModel", groupViewModel);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult UpdateAccount(System.Guid id) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccount);
+        public override System.Web.Mvc.ActionResult UpdateGroup(System.Guid id) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateGroup);
             callInfo.RouteValueDictionary.Add("id", id);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult UpdateAccount(MyNotes.UI.Web.ViewModels.Admin.Account.SaveAccountViewModel accountViewModel) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateAccount);
-            callInfo.RouteValueDictionary.Add("accountViewModel", accountViewModel);
+        public override System.Web.Mvc.ActionResult UpdateGroup(MyNotes.UI.Web.ViewModels.Admin.Group.SaveGroupViewModel groupViewModel) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.UpdateGroup);
+            callInfo.RouteValueDictionary.Add("groupViewModel", groupViewModel);
             return callInfo;
         }
 
-        public override System.Web.Mvc.ActionResult DeleteAccount(System.Guid id) {
-            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DeleteAccount);
+        public override System.Web.Mvc.ActionResult DeleteGroup(System.Guid id) {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.DeleteGroup);
             callInfo.RouteValueDictionary.Add("id", id);
             return callInfo;
         }

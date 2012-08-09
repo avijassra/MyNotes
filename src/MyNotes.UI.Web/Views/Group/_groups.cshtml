@@ -11,7 +11,7 @@
                     <th>&nbsp;</th>
                 </tr>  
             </thead>  
-            <tbody id="groupListTbody" data-url="{update: '@Url.Action(MVC.Group.Actions.UpdateGroup())', deleteUrl: '@Url.Action(MVC.Group.Actions.DeleteGroup())'}">
+            <tbody id="groupListTbody" data-url="{update: '@Url.Action(MVC.Admin.Actions.UpdateGroup())', deleteUrl: '@Url.Action(MVC.Admin.Actions.DeleteGroup())'}">
                 @{
                     var index = 1;
                     foreach (var group in Model)
@@ -23,7 +23,7 @@
                             <td style="width: 100px;">
                                 @if (!group.IsSysAccount) { 
                                     <div class="pull-right action">
-                                        <span class="icon-edit jqGroup"></span>
+                                        <span data-update-url="@Url.Action(MVC.Admin.Actions.UpdateGroup())" class="icon-edit jqGroup"></span>
                                         <span class="icon-trash jqGroup"></span>
                                     </div>
                                 }
@@ -40,6 +40,6 @@
     </div>
     <div class="row" >&nbsp;</div>
     <div class="row pull-right">
-        <button id="btnNewGroup" data-add-url="@Url.Action(MVC.Group.Actions.AddGroup())" class="btn btn-primary jqAddNew">New Group</button>
+        <button id="btnNewGroup" data-add-url="@Url.Action(MVC.Admin.Actions.AddGroup())" class="btn btn-primary jqAddNew">New Group</button>
     </div>
 </div>

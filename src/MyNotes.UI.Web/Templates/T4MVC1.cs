@@ -25,8 +25,10 @@ using T4MVC;
 public static class MVC {
     public static MyNotes.UI.Web.Controllers.AccountController Account = new MyNotes.UI.Web.Controllers.T4MVC_AccountController();
     public static MyNotes.UI.Web.Controllers.AdminController Admin = new MyNotes.UI.Web.Controllers.T4MVC_AdminController();
+    public static MyNotes.UI.Web.Controllers.GroupController Group = new MyNotes.UI.Web.Controllers.T4MVC_GroupController();
     public static MyNotes.UI.Web.Controllers.HomeController Home = new MyNotes.UI.Web.Controllers.T4MVC_HomeController();
     public static MyNotes.UI.Web.Controllers.LoginController Login = new MyNotes.UI.Web.Controllers.T4MVC_LoginController();
+    public static MyNotes.UI.Web.Controllers.UserController User = new MyNotes.UI.Web.Controllers.T4MVC_UserController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
 

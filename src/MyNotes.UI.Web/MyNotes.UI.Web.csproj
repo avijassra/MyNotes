@@ -185,8 +185,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -242,6 +244,9 @@
     <Compile Include="Templates\AdminController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Templates\GroupController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Templates\HomeController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -254,6 +259,9 @@
     <Compile Include="Templates\T4MVC1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\UserController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Admin\Account\AccountViewModel.cs" />
@@ -461,13 +469,16 @@
     <Content Include="Views\Shared\_footer.cshtml" />
     <Content Include="Views\Admin\_groups.cshtml" />
     <Content Include="Views\Admin\_users.cshtml" />
-    <Content Include="Views\Admin\_addUser.cshtml" />
-    <Content Include="Views\Admin\_addGroup.cshtml" />
-    <Content Include="Views\Admin\_upgradeGroup.cshtml" />
-    <Content Include="Views\Admin\_upgradeUser.cshtml" />
     <Content Include="Views\Admin\_accounts.cshtml" />
-    <Content Include="Views\Admin\_addAccount.cshtml" />
-    <Content Include="Views\Admin\_upgradeAccount.cshtml" />
+    <Content Include="Views\Account\_accounts.cshtml" />
+    <Content Include="Views\Account\_addAccount.cshtml" />
+    <Content Include="Views\Account\_upgradeAccount.cshtml" />
+    <Content Include="Views\User\_addUser.cshtml" />
+    <Content Include="Views\User\_upgradeUser.cshtml" />
+    <Content Include="Views\User\_users.cshtml" />
+    <Content Include="Views\Group\_addGroup.cshtml" />
+    <Content Include="Views\Group\_groups.cshtml" />
+    <Content Include="Views\Group\_upgradeGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,7 @@
 @using MvcBase.WebHelper.Mvc.Extensions;
 
 <div id="addGroup" >
-    @using (Ajax.BeginJqueryForm("frmAddGroup", MVC.Admin.Actions.AddGroup(), "addGroupCallback"))
+    @using (Ajax.BeginJqueryForm("frmAddGroup", MVC.Group.Actions.AddGroup(), "addGroupCallback"))
     { 
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>

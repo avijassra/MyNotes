@@ -6,7 +6,7 @@
 @using MyNotes.UI.Web.Setup.Helper;
 
 <div id="addUser" >
-    @using (Ajax.BeginJqueryForm("frmAddUser", MVC.Admin.Actions.AddUser(), "addUserCallback"))
+    @using (Ajax.BeginJqueryForm("frmAddUser", MVC.User.Actions.AddUser(), "addUserCallback"))
     { 
         <div class="modal-header">
             <a class="close" data-dismiss="modal">×</a>

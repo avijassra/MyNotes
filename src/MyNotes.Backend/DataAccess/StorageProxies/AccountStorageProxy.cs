@@ -44,7 +44,7 @@
             {
                 IRepository<Account> accountRepository = new Repository<Account>(session);
                 var accounts = accountRepository.FindAll(x => x.User.Group.Id == groupId);
-                accountDtos = Mapper.Map<IList<AccountDto>>(accounts.ToList());
+                accountDtos = Mapper.Map<IList<AccountDto>>(accounts);
             }
 
             return accountDtos;

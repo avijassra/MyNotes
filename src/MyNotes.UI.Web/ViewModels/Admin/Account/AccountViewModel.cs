@@ -9,6 +9,8 @@
 
         public string Name { get; set; }
 
+        public decimal Balance { get; set; }
+
         public Guid UserId { get; set; }
 
         public string UserNickname { get; set; }

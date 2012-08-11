@@ -13,6 +13,9 @@
         public string Name { get; set; }
 
         [DataMember]
+        public decimal Balance { get; set; }
+
+        [DataMember]
         public virtual Guid UserId { get; set; }
 
         [DataMember]

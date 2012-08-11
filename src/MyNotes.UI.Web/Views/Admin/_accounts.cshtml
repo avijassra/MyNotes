@@ -8,6 +8,7 @@
                     <th>S#</th>
                     <th>Name</th>
                     <th>User</th>
+                    <th>Balance</th>
                     <th>&nbsp;</th>
                 </tr>  
             </thead>  
@@ -21,6 +22,7 @@
                             <td class="jqSN" >@index</td>
                             <td id="name_@(account.Id)">@account.Name</td>
                             <td id="nname_@(account.Id)">@account.UserNickname</td>
+                            <td id="bal_@(account.Id)">$@account.Balance</td>
                             <td style="width: 100px;">
                                 <div class="pull-right action">
                                     <span class="icon-edit jqAccount"></span>
@@ -32,7 +34,7 @@
                     }
                     if (index == 0) { 
                         <tr class="jqNoRecord">
-                            <td class="center" colspan="4">
+                            <td class="center" colspan="5">
                                 No records found
                             </td>
                         </tr>

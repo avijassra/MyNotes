@@ -470,14 +470,11 @@
     <Content Include="Views\Admin\_groups.cshtml" />
     <Content Include="Views\Admin\_users.cshtml" />
     <Content Include="Views\Admin\_accounts.cshtml" />
-    <Content Include="Views\Account\_accounts.cshtml" />
     <Content Include="Views\Account\_addAccount.cshtml" />
     <Content Include="Views\Account\_upgradeAccount.cshtml" />
     <Content Include="Views\User\_addUser.cshtml" />
     <Content Include="Views\User\_upgradeUser.cshtml" />
-    <Content Include="Views\User\_users.cshtml" />
     <Content Include="Views\Group\_addGroup.cshtml" />
-    <Content Include="Views\Group\_groups.cshtml" />
     <Content Include="Views\Group\_upgradeGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>

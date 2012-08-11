@@ -3,6 +3,7 @@
   <xs:import schemaLocation="http://localhost:47834/Service/Hosts/AccountService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="AccountDto">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
       <xs:element minOccurs="0" name="Id" type="ser:guid" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UserId" type="ser:guid" />

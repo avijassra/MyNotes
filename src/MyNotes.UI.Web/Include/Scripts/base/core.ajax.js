@@ -54,7 +54,7 @@
                                 if (options.callback && typeof (options.callback) === "function")
                                     options.callback(response);
                                 else
-                                    window[options.callback](response);
+                                    window.mynotesCallback[options.callback](response);
                             }
 
                             handler.bindFunctions();

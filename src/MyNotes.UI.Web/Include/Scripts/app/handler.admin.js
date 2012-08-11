@@ -116,65 +116,67 @@ hideUpdatePanels = function (id) {
         });
 }
 
-showUpdatePanel = function ($this, $tr, id) {
-    hideUpdatePanels(id);
-    $.validationBinding($tr);
-    $tr.show();
-    $('div.updPnl[data-id="'+id+'"]')
-        .slideDown(function () {
-            $this.hide();
-        });
-}
+mynotesCallback = {
+    showUpdatePanel: function ($this, $tr, id) {
+        hideUpdatePanels(id);
+        $.validationBinding($tr);
+        $tr.show();
+        $('div.updPnl[data-id="'+id+'"]')
+            .slideDown(function () {
+                $this.hide();
+            });
+    },
 
-addGroupCallback = function (response) {
-    $groupListTbody = $('#groupListTbody');
-    newsno = $('td.jqSN').length + 1;
-    obj = { sno: newsno, id: response.Result.Id, name: $('#Name').val(), isSysAcc: 'No' };
-    $(mynotes.constants.PopupView).modal('hide');
-    $groupListTbody.append($('#groupListTmpl').render(obj));
-    $(mynotes.constants.PopupView).html('');
-}
+    addGroupCallback: function (response) {
+        $groupListTbody = $('#groupListTbody');
+        newsno = $('td.jqSN').length + 1;
+        obj = { sno: newsno, id: response.Result.Id, name: $('#Name').val(), isSysAcc: 'No' };
+        $(mynotes.constants.PopupView).modal('hide');
+        $groupListTbody.append($('#groupListTmpl').render(obj));
+        $(mynotes.constants.PopupView).html('');
+    },
 
-updateGroupCallback = function (response) {
-    $('#name_' + response.Result.Id).html($('#Name').val());
-    hideUpdatePanels();
-}
+    updateGroupCallback: function (response) {
+        $('#name_' + response.Result.Id).html($('#Name').val());
+        hideUpdatePanels();
+    },
 
-addUserCallback = function (response) {
-    $userListTbody = $('#userListTbody');
-    newsno = $('td.jqSN').length + 1;
-    obj = {
-        sno: newsno,
-        id: response.Result.Id,
-        uname: $('#Username').val(),
-        name: mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]),
-        nname: ($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val()),
-        gname: $('#GroupId option:selected').text()
-    };
-    $(mynotes.constants.PopupView).modal('hide');
-    $userListTbody.append($('#userListTmpl').render(obj));
-    $(mynotes.constants.PopupView).html('');
-}
+    addUserCallback: function (response) {
+        $userListTbody = $('#userListTbody');
+        newsno = $('td.jqSN').length + 1;
+        obj = {
+            sno: newsno,
+            id: response.Result.Id,
+            uname: $('#Username').val(),
+            name: mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]),
+            nname: ($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val()),
+            gname: $('#GroupId option:selected').text()
+        };
+        $(mynotes.constants.PopupView).modal('hide');
+        $userListTbody.append($('#userListTmpl').render(obj));
+        $(mynotes.constants.PopupView).html('');
+    },
 
-updateUserCallback = function (response) {
-    $('#uname_' + response.Result.Id).html($('#Username').val());
-    $('#name_' + response.Result.Id).html(mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]));
-    $('#nname_' + response.Result.Id).html($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val());
-    $('#gname_' + response.Result.Id).html($('#GroupId option:selected').text());
-    hideUpdatePanels();
-}
+    updateUserCallback: function (response) {
+        $('#uname_' + response.Result.Id).html($('#Username').val());
+        $('#name_' + response.Result.Id).html(mynotes.stringFormat('{0} {1}', [$('#Firstname').val(), $('#Lastname').val()]));
+        $('#nname_' + response.Result.Id).html($('#Nickname').val() == '' ? $('#Firstname').val() : $('#Nickname').val());
+        $('#gname_' + response.Result.Id).html($('#GroupId option:selected').text());
+        hideUpdatePanels();
+    },
 
-addAccountCallback = function (response) {
-    $accountListTbody = $('#accountListTbody');
-    newsno = $('td.jqSN').length + 1;
-    obj = { sno: newsno, id: response.Result.Id, name: $('#Name').val(), uname: $('#UserId option:selected').text() };
-    $(mynotes.constants.PopupView).modal('hide');
-    $accountListTbody.append($('#accountListTmpl').render(obj));
-    $(mynotes.constants.PopupView).html('');
-}
+    addAccountCallback: function (response) {
+        $accountListTbody = $('#accountListTbody');
+        newsno = $('td.jqSN').length + 1;
+        obj = { sno: newsno, id: response.Result.Id, name: $('#Name').val(), uname: $('#UserId option:selected').text() };
+        $(mynotes.constants.PopupView).modal('hide');
+        $accountListTbody.append($('#accountListTmpl').render(obj));
+        $(mynotes.constants.PopupView).html('');
+    },
 
-updateAccountCallback = function (response) {
-    $('#name_' + response.Result.Id).html($('#Name').val());
-    $('#nname_' + response.Result.Id).html($('#UserId option:selected').text());
-    hideUpdatePanels();
-}
+    updateAccountCallback: function (response) {
+        $('#name_' + response.Result.Id).html($('#Name').val());
+        $('#nname_' + response.Result.Id).html($('#UserId option:selected').text());
+        hideUpdatePanels();
+    }
+};

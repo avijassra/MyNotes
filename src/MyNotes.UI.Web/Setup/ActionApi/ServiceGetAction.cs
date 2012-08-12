@@ -8,6 +8,7 @@
     public class ServiceGetAction : IServiceGetAction
     {
         private Controller _controller;
+        private string _slidingScreenId;
         private string _contentViewName;
         private object _contentViewModel;
         private string _popupViewName;
@@ -121,6 +122,43 @@
 
             return this;
         }
+
+        /// <summary>
+        /// In this method, we can specify the view we want to render which put it in the sliding html in the main html container
+        /// </summary>
+        /// <param name="viewName">View name</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceGetAction WithSlidingContent(string viewName)
+        {
+            _slidingScreenId = getSlidingScreenId(viewName);
+            return WithContent(viewName);
+        }
+
+        /// <summary>
+        /// In this method, we can specify the view we want to render which put it in the sliding html in the main html container
+        /// </summary>
+        /// <typeparam name="TDto">Func return type</typeparam>
+        /// <param name="viewName">View name</param>
+        /// <param name="serviceQuery">Func to return view model for the view</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceGetAction WithSlidingContent<TViewModel>(string viewName, Func<TViewModel> serviceQuery)
+        {
+            return WithSlidingContent<TViewModel, TViewModel>(viewName, serviceQuery);
+        }
+
+        /// <summary>
+        /// In this method, we can specify the view we want to render which put it in the sliding html in the main html container
+        /// </summary>
+        /// <typeparam name="TDto">Func return type</typeparam>
+        /// <typeparam name="TViewModel">Mapping Func type to object type</typeparam>
+        /// <param name="viewName">View name</param>
+        /// <param name="serviceQuery">Func to return view model for the view</param>
+        /// <returns>Object of type IServiceGetAction</returns>
+        public IServiceGetAction WithSlidingContent<TDto, TViewModel>(string viewName, Func<TDto> serviceQuery)
+        {
+            _slidingScreenId = getSlidingScreenId(viewName);
+            return WithContent<TDto,TViewModel>(viewName, serviceQuery);
+        }
         
         /// <summary>
         /// In this method, we can specify the view we want to render as result and we can use it on client side
@@ -195,12 +233,21 @@
                     {
                         ContentViewName = _contentViewName,
                         ContentViewModel = _contentViewModel,
+                        SlidingScreenId = _slidingScreenId,
                         PopupViewName = _popupViewName,
                         PopupViewModel = _popupViewModel,
                         ResultViewName = _resultViewName,
                         ResultViewModel = _resultViewModel,
                     }
                 );
+        }
+
+        private string getSlidingScreenId(string viewName)
+        {
+            return viewName
+                .Substring(viewName.LastIndexOf('/') + 1)
+                .Replace(".cshtml","")
+                .Replace("_", "jq");
         }
     }
 }

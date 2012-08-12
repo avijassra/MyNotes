@@ -10,6 +10,8 @@
 
         public object ContentViewModel { get; set; }
 
+        public string SlidingScreenId { get; set; }
+
         public string PopupViewName { get; set; }
 
         public object PopupViewModel { get; set; }

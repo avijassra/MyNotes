@@ -7,6 +7,7 @@
             Message = null;
             PopupView = null;
             ContentView = null;
+            SlidingScreenId = null;
             RedirectUrl = null;
             Result = null;
         }
@@ -18,6 +19,8 @@
         public string PopupView { get; set; }
 
         public string ContentView { get; set; }
+
+        public string SlidingScreenId { get; set; }
 
         public object Result { get; set; }
 

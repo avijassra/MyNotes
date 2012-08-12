@@ -46,8 +46,15 @@
                             }
 
                             if (response.ContentView) {
-                                $(mynotes.constants.ContentView).html(response.ContentView);
-                                $.validationBinding($(mynotes.constants.ContentView));
+                                if (!response.SlidingScreenId) {
+                                    $(mynotes.constants.ContentView).html(response.ContentView);
+                                    $.validationBinding($(mynotes.constants.ContentView));
+                                } else {
+                                    console.log(response.SlidingScreenId);
+                                    $slidingScreen = $('#' + response.SlidingScreenId);
+                                    $slidingScreen.html(response.ContentView).siblings().removeClass('centerScreen');
+                                    $slidingScreen.addClass('centerScreen');
+                                }
                             }
 
                             if (options.callback) {

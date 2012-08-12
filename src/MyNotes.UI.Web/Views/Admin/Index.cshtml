@@ -4,68 +4,74 @@
 @using MyNotes.UI.Web.Setup.Helper;
 
 @{
-    ViewBag.Title = "My Notes - Admin";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "My Notes - Admin";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="hero-unit" style="position:absolute;">
-    <div class="row span8">
-        <ul class="nav nav-pills">
-            @if (Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount) { 
-                <li class="jqTab">@Html.ActionLinkWithFragment("Groups", MVC.Admin.Actions.Groups(), "jqGroups")</li>
-            }
-            <li class="jqTab">@Html.ActionLinkWithFragment("Users", MVC.Admin.Actions.Users(), "jqUsers")</li>
-            @if (!Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount) { 
-                <li class="jqTab">@Html.ActionLinkWithFragment("Accounts", MVC.Admin.Actions.Accounts(), "jqAccounts")</li>
-            }
-        </ul>        
-    </div>
-    <div id="mainContainer" class="hero-unit">
-        <ul class="jqSlideCont">
-            
-        </ul>
-    </div>
-    <div id="altMsg" class="row center" style="display:none;">&nbsp;</div>
+	<div class="row span8">
+		<ul class="nav nav-pills">
+			@if (Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount) { 
+				<li class="jqTab">@Html.ActionLinkWithFragment("Groups", MVC.Admin.Actions.Groups(), "jqGroups")</li>
+			}
+			<li class="jqTab">@Html.ActionLinkWithFragment("Users", MVC.Admin.Actions.Users(), "jqUsers")</li>
+			@if (!Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser).IsSysAccount) { 
+				<li class="jqTab">@Html.ActionLinkWithFragment("Accounts", MVC.Admin.Actions.Accounts(), "jqAccounts")</li>
+			}
+		</ul>        
+	</div>
+	<div id="mainContainer" class="hero-unit">
+		<div class="sliderContainer">
+			<div class="mask">
+				<ul>
+					<li id='jqgroups'></li>
+					<li id='jqusers'></li>
+					<li id='jqaccounts'></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="altMsg" class="row center" style="display:none;">&nbsp;</div>
 </div>
 <!--group list template-->
 <script id="groupListTmpl" type="text/x-jQuery-tmpl">
-    <tr id="{{:id}}" >
-        <td class="jqSN">{{:sno}}</td>
-        <td id="name_{{:id}}">{{:name}}</td>
-        <td>{{:isSysAcc}}</td>
-        <td style="width: 100px;">
-            <div class="pull-right action"><span class="icon-edit jqGroup"></span><span class="icon-trash jqGroup"></span></div>
-        </td>
-    </tr>
-    <tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="4"></td></tr>
+	<tr id="{{:id}}" >
+		<td class="jqSN">{{:sno}}</td>
+		<td id="name_{{:id}}">{{:name}}</td>
+		<td>{{:isSysAcc}}</td>
+		<td style="width: 100px;">
+			<div class="pull-right action"><span class="icon-edit jqGroup"></span><span class="icon-trash jqGroup"></span></div>
+		</td>
+	</tr>
+	<tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="4"></td></tr>
 </script>
 <!--user list template-->
 <script id="userListTmpl" type="text/x-jQuery-tmpl">
-    <tr id="{{:id}}" >
-        <td class="jqSN">{{:sno}}</td>
-        <td id="uname_{{:id}}">{{:uname}}</td>
-        <td id="name_{{:id}}">{{:name}}</td>
-        <td id="nname_{{:id}}">{{:nname}}</td>
-        <td id="gname_{{:id}}">{{:gname}}</td>
-        <td style="width: 150px;">
-            <div class="pull-right action"><span class="icon-edit jqUser"></span><span class="icon-repeat jqUser"></span><span class="icon-lock jqUser"></span><span class="icon-trash jqUser"></span></div>
-        </td>
-    </tr>
-    <tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="6"></td></tr>
+	<tr id="{{:id}}" >
+		<td class="jqSN">{{:sno}}</td>
+		<td id="uname_{{:id}}">{{:uname}}</td>
+		<td id="name_{{:id}}">{{:name}}</td>
+		<td id="nname_{{:id}}">{{:nname}}</td>
+		<td id="gname_{{:id}}">{{:gname}}</td>
+		<td style="width: 150px;">
+			<div class="pull-right action"><span class="icon-edit jqUser"></span><span class="icon-repeat jqUser"></span><span class="icon-lock jqUser"></span><span class="icon-trash jqUser"></span></div>
+		</td>
+	</tr>
+	<tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="6"></td></tr>
 </script>
 <!--account list template-->
 <script id="accountListTmpl" type="text/x-jQuery-tmpl">
-    <tr id="{{:id}}" >
-        <td class="jqSN">{{:sno}}</td>
-        <td id="name_{{:id}}">{{:name}}</td>
-        <td id="nname_{{:id}}">{{:uname}}</td>
-        <td id="bal_{{:id}}">$0.0</td>
-        <td style="width: 100px;">
-            <div class="pull-right action"><span class="icon-edit jqGroup"></span><span class="icon-trash jqGroup"></span></div>
-        </td>
-    </tr>
-    <tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="5"></td></tr>
+	<tr id="{{:id}}" >
+		<td class="jqSN">{{:sno}}</td>
+		<td id="name_{{:id}}">{{:name}}</td>
+		<td id="nname_{{:id}}">{{:uname}}</td>
+		<td id="bal_{{:id}}">$0.0</td>
+		<td style="width: 100px;">
+			<div class="pull-right action"><span class="icon-edit jqGroup"></span><span class="icon-trash jqGroup"></span></div>
+		</td>
+	</tr>
+	<tr id="upd_tr_{{:id}}" class="updRow" ><td id="upd_td_{{:id}}" colspan="5"></td></tr>
 </script>
 @section scripts{
-    <script src="@Microsoft.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Include/Cache/admin.script")" type="text/javascript"></script>
+	<script src="@Microsoft.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Include/Cache/admin.script")" type="text/javascript"></script>
 }

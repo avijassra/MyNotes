@@ -1,4 +1,4 @@
-﻿namespace MvcBase.WebHelper.StartupTasks.ControllerTasks
+﻿namespace MvcBase.WebHelper
 {
     using System;
     using System.Web;

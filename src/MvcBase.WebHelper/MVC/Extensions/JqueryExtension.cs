@@ -1,11 +1,10 @@
-﻿namespace MvcBase.WebHelper.Mvc.Extensions
+﻿namespace MvcBase.WebHelper
 {
     using System;
     using System.Web.Mvc.Html;
     using System.Web.Mvc;
     using System.Collections.Generic;
     using System.Web.Routing;
-    using MvcBase.WebHelper.Extensions;
 
     /// <summary>
     /// Extension class for JQuery.

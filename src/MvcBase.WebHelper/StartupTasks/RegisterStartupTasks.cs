@@ -1,11 +1,10 @@
-﻿namespace MvcBase.WebHelper.StartupTasks
+﻿namespace MvcBase.WebHelper
 {
     using System;
     using System.Linq;
     using System.Reflection;
     using System.Web.Mvc;
     using Microsoft.Practices.Unity;
-    using MvcBase.WebHelper.StartupTasks.ControllerTasks;
 
     public class RegisterStartupTasks
     {

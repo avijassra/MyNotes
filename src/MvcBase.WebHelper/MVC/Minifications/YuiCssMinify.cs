@@ -1,4 +1,4 @@
-﻿namespace MvcBase.WebHelper.Mvc.Minifications
+﻿namespace MvcBase.WebHelper
 {
     using System;
     using Microsoft.Web.Optimization;

@@ -1,4 +1,4 @@
-﻿namespace MvcBase.WebHelper.Extensions
+﻿namespace MvcBase.WebHelper
 {
     using System;
 

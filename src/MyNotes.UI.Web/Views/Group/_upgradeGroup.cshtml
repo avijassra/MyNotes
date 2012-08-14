@@ -1,6 +1,6 @@
 ﻿@model  MyNotes.UI.Web.ViewModels.Admin.Group.SaveGroupViewModel
 
-@using MvcBase.WebHelper.Mvc.Extensions;
+@using MvcBase.WebHelper;
 
 <div id="updateGroup" class="updPnl center" >
     @using (Ajax.BeginJqueryForm("frmUpdateGroup", MVC.Group.Actions.UpdateGroup(), "updateGroupCallback"))

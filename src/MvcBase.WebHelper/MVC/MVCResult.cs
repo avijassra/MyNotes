@@ -1,4 +1,4 @@
-﻿namespace MvcBase.WebHelper.Mvc
+﻿namespace MvcBase.WebHelper
 {
     using System.Web.Routing;
 

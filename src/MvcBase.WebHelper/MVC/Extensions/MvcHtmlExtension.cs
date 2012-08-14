@@ -1,4 +1,4 @@
-﻿namespace MvcBase.WebHelper.Mvc.Extensions
+﻿namespace MvcBase.WebHelper
 {
     using System.Collections.Generic;
     using System.Reflection;

@@ -1,7 +1,7 @@
 ﻿namespace MyNotes.UI.Web.Setup.ActionApi
 {
     using System.Web.Mvc;
-    using MvcBase.WebHelper.Mvc.Extensions;
+    using MvcBase.WebHelper;
 
     public class JsonResponseActionResult : ActionResult
     {

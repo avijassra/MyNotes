@@ -1,4 +1,4 @@
-﻿namespace MvcBase.WebHelper.StartupTasks
+﻿namespace MvcBase.WebHelper
 {
     public interface IIncludeComponent
     {

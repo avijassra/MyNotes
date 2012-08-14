@@ -111,6 +111,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\NoCache.cs" />
+    <Compile Include="Extensions\ExpressionExtension.cs" />
+    <Compile Include="Helpers\Guard.cs" />
     <Compile Include="Mvc\Attributes\JsonFilterAttribute.cs" />
     <Compile Include="Mvc\Extensions\ActionResultExtension.cs" />
     <Compile Include="Mvc\Extensions\MvcHtmlExtension.cs" />

@@ -1,7 +1,6 @@
 ﻿namespace MyNotes.UI.Web.Setup.StartupTasks.Component.MinifyBundles
 {
-    using MvcBase.WebHelper.StartupTasks;
-    using MvcBase.WebHelper.Mvc.Minifications;
+    using MvcBase.WebHelper;
     using Microsoft.Web.Optimization;
 
     public class CssBundles : IIncludeComponent

@@ -1,6 +1,6 @@
 ﻿namespace MyNotes.UI.Web.Setup.StartupTasks.Registration
 {
-    using MvcBase.WebHelper.StartupTasks;
+    using MvcBase.WebHelper;
     using Microsoft.Practices.Unity;
     using log4net;
 

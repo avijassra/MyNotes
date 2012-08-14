@@ -216,6 +216,18 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Setup\ActionApi\ActionApiException.cs" />
+    <Compile Include="Setup\ActionApi\IServiceNewGetAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Setup\ActionApi\IServiceNewSetAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Setup\ActionApi\ServiceNewGetAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Setup\ActionApi\ServiceNewSetAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Setup\Attributes\AdminAuthorizeFilterAttribute.cs" />
     <Compile Include="Setup\Helper\Enums.cs" />
     <Compile Include="Setup\Helper\MyNotesControllerBase.cs" />

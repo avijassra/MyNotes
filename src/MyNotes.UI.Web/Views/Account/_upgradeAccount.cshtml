@@ -1,6 +1,6 @@
 ﻿@model  MyNotes.UI.Web.ViewModels.Admin.Account.SaveAccountViewModel
 
-@using MvcBase.WebHelper.Mvc.Extensions;
+@using MvcBase.WebHelper;
 
 <div id="updateAccount" class="updPnl" >
     @using (Ajax.BeginJqueryForm("frmUpdateAccount", MVC.Account.Actions.UpdateAccount(), "updateAccountCallback"))

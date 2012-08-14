@@ -127,7 +127,6 @@ namespace MyNotes.UI.Web.Controllers {
         public class ViewNames {
             public readonly string _addUser = "~/Views/User/_addUser.cshtml";
             public readonly string _upgradeUser = "~/Views/User/_upgradeUser.cshtml";
-            public readonly string _users = "~/Views/User/_users.cshtml";
         }
     }
 

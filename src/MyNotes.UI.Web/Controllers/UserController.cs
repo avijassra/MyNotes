@@ -43,7 +43,7 @@
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
                                     return _userService.GetAllUsers(loggedInUser.GroupId, loggedInUser.IsSysAccount);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
         
         [HttpGet]
@@ -61,7 +61,7 @@
                                     ViewData["Groups"] = groups;
                                     return new SaveUserViewModel();
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpPost]
@@ -74,7 +74,7 @@
                                     return _userService.AddUser(userViewModel.Firstname, userViewModel.Lastname, userViewModel.Nickname,
                                         userViewModel.Username, userViewModel.GroupId);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpGet]
@@ -92,7 +92,7 @@
                                     ViewData["Groups"] = groups;
                                     return _userService.GetSingleUser(id);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpPost]
@@ -105,7 +105,7 @@
                                     return _userService.UpdateUser(userViewModel.Id, userViewModel.Firstname, userViewModel.Lastname, 
                                         userViewModel.Nickname, userViewModel.Username, userViewModel.GroupId);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpDelete]
@@ -117,7 +117,7 @@
                                 {
                                     return _userService.DeleteUser(id);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpPut]
@@ -129,7 +129,7 @@
                                 {
                                     return _userService.ResetPassword(id);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpPut]
@@ -141,7 +141,7 @@
                                 {
                                     return _userService.UserLockStatus(id, isLocked);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
     }
 }

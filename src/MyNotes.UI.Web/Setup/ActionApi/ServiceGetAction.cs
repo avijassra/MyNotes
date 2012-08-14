@@ -226,7 +226,7 @@
         /// Executes all the options selected in fluent api
         /// </summary>
         /// <returns>Json response action result </returns>
-        public JsonResponseActionResult Execute()
+        public JsonResponseActionResult AsJsonResult()
         {
             return new JsonResponseActionResult(
                     new RefreshOptions()

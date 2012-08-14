@@ -15,11 +15,17 @@
     {
         IUserService _userService;
         IServiceAction _serviceAction;
+        IServiceNewAction _serviceNewAction;
 
         public LoginController(IUserService userService)
         {
             _userService = userService;
             _serviceAction = WebDependencyBuilder.Container.Resolve<IServiceAction>(new ResolverOverride[]
+                                   {
+                                       new ParameterOverride("controller", this)
+                                   });
+
+            _serviceNewAction = WebDependencyBuilder.Container.Resolve<IServiceNewAction>(new ResolverOverride[]
                                    {
                                        new ParameterOverride("controller", this)
                                    });
@@ -40,7 +46,7 @@
                                 Session.SetValue(SessionKey.LoggedUser, loggedUserInfo);
                                 return loggedUserInfo;
                             })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         public virtual ActionResult LogOff(UserCredentialViewModel viewmodel)

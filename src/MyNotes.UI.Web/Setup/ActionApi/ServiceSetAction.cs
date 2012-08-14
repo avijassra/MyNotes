@@ -73,7 +73,7 @@
             return this;
         }
 
-        public JsonResponseActionResult Execute()
+        public JsonResponseActionResult AsJsonResult()
         {
             object data = null;
             string redirectLink = null;

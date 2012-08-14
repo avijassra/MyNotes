@@ -55,6 +55,6 @@
         /// Executes all the options selected in fluent api
         /// </summary>
         /// <returns>Json response action result </returns>
-        JsonResponseActionResult Execute();
+        JsonResponseActionResult AsJsonResult();
     }
 }

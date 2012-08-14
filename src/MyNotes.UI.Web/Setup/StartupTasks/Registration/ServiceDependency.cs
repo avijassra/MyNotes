@@ -16,6 +16,11 @@
             unityContainer.RegisterType<IServiceAction, ServiceAction>();
             unityContainer.RegisterType<IServiceGetAction, ServiceGetAction>();
             unityContainer.RegisterType<IServiceSetAction, ServiceSetAction>();
+
+            unityContainer.RegisterType<IServiceNewAction, ServiceNewAction>();
+            unityContainer.RegisterType<IServiceNewGetAction, ServiceNewGetAction>();
+            unityContainer.RegisterType<IServiceNewSetAction, ServiceNewSetAction>();
+
             unityContainer.RegisterInstance<IAccountService>(new AccountServiceClient());
             unityContainer.RegisterInstance<IGroupService>(new GroupServiceClient());
             unityContainer.RegisterInstance<IEchoService>(new EchoServiceClient());

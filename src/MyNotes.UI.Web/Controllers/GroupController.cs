@@ -44,7 +44,7 @@
                                 {
                                     return _groupService.GetAllGroups();
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpGet]
@@ -56,7 +56,7 @@
                                 {
                                     return new SaveGroupViewModel();
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpPost]
@@ -68,7 +68,7 @@
                                 {
                                     return _groupService.AddGroup(groupViewModel.Name);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpGet]
@@ -80,7 +80,7 @@
                                 {
                                     return _groupService.GetSingleGroup(id);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpPost]
@@ -92,7 +92,7 @@
                                 {
                                     return _groupService.UpdateGroup(groupViewModel.Id, groupViewModel.Name);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpDelete]
@@ -104,7 +104,7 @@
                                 {
                                     return _groupService.DeleteGroup(id);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
     }
 }

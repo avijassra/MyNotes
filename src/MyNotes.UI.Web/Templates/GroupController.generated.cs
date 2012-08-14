@@ -99,7 +99,6 @@ namespace MyNotes.UI.Web.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
             public readonly string _addGroup = "~/Views/Group/_addGroup.cshtml";
-            public readonly string _groups = "~/Views/Group/_groups.cshtml";
             public readonly string _upgradeGroup = "~/Views/Group/_upgradeGroup.cshtml";
         }
     }

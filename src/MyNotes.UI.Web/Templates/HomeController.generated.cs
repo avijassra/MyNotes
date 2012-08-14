@@ -23,9 +23,6 @@ using T4MVC;
 namespace MyNotes.UI.Web.Controllers {
     public partial class HomeController {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected HomeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -56,11 +53,13 @@ namespace MyNotes.UI.Web.Controllers {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNamesClass {
             public readonly string Index = "Index";
+            public readonly string TestLink = "TestLink";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants {
             public const string Index = "Index";
+            public const string TestLink = "TestLink";
         }
 
 
@@ -79,6 +78,11 @@ namespace MyNotes.UI.Web.Controllers {
 
         public override System.Web.Mvc.ActionResult Index() {
             var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.Index);
+            return callInfo;
+        }
+
+        public override System.Web.Mvc.ActionResult TestLink() {
+            var callInfo = new T4MVC_ActionResult(Area, Name, ActionNames.TestLink);
             return callInfo;
         }
 

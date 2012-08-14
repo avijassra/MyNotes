@@ -7,7 +7,7 @@
     using System.Reflection;
     using System.Linq.Expressions;
 
-    public class ServiceNewSetAction : ActionResult, IServiceNewSetAction
+    public class ServiceNewSetAction : IServiceNewSetAction
     {
         Controller _controller;
         Expression _expression;
@@ -57,17 +57,9 @@
             return this;
         }
 
-        public override void ExecuteResult(ControllerContext context)
-        {
-            var ajaxResponse = createAjaxResponse();
-
-            new JsonResult { Data = ajaxResponse, JsonRequestBehavior = JsonRequestBehavior.AllowGet }.ExecuteResult(context);
-        }
-
-        protected AjaxResponse createAjaxResponse()
+        public JsonResponseActionResult AsJsonResult()
         {
             var refreshOptions = new RefreshOptions();
-            string redirectLink = null;
 
             if (!_controller.ModelState.IsValid)
             {
@@ -76,24 +68,24 @@
             }
             else
             {
-                //if(_expression.)
-                //data = ;
+                //Func<int> method = _expression.ToLambda().CastTo<int>();
+                //refreshOptions.ResultViewModel = method();
             }
 
-            //if (_hasError && _onSuccess != null)
-            //{
-            //    redirectLink = (_onSuccessIsFragmentAction ?
-            //        _controller.Url.UrlWithActionFragment(_onSuccess) :
-            //        _controller.Url.UrlWithAction(_onSuccess));
-            //}
-            //else if (!_hasError && _onFailure != null)
-            //{
-            //    redirectLink = (_onFailureIsFragmentAction ?
-            //        _controller.Url.UrlWithActionFragment(_onFailure) :
-            //        _controller.Url.UrlWithAction(_onFailure));
-            //}
+            if (!refreshOptions.HasError && _onSuccess != null)
+            {
+                refreshOptions.RedirectUrl = (_onSuccessIsFragmentLink ?
+                    _controller.Url.UrlWithActionFragment(_onSuccess) :
+                    _controller.Url.UrlWithAction(_onSuccess));
+            }
+            else if (refreshOptions.HasError && _onFailure != null)
+            {
+                refreshOptions.RedirectUrl = (_onFailureIsFragmentLink ?
+                    _controller.Url.UrlWithActionFragment(_onFailure) :
+                    _controller.Url.UrlWithAction(_onFailure));
+            }
 
-            return null;
+            return new JsonResponseActionResult(refreshOptions);
         }
     }
 }

@@ -51,5 +51,11 @@
         /// <param name="isFragmentAction">True if action is of type ajax</param>
         /// <returns>Object of type IServiceNewSetAction</returns>
         IServiceNewSetAction OnFailure(ActionResult actionResult, bool isFragmentAction);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        JsonResponseActionResult AsJsonResult();
     }
 }

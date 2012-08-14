@@ -52,7 +52,7 @@
                                 {
                                     return _groupService.GetAllGroups();
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
        
@@ -67,7 +67,7 @@
                                     var loggedInUser = Session.GetValue<LoggedUserInfoDto>(SessionKey.LoggedUser);
                                     return _userService.GetAllUsers(loggedInUser.GroupId, loggedInUser.IsSysAccount);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
         
         [HttpGet]
@@ -81,7 +81,7 @@
                                     var accounts = _accountService.GetAllAccountsInGroup(loggedInUser.GroupId);
                                     return Mapper.Map<IList<AccountViewModel>>(accounts);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
     }
 }

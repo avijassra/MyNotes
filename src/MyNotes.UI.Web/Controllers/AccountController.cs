@@ -48,7 +48,7 @@
                                     var accounts = _accountService.GetAllAccountsInGroup(loggedInUser.GroupId);
                                     return Mapper.Map<IList<AccountViewModel>>(accounts);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpGet]
@@ -66,7 +66,7 @@
                                     ViewData["Users"] = users;
                                     return new SaveAccountViewModel();
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpPost]
@@ -78,7 +78,7 @@
                                 {
                                     return _accountService.AddAccount(accountViewModel.Name, accountViewModel.UserId);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpGet]
@@ -96,7 +96,7 @@
                                     ViewData["Users"] = users;
                                     return _accountService.GetSingleAccount(id);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpPost]
@@ -108,7 +108,7 @@
                                 {
                                     return _accountService.UpdateAccount(accountViewModel.Id, accountViewModel.Name, accountViewModel.UserId);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
 
         [HttpDelete]
@@ -120,7 +120,7 @@
                                 {
                                     return _accountService.DeleteAccount(id);
                                 })
-                        .Execute();
+                        .AsJsonResult();
         }
     }
 }

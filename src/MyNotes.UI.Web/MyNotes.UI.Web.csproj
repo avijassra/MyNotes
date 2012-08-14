@@ -216,6 +216,8 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Setup\ActionApi\ActionApiException.cs" />
+    <Compile Include="Setup\ActionApi\IServiceNewAction.cs" />
+    <Compile Include="Setup\ActionApi\ServiceNewAction.cs" />
     <Compile Include="Setup\ActionApi\IServiceNewGetAction.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -98,7 +98,6 @@ namespace MyNotes.UI.Web.Controllers {
         public ViewNames Views { get { return s_views; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ViewNames {
-            public readonly string _accounts = "~/Views/Account/_accounts.cshtml";
             public readonly string _addAccount = "~/Views/Account/_addAccount.cshtml";
             public readonly string _upgradeAccount = "~/Views/Account/_upgradeAccount.cshtml";
         }

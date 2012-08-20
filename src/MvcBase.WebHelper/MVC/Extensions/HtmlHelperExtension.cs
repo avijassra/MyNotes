@@ -30,7 +30,7 @@
 
             return ActionLinkWithFragment(htmlHelper, text, fragmentAction, string.Empty);
         }
-        
+
         /// <summary>
         /// Actions the link with fragment.
         /// </summary>
@@ -47,25 +47,7 @@
                 throw new ArgumentNullException("htmlHelper", "htmlHelper cannot be a null reference (Nothing in Visual Basic)");
             }
 
-            return actionLinkWithFragment(htmlHelper, text, fragmentAction, false, cssClass);
-        }
-
-        /// <summary>
-        /// Controller action link with fragment.
-        /// </summary>
-        /// <param name="htmlHelper">The HTML helper.</param>
-        /// <param name="text">The text.</param>
-        /// <param name="fragmentAction">The fragment action.</param>
-        /// <returns>string</returns>
-        public static MvcHtmlString ControllerActionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction)
-        {
-            // htmlHelper null check
-            if (null == htmlHelper)
-            {
-                throw new ArgumentNullException("htmlHelper", "htmlHelper cannot be a null reference (Nothing in Visual Basic)");
-            }
-
-            return ActionLinkWithFragment(htmlHelper, text, fragmentAction, string.Empty);
+            return fragmentActionLink(htmlHelper, text, fragmentAction, HashFormate.Standard, cssClass);
         }
 
         /// <summary>
@@ -76,7 +58,7 @@
         /// <param name="fragmentAction">The fragment action.</param>
         /// <param name="cssClass">The CSS class.</param>
         /// <returns>string</returns>
-        public static MvcHtmlString ControllerActionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction, string cssClass)
+        public static MvcHtmlString ActionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction, HashFormate hashFormate)
         {
             // htmlHelper null check
             if (null == htmlHelper)
@@ -84,7 +66,26 @@
                 throw new ArgumentNullException("htmlHelper", "htmlHelper cannot be a null reference (Nothing in Visual Basic)");
             }
 
-            return actionLinkWithFragment(htmlHelper, text, fragmentAction, true, cssClass);
+            return fragmentActionLink(htmlHelper, text, fragmentAction, hashFormate, string.Empty);
+        }
+
+        /// <summary>
+        /// Actions the link with fragment.
+        /// </summary>
+        /// <param name="htmlHelper">The HTML helper.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="fragmentAction">The fragment action.</param>
+        /// <param name="cssClass">The CSS class.</param>
+        /// <returns>string</returns>
+        public static MvcHtmlString ActionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction, HashFormate hashFormate, string cssClass)
+        {
+            // htmlHelper null check
+            if (null == htmlHelper)
+            {
+                throw new ArgumentNullException("htmlHelper", "htmlHelper cannot be a null reference (Nothing in Visual Basic)");
+            }
+
+            return fragmentActionLink(htmlHelper, text, fragmentAction, hashFormate, cssClass);
         }
 
         /// <summary>
@@ -95,7 +96,7 @@
         /// <param name="fragmentAction">The fragment action.</param>
         /// <param name="cssClass">The CSS class.</param>
         /// <returns>string</returns>
-        private static MvcHtmlString actionLinkWithFragment(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction, bool isControllerAction, string cssClass)
+        private static MvcHtmlString fragmentActionLink(this HtmlHelper htmlHelper, string text, ActionResult fragmentAction, HashFormate hashFormate, string cssClass)
         {
             // htmlHelper null check
             if (null == htmlHelper)
@@ -110,15 +111,7 @@
                 return null;
             }
 
-            var actionLink = string.Format((isControllerAction ? "#!{0}{1}" : "{0}#!{1}"),
-                        RouteTable.Routes.GetVirtualPathForArea(htmlHelper.ViewContext.RequestContext,
-                                                        new RouteValueDictionary(new
-                                                        {
-                                                            area = string.Empty,
-                                                            controller = mvcActionResult.Controller,
-                                                            action = string.Empty,
-                                                        })).VirtualPath,
-                         mvcActionResult.Action);
+            var actionLink = new UrlHelper(htmlHelper.ViewContext.RequestContext).UrlWithActionFragment(fragmentAction, hashFormate);
 
             return new MvcHtmlString(string.Format("<a id=\"{0}\" href=\"{1}\" class=\"jqAddress {2}\">{3}</a>",
                                                 Guid.NewGuid(),

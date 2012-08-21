@@ -28,6 +28,7 @@ public static class MVC {
     public static MyNotes.UI.Web.Controllers.GroupController Group = new MyNotes.UI.Web.Controllers.T4MVC_GroupController();
     public static MyNotes.UI.Web.Controllers.HomeController Home = new MyNotes.UI.Web.Controllers.T4MVC_HomeController();
     public static MyNotes.UI.Web.Controllers.LoginController Login = new MyNotes.UI.Web.Controllers.T4MVC_LoginController();
+    public static MyNotes.UI.Web.Controllers.TestController Test = new MyNotes.UI.Web.Controllers.T4MVC_TestController();
     public static MyNotes.UI.Web.Controllers.UserController User = new MyNotes.UI.Web.Controllers.T4MVC_UserController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
 }
